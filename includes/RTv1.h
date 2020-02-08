@@ -7,5 +7,4 @@
 # define WIDTH 720
 # define HEIGHT 720
 
-
 #endif
