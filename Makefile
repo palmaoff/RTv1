@@ -1,11 +1,13 @@
 NAME =	RTv1
 
-SRC =   main.c
+SRC =   main.c \
+		alg.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
+INK = -I ./includes
 
 LIB = ./libft
 LIB_INK = -I ./libft
@@ -18,6 +20,7 @@ SDL_INK	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
 			-F./frameworks/
 
 SDL_LNK =	-framework SDL2 \
+			-rpath ./frameworks \
 			-framework SDL2_ttf \
 			-framework SDL2_image \
 			-framework SDL2_mixer \
@@ -34,14 +37,14 @@ OBJDIR	= ./obj/
 all: $(NAME) 
 
 $(NAME): obj $(LIBFT) $(OBJ)
-		$(CC) $(FLAGS) $(SDL_INK) $(OBJ) $(LIBFT) -o $(NAME) $(SDL_LNK)
+		@$(CC) $(FLAGS) $(SDL_INK) $(OBJ) $(LIBFT) -o $(NAME) $(SDL_LNK)
 		@echo "\033[32m- RTv1 compiled\033[0m"
 
 obj:
 	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c ./includes/RTv1.h
-		$(CC) $(FLAGS) $(LIB_INK) $(SDL_INK) $(SDL_INK) -c $< -o $@
+		$(CC) $(FLAGS) $(INK) $(LIB_INK) $(SDL_INK) $(SDL_INK) -c $< -o $@
 
 $(LIBFT): ./libft
 	@make -C $(LIB)
