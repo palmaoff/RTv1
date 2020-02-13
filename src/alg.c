@@ -8,13 +8,13 @@ static	t_vec	viewpoint(float x, float y, t_scene *scene)
 {
 	t_vec d;
 
-	d.x = x; // понять
-	d.y = y; // осознать
+	d.x = x - scene->w / WIDTH; 
+	d.y = y - scene->h / HEIGHT;
 	d.z = scene->d;
 	return (d);
 }
 
-void	draw(t_scene *scene)
+void	draw(t_scene *scene, t_sdl *sdl)
 {
 	float i;
 	float j;
@@ -27,7 +27,8 @@ void	draw(t_scene *scene)
 		while (j < HEIGHT / 2)
 		{
 			d = viewpoint(i, j, scene);
-			// alg - дописать
+			// color
+			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);
 			j++;
 		}
 		i++;

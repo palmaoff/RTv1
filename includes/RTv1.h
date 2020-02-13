@@ -23,12 +23,22 @@ typedef	struct		s_vec
 	float z;
 }					t_vec;
 
+typedef	struct		s_color
+{
+	int r;
+	int g;
+	int b;
+}					t_color;
+
 typedef	struct		s_scene
 {
 	t_vec	o;
+	double	w;
+	double	h;
 	double	d;
 	double	c;
 	double	r;
+	t_color color;
 }					t_scene;
 
 #endif
