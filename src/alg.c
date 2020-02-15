@@ -14,6 +14,13 @@ static	t_vec	viewpoint(float x, float y, t_scene *scene)
 	return (d);
 }
 
+/*
+static t_color	color(t_vec d, t_scene *scene)
+{
+
+}
+*/
+
 void	draw(t_scene *scene, t_sdl *sdl)
 {
 	float i;
@@ -27,6 +34,7 @@ void	draw(t_scene *scene, t_sdl *sdl)
 		while (j < HEIGHT / 2)
 		{
 			d = viewpoint(i, j, scene);
+			//scene->color = color(d, scene);
 			// color
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);
 			j++;

@@ -29,7 +29,7 @@ void loop(void)
 void    init(t_sdl *sdl)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-    	exit(0); // change it
+    	exit(0); // change it 
     SDL_CreateWindowAndRenderer(WIDTH, WIDTH, 0, &sdl->window, &sdl->render);
 
     SDL_RenderClear(sdl->render);
