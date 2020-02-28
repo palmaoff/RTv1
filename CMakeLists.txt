@@ -1,0 +1,1128 @@
+cmake_minimum_required(VERSION 3.15)
+project(RTv1 C)
+
+set(CMAKE_C_STANDARD 11)
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PROJECT_SOURCE_DIR}/sdl2-cmake-scripts-master")
+
+find_package(SDL2 REQUIRED)
+find_package(SDL2_image REQUIRED)
+#find_package(SDL2_ttf REQUIRED)
+
+set(SDL2_PATH "/Users/wquirrel/Documents/RTv1/frameworks")
+#set(SDL2_INCLUDE_DIR "frameworks/SDL2.framework/Headers")
+#set(SDL2_IMAGE_INCLUDE_DIR "frameworks/SDL2_image.framework/Headers")
+#set(SDL2_TTF_INCLUDE_DIR "frameworks/SDL2_ttf.framework/Headers")
+#set(SDL2_LIBRARY "frameworks/SDL2.framework/SDL2")
+#set(SDL2_IMAGE_LIBRARIES "frameworks/SDL2_image.framework/SDL2_image")
+#set(SDL2_TTF_LIBRARIES "frameworks/SDL2_ttf.framework/SDL2_ttf")
+
+
+
+include_directories(${SDL2_INCLUDE_DIR})
+#        ${SDL2_IMAGE_INCLUDE_DIR}
+#        ${SDL2_TTF_INCLUDE_DIR})
+#target_link_libraries(RTv1 ${SDL2_LIBRARY})
+#        ${SDL2_IMAGE_LIBRARIES}
+#        ${SDL2_TTF_LIBRARIES})
+
+include_directories(frameworks)
+include_directories(frameworks/SDL2)
+include_directories(frameworks/SDL2.framework)
+include_directories(frameworks/SDL2.framework/Headers)
+include_directories(frameworks/SDL2.framework/Versions)
+include_directories(frameworks/SDL2.framework/Versions/A)
+include_directories(frameworks/SDL2.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2.framework/Versions/Current)
+include_directories(frameworks/SDL2.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_image.framework)
+include_directories(frameworks/SDL2_image.framework/Frameworks)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Headers)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/A)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/A/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/Current)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/Current/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions)
+include_directories(frameworks/SDL2_image.framework/Versions/A)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/A)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/A/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/Current)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/Current/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/Current)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/A)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/A/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/Current)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/Current/Headers/webp)
+include_directories(frameworks/SDL2_image.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/A)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/Current)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_mixer.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_ttf.framework)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config)
+include_directories(frameworks/SDL2_ttf.framework/Versions/Current/Headers)
+include_directories(includes)
+include_directories(libft)
+
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3")
+
+add_executable(RTv1
+        frameworks/SDL2/begin_code.h
+        frameworks/SDL2/close_code.h
+        frameworks/SDL2/SDL.h
+        frameworks/SDL2/SDL_assert.h
+        frameworks/SDL2/SDL_atomic.h
+        frameworks/SDL2/SDL_audio.h
+        frameworks/SDL2/SDL_bits.h
+        frameworks/SDL2/SDL_blendmode.h
+        frameworks/SDL2/SDL_clipboard.h
+        frameworks/SDL2/SDL_config.h
+        frameworks/SDL2/SDL_cpuinfo.h
+        frameworks/SDL2/SDL_egl.h
+        frameworks/SDL2/SDL_endian.h
+        frameworks/SDL2/SDL_error.h
+        frameworks/SDL2/SDL_events.h
+        frameworks/SDL2/SDL_filesystem.h
+        frameworks/SDL2/SDL_gamecontroller.h
+        frameworks/SDL2/SDL_gesture.h
+        frameworks/SDL2/SDL_haptic.h
+        frameworks/SDL2/SDL_hints.h
+        frameworks/SDL2/SDL_image.h
+        frameworks/SDL2/SDL_joystick.h
+        frameworks/SDL2/SDL_keyboard.h
+        frameworks/SDL2/SDL_keycode.h
+        frameworks/SDL2/SDL_loadso.h
+        frameworks/SDL2/SDL_log.h
+        frameworks/SDL2/SDL_main.h
+        frameworks/SDL2/SDL_messagebox.h
+        frameworks/SDL2/SDL_mouse.h
+        frameworks/SDL2/SDL_mutex.h
+        frameworks/SDL2/SDL_name.h
+        frameworks/SDL2/SDL_opengl.h
+        frameworks/SDL2/SDL_opengl_glext.h
+        frameworks/SDL2/SDL_opengles.h
+        frameworks/SDL2/SDL_opengles2.h
+        frameworks/SDL2/SDL_opengles2_gl2.h
+        frameworks/SDL2/SDL_opengles2_gl2ext.h
+        frameworks/SDL2/SDL_opengles2_gl2platform.h
+        frameworks/SDL2/SDL_opengles2_khrplatform.h
+        frameworks/SDL2/SDL_pixels.h
+        frameworks/SDL2/SDL_platform.h
+        frameworks/SDL2/SDL_power.h
+        frameworks/SDL2/SDL_quit.h
+        frameworks/SDL2/SDL_rect.h
+        frameworks/SDL2/SDL_render.h
+        frameworks/SDL2/SDL_revision.h
+        frameworks/SDL2/SDL_rwops.h
+        frameworks/SDL2/SDL_scancode.h
+        frameworks/SDL2/SDL_shape.h
+        frameworks/SDL2/SDL_stdinc.h
+        frameworks/SDL2/SDL_surface.h
+        frameworks/SDL2/SDL_system.h
+        frameworks/SDL2/SDL_syswm.h
+        frameworks/SDL2/SDL_test.h
+        frameworks/SDL2/SDL_test_assert.h
+        frameworks/SDL2/SDL_test_common.h
+        frameworks/SDL2/SDL_test_compare.h
+        frameworks/SDL2/SDL_test_crc32.h
+        frameworks/SDL2/SDL_test_font.h
+        frameworks/SDL2/SDL_test_fuzzer.h
+        frameworks/SDL2/SDL_test_harness.h
+        frameworks/SDL2/SDL_test_images.h
+        frameworks/SDL2/SDL_test_log.h
+        frameworks/SDL2/SDL_test_md5.h
+        frameworks/SDL2/SDL_test_random.h
+        frameworks/SDL2/SDL_thread.h
+        frameworks/SDL2/SDL_timer.h
+        frameworks/SDL2/SDL_touch.h
+        frameworks/SDL2/SDL_ttf.h
+        frameworks/SDL2/SDL_types.h
+        frameworks/SDL2/SDL_version.h
+        frameworks/SDL2/SDL_video.h
+        frameworks/SDL2/SDL_vulkan.h
+        frameworks/SDL2.framework/Versions/A/Headers/begin_code.h
+        frameworks/SDL2.framework/Versions/A/Headers/close_code.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_assert.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_atomic.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_audio.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_bits.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_blendmode.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_clipboard.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_config.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_config_macosx.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_copying.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_cpuinfo.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_endian.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_error.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_events.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_filesystem.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_gamecontroller.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_gesture.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_haptic.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_hints.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_joystick.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_keyboard.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_keycode.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_loadso.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_log.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_main.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_messagebox.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_mouse.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_mutex.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_name.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengl.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengl_glext.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengles.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengles2.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengles2_gl2.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengles2_gl2ext.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengles2_gl2platform.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_opengles2_khrplatform.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_pixels.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_platform.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_power.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_quit.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_rect.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_render.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_revision.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_rwops.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_scancode.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_shape.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_stdinc.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_surface.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_system.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_syswm.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_thread.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_timer.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_touch.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_types.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_version.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_video.h
+        frameworks/SDL2.framework/Versions/A/Headers/SDL_vulkan.h
+        frameworks/SDL2.framework/Versions/Current/Headers/begin_code.h
+        frameworks/SDL2.framework/Versions/Current/Headers/close_code.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_assert.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_atomic.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_audio.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_bits.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_blendmode.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_clipboard.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_config.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_config_macosx.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_copying.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_cpuinfo.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_endian.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_error.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_events.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_filesystem.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_gamecontroller.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_gesture.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_haptic.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_hints.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_joystick.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_keyboard.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_keycode.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_loadso.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_log.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_main.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_messagebox.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_mouse.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_mutex.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_name.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengl.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengl_glext.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengles.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengles2.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengles2_gl2.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengles2_gl2ext.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengles2_gl2platform.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_opengles2_khrplatform.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_pixels.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_platform.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_power.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_quit.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_rect.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_render.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_revision.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_rwops.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_scancode.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_shape.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_stdinc.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_surface.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_system.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_syswm.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_thread.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_timer.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_touch.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_types.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_version.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_video.h
+        frameworks/SDL2.framework/Versions/Current/Headers/SDL_vulkan.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/A/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/A/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/A/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/Current/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/Current/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Frameworks/webp.framework/Versions/Current/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Headers/SDL_image.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/A/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/A/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/A/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/Current/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/Current/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Versions/A/Frameworks/webp.framework/Versions/Current/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Versions/A/Headers/SDL_image.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/A/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/A/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/A/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/Current/Headers/webp/decode.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/Current/Headers/webp/encode.h
+        frameworks/SDL2_image.framework/Versions/Current/Frameworks/webp.framework/Versions/Current/Headers/webp/types.h
+        frameworks/SDL2_image.framework/Versions/Current/Headers/SDL_image.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions/A/Headers/modplug.h
+        frameworks/SDL2_mixer.framework/Frameworks/modplug.framework/Versions/Current/Headers/modplug.h
+        frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/A/Headers/fmt123.h
+        frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/A/Headers/mpg123.h
+        frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/Current/Headers/fmt123.h
+        frameworks/SDL2_mixer.framework/Frameworks/mpg123.framework/Versions/Current/Headers/mpg123.h
+        frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/A/Headers/ogg.h
+        frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/A/Headers/os_types.h
+        frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/Current/Headers/ogg.h
+        frameworks/SDL2_mixer.framework/Frameworks/Ogg.framework/Versions/Current/Headers/os_types.h
+        frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/A/Headers/codec.h
+        frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/A/Headers/vorbisenc.h
+        frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/A/Headers/vorbisfile.h
+        frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/Current/Headers/codec.h
+        frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/Current/Headers/vorbisenc.h
+        frameworks/SDL2_mixer.framework/Frameworks/Vorbis.framework/Versions/Current/Headers/vorbisfile.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions/A/Headers/modplug.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/modplug.framework/Versions/Current/Headers/modplug.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/A/Headers/fmt123.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/A/Headers/mpg123.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/Current/Headers/fmt123.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/mpg123.framework/Versions/Current/Headers/mpg123.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/A/Headers/ogg.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/A/Headers/os_types.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/Current/Headers/ogg.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Ogg.framework/Versions/Current/Headers/os_types.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/A/Headers/codec.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/A/Headers/vorbisenc.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/A/Headers/vorbisfile.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/Current/Headers/codec.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/Current/Headers/vorbisenc.h
+        frameworks/SDL2_mixer.framework/Versions/A/Frameworks/Vorbis.framework/Versions/Current/Headers/vorbisfile.h
+        frameworks/SDL2_mixer.framework/Versions/A/Headers/SDL_mixer.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/A/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/all.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/assert.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/callback.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/export.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/format.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/metadata.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/ordinals.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/stream_decoder.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/FLAC.framework/Versions/Current/Headers/FLAC/stream_encoder.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions/A/Headers/modplug.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/modplug.framework/Versions/Current/Headers/modplug.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/A/Headers/fmt123.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/A/Headers/mpg123.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/Current/Headers/fmt123.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/mpg123.framework/Versions/Current/Headers/mpg123.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/A/Headers/ogg.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/A/Headers/os_types.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/Current/Headers/ogg.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Ogg.framework/Versions/Current/Headers/os_types.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/A/Headers/codec.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/A/Headers/vorbisenc.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/A/Headers/vorbisfile.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/Current/Headers/codec.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/Current/Headers/vorbisenc.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Frameworks/Vorbis.framework/Versions/Current/Headers/vorbisfile.h
+        frameworks/SDL2_mixer.framework/Versions/Current/Headers/SDL_mixer.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/A/Headers/ft2build.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Frameworks/FreeType.framework/Versions/Current/Headers/ft2build.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/A/Headers/ft2build.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework/Versions/Current/Headers/ft2build.h
+        frameworks/SDL2_ttf.framework/Versions/A/Headers/SDL_ttf.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/A/Headers/ft2build.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftconfig.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftheader.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftmodule.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftoption.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/config/ftstdlib.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/freetype.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftadvanc.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftautoh.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbbox.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbdf.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbitmap.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftbzip2.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcache.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcffdrv.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftchapters.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftcid.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fterrdef.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fterrors.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgasp.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftglyph.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgxval.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftgzip.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftimage.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftincrem.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlcdfil.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlist.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftlzw.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmac.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmm.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmodapi.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftmoderr.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftotval.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftoutln.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftpfr.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftrender.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsizes.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsnames.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftstroke.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsynth.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftsystem.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fttrigon.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/fttypes.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftwinfnt.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ftxf86.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/t1tables.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ttnameid.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/tttables.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/tttags.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/freetype/ttunpat.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Frameworks/FreeType.framework/Versions/Current/Headers/ft2build.h
+        frameworks/SDL2_ttf.framework/Versions/Current/Headers/SDL_ttf.h
+        includes/RTv1.h
+        libft/ft_atoi.c
+        libft/ft_bzero.c
+        libft/ft_isalnum.c
+        libft/ft_isalpha.c
+        libft/ft_isascii.c
+        libft/ft_isdigit.c
+        libft/ft_isgraph.c
+        libft/ft_isprint.c
+        libft/ft_isspace.c
+        libft/ft_itoa.c
+        libft/ft_lstadd.c
+        libft/ft_lstdel.c
+        libft/ft_lstdelone.c
+        libft/ft_lstiter.c
+        libft/ft_lstmap.c
+        libft/ft_lstnew.c
+        libft/ft_lstnewend.c
+        libft/ft_memalloc.c
+        libft/ft_memccpy.c
+        libft/ft_memchr.c
+        libft/ft_memcmp.c
+        libft/ft_memcpy.c
+        libft/ft_memdel.c
+        libft/ft_memmove.c
+        libft/ft_memset.c
+        libft/ft_putchar.c
+        libft/ft_putchar_fd.c
+        libft/ft_putendl.c
+        libft/ft_putendl_fd.c
+        libft/ft_putnbr.c
+        libft/ft_putnbr_fd.c
+        libft/ft_putstr.c
+        libft/ft_putstr_fd.c
+        libft/ft_sqrt.c
+        libft/ft_strcat.c
+        libft/ft_strchr.c
+        libft/ft_strclr.c
+        libft/ft_strcmp.c
+        libft/ft_strcpy.c
+        libft/ft_strdel.c
+        libft/ft_strdup.c
+        libft/ft_strequ.c
+        libft/ft_striter.c
+        libft/ft_striteri.c
+        libft/ft_strjoin.c
+        libft/ft_strlcat.c
+        libft/ft_strlen.c
+        libft/ft_strmap.c
+        libft/ft_strmapi.c
+        libft/ft_strncat.c
+        libft/ft_strncmp.c
+        libft/ft_strncpy.c
+        libft/ft_strndup.c
+        libft/ft_strnequ.c
+        libft/ft_strnew.c
+        libft/ft_strnstr.c
+        libft/ft_strrchr.c
+        libft/ft_strsplit.c
+        libft/ft_strstr.c
+        libft/ft_strsub.c
+        libft/ft_strtrim.c
+        libft/ft_tolower.c
+        libft/ft_toupper.c
+        libft/libft.h
+        src/alg.c
+        src/main.c)
+
+target_link_libraries(RTv1 ${SDL2_LIBRARY})

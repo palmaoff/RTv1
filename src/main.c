@@ -37,6 +37,8 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->c.y = 0;
     scene->c.z = 10;
     scene->r = 2;
+    // SDL_Init — в случае неудачи всегда возвращается отрицательное число
+	// SDL_GetError() всегда вернет текст проблемы.
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	exit(0); // change it
     SDL_CreateWindowAndRenderer(WIDTH, WIDTH, 0, &sdl->window, &sdl->render);
