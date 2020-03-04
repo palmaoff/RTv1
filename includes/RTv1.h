@@ -19,9 +19,9 @@ typedef	struct		s_sdl
 
 typedef	struct		s_vec
 {
-	float x;
-	float y;
-	float z;
+	double x;
+	double y;
+	double z;
 }					t_vec;
 
 typedef	struct		s_color
@@ -31,23 +31,31 @@ typedef	struct		s_color
 	int b;
 }					t_color;
 
-typedef	struct		s_scene
-{
-	t_vec	o;
-	float	w;
-	float	h;
-	float	d;
-	t_vec	c;
-	float	r;
-	t_color color;
-}					t_scene;
-
 typedef	struct		s_camera
 {
 	t_vec dir;
 	t_vec orig;
+	double x_r;
+	double y_r;
+	double z_r;
 }					t_camera;
 
+typedef	struct		s_scene
+{
+	t_vec	o;
+	t_vec	dirO;
+	double	d;
+	t_vec	c;
+	double	r;
+	t_color color;
+	t_camera cam;
+}					t_scene;
+
 void	draw(t_scene *scene, t_sdl *sdl);
+t_vec   init_vec(double x, double y, double z);
+t_vec	minus(t_vec a, t_vec b);
+t_vec 	plus(t_vec a, t_vec b);
+void	rotate(t_camera cam, double *x, double *y, double *z);
+t_vec	normalize(t_vec a);
 
 #endif

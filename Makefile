@@ -1,7 +1,9 @@
 NAME =	RTv1
 
 SRC =   main.c \
-		alg.c
+		alg.c \
+		init_vec.c \
+		rotate.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
