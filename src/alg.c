@@ -41,25 +41,21 @@ t_vec plus(t_vec a, t_vec b)
 	return (c);
 }
 
-static	t_vec	viewpoint(double x, double y, t_cam *scene)
+static	t_vec	viewpoint(double x, double y, t_scene *scene)
 {
 	t_vec d;
-	t_vec c;
 	double rot;
-	double angl;
 
-	angl = 1;
-	c = plus(scene->cam.dir, scene->cam.orig);
 	(void)scene; // change parameters
 	rot =  (double)WIDTH / (double)HEIGHT;
-	d.x = (2 * ((x + 0.5) / WIDTH) - 1) * rot * angl;
-	d.y = 1 - 2 * (y + 0.5) / HEIGHT * angl;
-	d.z = 1.0;
+	d.x = (2 * ((x + 0.5) / WIDTH) - 1) * rot + scene->cam.dir.x;
+	d.y = 1 - 2 * (y + 0.5) / HEIGHT + scene->cam.dir.y;
+	d.z = scene->o.z + scene->cam.dir.z;
 	// rotate(scene->cam, &d.x, &d.y, &d.z);
 	return (d);
 }
 
-float	IntersectSphere(t_vec d, t_cam *scene)
+float	IntersectSphere(t_vec d, t_scene *scene)
 {
 	t_vec co;
 	double a;
@@ -69,21 +65,19 @@ float	IntersectSphere(t_vec d, t_cam *scene)
 	double t1;
 	double t2;
 
-	co = minus(scene->cam.orig, scene->c);
-	a = 1;
+	co = minus(scene->o, scene->c);
+	a = dot(d, d);
 	b = dot(co, d);
 	c = (dot(co, co)) - scene->r * scene->r;
 	discr = b * b - a * c;
 	if (discr < 0)
 		return (0);
-	t1 = (-b + sqrtf(discr)) / a;
-	t2 = (-b - sqrtf(discr)) / a;
-	if (t1 < 1 && t2 < 1)
-		return (0);
-	return ((t1 < t2 || t2 < 1.0) ? t1 : t2);
+	t1 = (-b + sqrt(discr)) / a;
+	t2 = (-b - sqrt(discr)) / a;
+	return (t1 < t2 ? t1 : t2);
 }
 
-t_color	ray(t_cam *scene, t_vec d)
+t_color	ray(t_scene *scene, t_vec d)
 {
 	t_color c;
 	float t;
@@ -105,7 +99,7 @@ t_color	ray(t_cam *scene, t_vec d)
 	return (c);
 }
 
-void	draw(t_cam *scene, t_sdl *sdl)
+void	draw(t_scene *scene, t_sdl *sdl)
 {
 	float i;
 	float j;
@@ -117,9 +111,8 @@ void	draw(t_cam *scene, t_sdl *sdl)
 		j = 0;
 		while (j < HEIGHT)
 		{
-			scene->cam.dir = normalize(scene->cam.dir);
 			d = viewpoint(i, j, scene);
-			// d = minus(d, scene->cam.orig);
+			d = minus(d, scene->o);
 			d = normalize(d);
 			scene->color = ray(scene, d);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);

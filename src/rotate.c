@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: wquirrel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/27 18:54:49 by null              #+#    #+#             */
-/*   Updated: 2020/03/27 18:55:15 by null             ###   ########.fr       */
+/*   Created: 2020/01/17 21:49:17 by wquirrel          #+#    #+#             */
+/*   Updated: 2020/01/17 21:49:20 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "RTv1.h"
 
@@ -20,16 +19,8 @@ void	rotate(t_camera cam, double *x, double *y, double *z)
 	double pre_z;
 
 	pre_y = *y;
-	*y = pre_y * cos(cam.x_r) + *z * sin(cam.x_r);
-	*z = -pre_y * sin(cam.x_r) + *z * cos(cam.x_r);
-
-	pre_z = *z;
-	*z = *x * sin(cam.y_r) + pre_z * cos(cam.y_r);
-	*x = pre_z * sin(cam.y_r) + *x * cos(cam.y_r);
-
-	pre_x = *x;
-	*x = pre_x * cos(0) - *y * sin(0);
-	*y = pre_x * sin(0) + *y * cos(0);
+	*y = pre_y * cos(cam.dir.x) + *z * sin(cam.dir.x);
+	*z = -pre_y * sin(cam.dir.x) + *z * cos(cam.dir.x);
 
 	pre_z = *z;
 	*z = *x * sin(cam.dir.y) + pre_z * cos(cam.dir.y);

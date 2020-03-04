@@ -8,7 +8,6 @@
 # define HEIGHT 720
 
 # include <stdio.h> // KILL ME
-# include <fcntl.h>
 # include "SDL.h"
 # include "math.h"
 
@@ -43,14 +42,16 @@ typedef	struct		s_camera
 
 typedef	struct		s_scene
 {
+	t_vec	o;
+	t_vec	dirO;
 	double	d;
 	t_vec	c;
 	double	r;
 	t_color color;
 	t_camera cam;
-}					t_cam;
+}					t_scene;
 
-void	draw(t_cam *scene, t_sdl *sdl);
+void	draw(t_scene *scene, t_sdl *sdl);
 t_vec   init_vec(double x, double y, double z);
 t_vec	minus(t_vec a, t_vec b);
 t_vec 	plus(t_vec a, t_vec b);
