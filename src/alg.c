@@ -1,12 +1,24 @@
 /*
-** created by eflorean
+**	alg.c
+**	created by eflorean
 */
 
 #include "RTv1.h"
 
-float scal(t_vec a, t_vec b)
+double dot(t_vec a, t_vec b)
 {
 	return (a.x * b.x + a.y * b.y + a.z * b.z);
+}
+
+t_vec	normalize(t_vec a)
+{
+	t_vec vec;
+	double len;
+	len = sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
+	vec.x = a.x / len;
+	vec.y = a.y / len;
+	vec.z = a.z / len;
+	return (vec);
 }
 
 t_vec minus(t_vec a, t_vec b)
@@ -19,30 +31,44 @@ t_vec minus(t_vec a, t_vec b)
 	return (c);
 }
 
-static	t_vec	viewpoint(float x, float y, t_scene *scene)
+t_vec plus(t_vec a, t_vec b)
+{
+	t_vec c;
+
+	c.x = a.x + b.x;
+	c.y = a.y + b.y;
+	c.z = a.z + b.z;
+	return (c);
+}
+
+static	t_vec	viewpoint(double x, double y, t_scene *scene)
 {
 	t_vec d;
+	double rot;
 
-	d.x = x * scene->w / WIDTH - scene->w / 2; 
-	d.y = scene->h / 2 - y * scene->h / HEIGHT;
-	d.z = 1;
+	(void)scene; // change parameters
+	rot =  (double)WIDTH / (double)HEIGHT;
+	d.x = (2 * ((x + 0.5) / WIDTH) - 1) * rot + scene->cam.dir.x;
+	d.y = 1 - 2 * (y + 0.5) / HEIGHT + scene->cam.dir.y;
+	d.z = scene->o.z + scene->cam.dir.z;
+	// rotate(scene->cam, &d.x, &d.y, &d.z);
 	return (d);
 }
 
 float	IntersectSphere(t_vec d, t_scene *scene)
 {
-	float a;
-	float b;
-	float c;
-	t_vec oc;
-	float discr;
-	float t1;
-	float t2;
+	t_vec co;
+	double a;
+	double b;
+	double c;
+	double discr;
+	double t1;
+	double t2;
 
-	oc = minus(scene->o, scene->c);
-	a = scal(d, d);
-	b = scal(oc, d);
-	c = scal(oc, oc) - scene->r * scene->r;
+	co = minus(scene->o, scene->c);
+	a = dot(d, d);
+	b = dot(co, d);
+	c = (dot(co, co)) - scene->r * scene->r;
 	discr = b * b - a * c;
 	if (discr < 0)
 		return (0);
@@ -86,6 +112,8 @@ void	draw(t_scene *scene, t_sdl *sdl)
 		while (j < HEIGHT)
 		{
 			d = viewpoint(i, j, scene);
+			d = minus(d, scene->o);
+			d = normalize(d);
 			scene->color = ray(scene, d);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);
 			SDL_RenderDrawPoint(sdl->render, i, j);

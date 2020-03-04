@@ -31,15 +31,20 @@ void loop(t_sdl *sdl, t_scene *scene)
 
 void    init(t_sdl *sdl, t_scene *scene)
 {
-    scene->w = 1;
-    scene->h = 1;
+    scene->o = init_vec(0, 0, 0);
+    scene->dirO = init_vec(0, 0, 0);
     scene->c.x = 0;
     scene->c.y = 0;
-    scene->c.z = 10;
+    scene->c.z = 5;
     scene->r = 2;
+    scene->cam.dir = init_vec(1, 0, 1);
+    scene->cam.dir = normalize(scene->cam.dir);
+    scene->cam.x_r = 0;
+    scene->cam.y_r = 0;
+    scene->cam.z_r = 0;
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	exit(0); // change it
-    SDL_CreateWindowAndRenderer(WIDTH, WIDTH, 0, &sdl->window, &sdl->render);
+    SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &sdl->window, &sdl->render);
     SDL_RenderClear(sdl->render);
 }
 
