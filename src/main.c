@@ -20,9 +20,42 @@ void loop(t_sdl *sdl, t_scene *scene)
             if (event.type == SDL_QUIT)
                 run = 0;
             if (event.type == SDL_KEYDOWN)
-                // printf("%d\n", event.key.keysym.sym);
+            {
                 if (event.key.keysym.sym == SDLK_ESCAPE)
                     run = 0;
+                if (event.key.keysym.sym == SDLK_d)
+                    scene->cam.orig.x += 0.1;
+                if (event.key.keysym.sym == SDLK_a)
+                    scene->cam.orig.x -= 0.1;
+                if (event.key.keysym.sym == SDLK_s)
+                    scene->cam.orig.y -= 0.1;
+                if (event.key.keysym.sym == SDLK_w)
+                    scene->cam.orig.y += 0.1;
+                if (event.key.keysym.sym == SDLK_UP)
+                    scene->cam.dir.x += 0.1;
+                if (event.key.keysym.sym == SDLK_DOWN)
+                    scene->cam.dir.x -= 0.1;
+                if (event.key.keysym.sym == SDLK_RIGHT)
+                    scene->cam.dir.y += 0.1;
+                if (event.key.keysym.sym == SDLK_LEFT)
+                    scene->cam.dir.y -= 0.1;
+                if (event.key.keysym.sym == SDLK_z)
+                    scene->cam.x_r += 0.01;
+                if (event.key.keysym.sym == SDLK_x)
+                    scene->cam.y_r += 0.01;
+                if (event.key.keysym.sym == SDLK_c)
+                    scene->cam.z_r += 0.01;
+                if (event.key.keysym.sym == 32)
+                {
+                    scene->r += 0.1;
+                    printf("%f\n", scene->r);
+                    printf("%f %f %f\n", scene->cam.dir.x, scene->cam.dir.y, scene->cam.dir.z);
+                }
+                // printf("%d\n", event.key.keysym.sym);
+                draw(scene, sdl);
+                SDL_RenderPresent(sdl->render);
+            }
+                
         }
         // draw scene after we have time
         // scene->draw();
@@ -31,14 +64,12 @@ void loop(t_sdl *sdl, t_scene *scene)
 
 void    init(t_sdl *sdl, t_scene *scene)
 {
-    scene->o = init_vec(0, 0, 0);
-    scene->dirO = init_vec(0, 0, 0);
+    scene->cam.orig = init_vec(0, 0, 0);
     scene->c.x = 0;
     scene->c.y = 0;
-    scene->c.z = 5;
-    scene->r = 2;
-    scene->cam.dir = init_vec(1, 0, 1);
-    scene->cam.dir = normalize(scene->cam.dir);
+    scene->c.z = 30;
+    scene->r = 1;
+    scene->cam.dir = init_vec(0, 0, 1);
     scene->cam.x_r = 0;
     scene->cam.y_r = 0;
     scene->cam.z_r = 0;

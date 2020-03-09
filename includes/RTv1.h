@@ -42,8 +42,6 @@ typedef	struct		s_camera
 
 typedef	struct		s_scene
 {
-	t_vec	o;
-	t_vec	dirO;
 	double	d;
 	t_vec	c;
 	double	r;
