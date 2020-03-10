@@ -54,11 +54,8 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	rot =  (double)WIDTH / (double)HEIGHT;
 	d.x = (2 * ((x + 0.5) / WIDTH) - 1) * rot * angl;
 	d.y = 1 - 2 * (y + 0.5) / HEIGHT * angl;
-	d.z = 0;
-	rotate(scene->cam, &d.x, &d.y, &d.z);
-	d.x += c.x;
-	d.y += c.y;
-	d.z = c.z;
+	d.z = 1.0;
+	// rotate(scene->cam, &d.x, &d.y, &d.z);
 	return (d);
 }
 
@@ -73,7 +70,7 @@ float	IntersectSphere(t_vec d, t_scene *scene)
 	double t2;
 
 	co = minus(scene->cam.orig, scene->c);
-	a = dot(d, d);
+	a = 1;
 	b = dot(co, d);
 	c = (dot(co, co)) - scene->r * scene->r;
 	discr = b * b - a * c;
@@ -122,7 +119,7 @@ void	draw(t_scene *scene, t_sdl *sdl)
 		{
 			scene->cam.dir = normalize(scene->cam.dir);
 			d = viewpoint(i, j, scene);
-			d = minus(d, scene->cam.orig);
+			// d = minus(d, scene->cam.orig);
 			d = normalize(d);
 			scene->color = ray(scene, d);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);

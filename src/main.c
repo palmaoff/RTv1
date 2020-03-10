@@ -32,9 +32,9 @@ void loop(t_sdl *sdl, t_scene *scene)
                 if (event.key.keysym.sym == SDLK_w)
                     scene->cam.orig.y += 0.1;
                 if (event.key.keysym.sym == SDLK_UP)
-                    scene->cam.dir.x += 0.1;
+                    scene->cam.orig.z += 0.1;
                 if (event.key.keysym.sym == SDLK_DOWN)
-                    scene->cam.dir.x -= 0.1;
+                    scene->cam.orig.z -= 0.1;
                 if (event.key.keysym.sym == SDLK_RIGHT)
                     scene->cam.dir.y += 0.1;
                 if (event.key.keysym.sym == SDLK_LEFT)
@@ -45,11 +45,11 @@ void loop(t_sdl *sdl, t_scene *scene)
                     scene->cam.y_r += 0.01;
                 if (event.key.keysym.sym == SDLK_c)
                     scene->cam.z_r += 0.01;
-                if (event.key.keysym.sym == 32)
+                if (event.key.keysym.sym == SDLK_SPACE)
                 {
-                    scene->r += 0.1;
+                    // scene->r += 0.1;
                     printf("%f\n", scene->r);
-                    printf("%f %f %f\n", scene->cam.dir.x, scene->cam.dir.y, scene->cam.dir.z);
+                    printf("%f %f %f\n", scene->cam.orig.x, scene->cam.orig.y, scene->cam.orig.z);
                 }
                 // printf("%d\n", event.key.keysym.sym);
                 draw(scene, sdl);
@@ -67,8 +67,8 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cam.orig = init_vec(0, 0, 0);
     scene->c.x = 0;
     scene->c.y = 0;
-    scene->c.z = 30;
-    scene->r = 1;
+    scene->c.z = 5;
+    scene->r = 2;
     scene->cam.dir = init_vec(0, 0, 1);
     scene->cam.x_r = 0;
     scene->cam.y_r = 0;
