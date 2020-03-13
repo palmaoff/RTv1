@@ -4,7 +4,7 @@
 
 #include "RTv1.h"
 
-void loop(t_sdl *sdl, t_scene *scene)
+void loop(t_sdl *sdl, t_cam *scene)
 {
     SDL_Event event;
     int run;
@@ -62,7 +62,7 @@ void loop(t_sdl *sdl, t_scene *scene)
     }
 }
 
-void    init(t_sdl *sdl, t_scene *scene)
+void    init(t_sdl *sdl, t_cam *scene)
 {
     scene->cam.orig = init_vec(0, 0, 0);
     scene->c.x = 0;
@@ -81,7 +81,7 @@ void    init(t_sdl *sdl, t_scene *scene)
 
 int main() {
     t_sdl sdl;
-    t_scene scene;
+    t_cam scene;
 
     init(&sdl, &scene);
     loop(&sdl, &scene);

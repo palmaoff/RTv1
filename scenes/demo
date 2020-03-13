@@ -1,0 +1,17 @@
+scene
+{
+	camera
+	{
+		pos ( 200 200 200 )
+		dir ( 40 50 60 )
+	}
+}
+objects
+{
+	sphere
+	{
+		pos ( 500 500 500 )
+		color rgb ( 0xFF00 0xFF00 0x0000)
+		rad ( 50 )
+	}
+}

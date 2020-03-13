@@ -41,7 +41,7 @@ t_vec plus(t_vec a, t_vec b)
 	return (c);
 }
 
-static	t_vec	viewpoint(double x, double y, t_scene *scene)
+static	t_vec	viewpoint(double x, double y, t_cam *scene)
 {
 	t_vec d;
 	t_vec c;
@@ -59,7 +59,7 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	return (d);
 }
 
-float	IntersectSphere(t_vec d, t_scene *scene)
+float	IntersectSphere(t_vec d, t_cam *scene)
 {
 	t_vec co;
 	double a;
@@ -83,7 +83,7 @@ float	IntersectSphere(t_vec d, t_scene *scene)
 	return ((t1 < t2 || t2 < 1.0) ? t1 : t2);
 }
 
-t_color	ray(t_scene *scene, t_vec d)
+t_color	ray(t_cam *scene, t_vec d)
 {
 	t_color c;
 	float t;
@@ -105,7 +105,7 @@ t_color	ray(t_scene *scene, t_vec d)
 	return (c);
 }
 
-void	draw(t_scene *scene, t_sdl *sdl)
+void	draw(t_cam *scene, t_sdl *sdl)
 {
 	float i;
 	float j;

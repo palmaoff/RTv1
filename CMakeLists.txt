@@ -7,6 +7,7 @@ set(CMAKE_C_STANDARD 11)
 include_directories(frameworks/SDL2)
 include_directories(includes)
 include_directories(libft)
+include_directories(getnextline)
 
 add_executable(RTv1
         includes/RTv1.h
@@ -77,6 +78,10 @@ add_executable(RTv1
         src/alg.c
         src/init_vec.c
         src/main.c
-        src/rotate.c)
+        src/rotate.c
+        src/parser_main.c
+        includes/parser_rtv1.h
+        getnextline/get_next_line.c
+        getnextline/get_next_line.h)
 
 target_link_libraries(RTv1 "-rpath ${PROJECT_SOURCE_DIR}/frameworks -F ${PROJECT_SOURCE_DIR}/frameworks -framework SDL2 -framework SDL2_image -framework SDL2_mixer -framework SDL2_ttf")
