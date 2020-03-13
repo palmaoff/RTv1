@@ -44,17 +44,17 @@ t_vec plus(t_vec a, t_vec b)
 static	t_vec	viewpoint(double x, double y, t_scene *scene)
 {
 	t_vec d;
-	t_vec c;
 	double rot;
 	double angl;
 
-	angl = 1;
-	c = plus(scene->cam.dir, scene->cam.orig);
+	angl = 0.577350;
 	(void)scene; // change parameters
 	rot =  (double)WIDTH / (double)HEIGHT;
-	d.x = (2 * ((x + 0.5) / WIDTH) - 1) * rot * angl;
-	d.y = 1 - 2 * (y + 0.5) / HEIGHT * angl;
+	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl;
+	d.y = (1 - 2.0 * (y + 0.5) / HEIGHT) * angl;
 	d.z = 1.0;
+	// d.x *= 0.57735056839;
+	// d.y *= 0.57735056839;
 	// rotate(scene->cam, &d.x, &d.y, &d.z);
 	return (d);
 }
@@ -117,7 +117,7 @@ void	draw(t_scene *scene, t_sdl *sdl)
 		j = 0;
 		while (j < HEIGHT)
 		{
-			scene->cam.dir = normalize(scene->cam.dir);
+			// scene->cam.dir = normalize(scene->cam.dir);
 			d = viewpoint(i, j, scene);
 			// d = minus(d, scene->cam.orig);
 			d = normalize(d);
