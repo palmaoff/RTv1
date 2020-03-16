@@ -7,7 +7,10 @@ SRC =   main.c \
 		vec_dot.c \
 		vec_norm.c \
 		vec_sum.c \
-		vec_sub.c
+		vec_sub.c \
+		vec_scale.c \
+		sphere.c \
+		light.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 

@@ -54,6 +54,7 @@ double	vec_dot(t_vec a, t_vec b);
 t_vec	vec_norm(t_vec a);
 t_vec	vec_sub(t_vec a, t_vec b);
 t_vec	vec_sum(t_vec a, t_vec b);
+t_vec	vec_scale(t_vec a, double t);
 
 // base raytracing
 void	draw(t_scene *scene, t_sdl *sdl);
@@ -61,5 +62,7 @@ t_vec   init_vec(double x, double y, double z);
 t_vec	minus(t_vec a, t_vec b);
 t_vec 	plus(t_vec a, t_vec b);
 void	rotate(t_camera cam, double *x, double *y, double *z);
+double	IntersectSphere(t_vec d, t_scene *scene);
+t_color color(t_scene *scene, double t);
 
 #endif
