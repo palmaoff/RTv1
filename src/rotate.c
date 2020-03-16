@@ -23,10 +23,10 @@ void	rotate(t_camera cam, double *x, double *y, double *z)
 	*z = -pre_y * sin(cam.x_r) + *z * cos(cam.x_r);
 
 	pre_z = *z;
-	*z = *x * sin(cam.y_r) + pre_z * cos(cam.y_r);
+	*z = -*x * sin(cam.y_r) + pre_z * cos(cam.y_r);
 	*x = pre_z * sin(cam.y_r) + *x * cos(cam.y_r);
 
 	pre_x = *x;
-	*x = pre_x * cos(0) - *y * sin(0);
-	*y = pre_x * sin(0) + *y * cos(0);
+	*x = pre_x * cos(cam.z_r) - *y * sin(cam.z_r);
+	*y = pre_x * sin(cam.z_r) + *y * cos(cam.z_r);
 }

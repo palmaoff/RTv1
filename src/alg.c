@@ -5,42 +5,6 @@
 
 #include "RTv1.h"
 
-double dot(t_vec a, t_vec b)
-{
-	return (a.x * b.x + a.y * b.y + a.z * b.z);
-}
-
-t_vec	normalize(t_vec a)
-{
-	t_vec vec;
-	double len;
-	len = sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
-	vec.x = a.x / len;
-	vec.y = a.y / len;
-	vec.z = a.z / len;
-	return (vec);
-}
-
-t_vec minus(t_vec a, t_vec b)
-{
-	t_vec c;
-
-	c.x = a.x - b.x;
-	c.y = a.y - b.y;
-	c.z = a.z - b.z;
-	return (c);
-}
-
-t_vec plus(t_vec a, t_vec b)
-{
-	t_vec c;
-
-	c.x = a.x + b.x;
-	c.y = a.y + b.y;
-	c.z = a.z + b.z;
-	return (c);
-}
-
 static	t_vec	viewpoint(double x, double y, t_scene *scene)
 {
 	t_vec d;
@@ -53,9 +17,7 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl;
 	d.y = (1 - 2.0 * (y + 0.5) / HEIGHT) * angl;
 	d.z = 1.0;
-	// d.x *= 0.57735056839;
-	// d.y *= 0.57735056839;
-	// rotate(scene->cam, &d.x, &d.y, &d.z);
+	rotate(scene->cam, &d.x, &d.y, &d.z);
 	return (d);
 }
 
@@ -69,10 +31,10 @@ float	IntersectSphere(t_vec d, t_scene *scene)
 	double t1;
 	double t2;
 
-	co = minus(scene->cam.orig, scene->c);
+	co = vec_sub(scene->cam.orig, scene->c);
 	a = 1;
-	b = dot(co, d);
-	c = (dot(co, co)) - scene->r * scene->r;
+	b = vec_dot(co, d);
+	c = (vec_dot(co, co)) - scene->r * scene->r;
 	discr = b * b - a * c;
 	if (discr < 0)
 		return (0);
@@ -117,10 +79,9 @@ void	draw(t_scene *scene, t_sdl *sdl)
 		j = 0;
 		while (j < HEIGHT)
 		{
-			// scene->cam.dir = normalize(scene->cam.dir);
+			scene->cam.dir = vec_norm(scene->cam.dir);
 			d = viewpoint(i, j, scene);
-			// d = minus(d, scene->cam.orig);
-			d = normalize(d);
+			d = vec_norm(d);
 			scene->color = ray(scene, d);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);
 			SDL_RenderDrawPoint(sdl->render, i, j);

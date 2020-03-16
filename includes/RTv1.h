@@ -49,11 +49,17 @@ typedef	struct		s_scene
 	t_camera cam;
 }					t_scene;
 
+// vec
+double	vec_dot(t_vec a, t_vec b);
+t_vec	vec_norm(t_vec a);
+t_vec	vec_sub(t_vec a, t_vec b);
+t_vec	vec_sum(t_vec a, t_vec b);
+
+// base raytracing
 void	draw(t_scene *scene, t_sdl *sdl);
 t_vec   init_vec(double x, double y, double z);
 t_vec	minus(t_vec a, t_vec b);
 t_vec 	plus(t_vec a, t_vec b);
 void	rotate(t_camera cam, double *x, double *y, double *z);
-t_vec	normalize(t_vec a);
 
 #endif
