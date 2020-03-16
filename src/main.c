@@ -50,7 +50,7 @@ void loop(t_sdl *sdl, t_scene *scene)
                 }
                 if (event.key.keysym.sym == SDLK_KP_PLUS)
                 {
-                    vec = init_vec(0, 0, 1);
+                    vec = init_vec(0, 0, 4);
                     rotate(scene->cam, &vec.x, &vec.y, &vec.z);
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
@@ -86,6 +86,7 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cam.x_r = scene->cam.dir.y;
     scene->cam.y_r = scene->cam.dir.x;
     scene->cam.z_r = 0;
+    scene->a = 1;
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	exit(0); // change it
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &sdl->window, &sdl->render);

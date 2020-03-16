@@ -21,49 +21,14 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	return (d);
 }
 
-float	IntersectSphere(t_vec d, t_scene *scene)
-{
-	t_vec co;
-	double a;
-	double b;
-	double c;
-	double discr;
-	double t1;
-	double t2;
-
-	co = vec_sub(scene->cam.orig, scene->c);
-	a = 1;
-	b = vec_dot(co, d);
-	c = (vec_dot(co, co)) - scene->r * scene->r;
-	discr = b * b - a * c;
-	if (discr < 0)
-		return (0);
-	t1 = (-b + sqrtf(discr)) / a;
-	t2 = (-b - sqrtf(discr)) / a;
-	if (t1 < 1 && t2 < 1)
-		return (0);
-	return ((t1 < t2 || t2 < 1.0) ? t1 : t2);
-}
-
 t_color	ray(t_scene *scene, t_vec d)
 {
 	t_color c;
-	float t;
+	double t;
 
 	t = 10000;
 	t = IntersectSphere(d, scene);
-	if (t > 1 && t < 10000)
-	{
-		c.r = 200;
-		c.g = 100;
-		c.b = 100;
-	}
-	else
-	{
-		c.r = 0;
-		c.g = 0;
-		c.b = 0;
-	}
+	c = color(scene, t);
 	return (c);
 }
 
