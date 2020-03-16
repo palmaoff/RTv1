@@ -6,11 +6,26 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/03/13 17:43:53 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/03/16 18:17:54 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_rtv1.h"
+
+void	parser_sphere(t_obj obj, int fd)
+{
+	char *line;
+	char **tmp;
+
+	while(get_next_line(fd, &line))
+	{
+		if(ft_strequ(line, "pos"))
+		{
+			tmp = ft_strsplit(line, ' ');
+			free(line);
+		}
+	}
+}
 
 int		parser_count_obj(int fd)
 {
@@ -24,13 +39,38 @@ int		parser_count_obj(int fd)
 		if(ft_strequ(line, "sphere") || ft_strequ(line, "plane")
 		|| ft_strequ(line, "cylinder") || ft_strequ(line, "cone"))
 			count++;
+		free(line);
 	}
+	close(fd);
+	return(count);
 }
 
-int		parser_objects(int fd, t_obj *obj)
+int		parser_objects(int fd, t_obj *obj, char *av)
 {
-	int count;
+	unsigned int	count;
+	unsigned int	i;
+	char *line;
+
+	i = 0;
+
 	count = parser_count_obj(fd);
+	fd = open(av, O_RDONLY);
+	while(get_next_line(fd, &line) && i != count)
+	{
+		if(ft_strequ(line, "sphere") || ft_strequ(line, "plane")
+		   || ft_strequ(line, "cylinder") || ft_strequ(line, "cone"))
+		{
+			if(ft_strequ(line, "sphere"))
+				parser_sphere(obj[i], fd);
+/*			if(ft_strequ(line, "plane"))
+				obj[i].type = PLANE;
+			if(ft_strequ(line, "cylinder"))
+				obj[i].type = CYLINDER;
+			if(ft_strequ(line, "cone"))
+				obj[i].type = CONE;*/
+			i++;
+		}
+	}
 }
 
 int 	parser_scene(int fd, t_base *scene)
@@ -112,6 +152,10 @@ void	parser(char *av, t_base *scene)
 
 	fd = open(av, O_RDONLY);
 	parser_validation();
+	close(fd);
+	fd = open(av, O_RDONLY);
 	parser_scene(fd, scene);
-	parser_objects(fd, scene->obj);
+	close(fd);
+	fd = open(av, O_RDONLY);
+	parser_objects(fd, scene->obj, av);
 }
