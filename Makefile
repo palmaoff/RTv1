@@ -3,7 +3,11 @@ NAME =	RTv1
 SRC =   main.c \
 		alg.c \
 		init_vec.c \
-		rotate.c
+		rotate.c \
+		vec_dot.c \
+		vec_norm.c \
+		vec_sum.c \
+		vec_sub.c
 
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
