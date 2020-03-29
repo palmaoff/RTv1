@@ -4,11 +4,12 @@
 
 #ifndef RTV1_H
 # define RTV1_H
-# define WIDTH 720
-# define HEIGHT 720
+# define WIDTH 600
+# define HEIGHT 600
 
 # include <stdio.h> // KILL ME
-# include "SDL.h"
+# include "SDL2/SDL.h"
+# include <SDL2/SDL_mixer.h>
 # include "math.h"
 
 typedef	struct		s_sdl
@@ -42,9 +43,10 @@ typedef	struct		s_camera
 
 typedef	struct		s_scene
 {
-	double	d;
 	t_vec	c;
 	double	r;
+	t_vec   l;
+	t_vec   ld;
 	t_color color;
 	t_camera cam;
 }					t_scene;
@@ -59,10 +61,8 @@ t_vec	vec_scale(t_vec a, double t);
 // base raytracing
 void	draw(t_scene *scene, t_sdl *sdl);
 t_vec   init_vec(double x, double y, double z);
-t_vec	minus(t_vec a, t_vec b);
-t_vec 	plus(t_vec a, t_vec b);
 void	rotate(t_camera cam, double *x, double *y, double *z);
 double	IntersectSphere(t_vec d, t_scene *scene);
-t_color color(t_scene *scene, double t);
+t_color color(t_scene *scene, double t, t_vec d);
 
 #endif

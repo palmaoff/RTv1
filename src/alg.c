@@ -28,7 +28,7 @@ t_color	ray(t_scene *scene, t_vec d)
 
 	t = 10000;
 	t = IntersectSphere(d, scene);
-	c = color(scene, t);
+	c = color(scene, t, d);
 	return (c);
 }
 
