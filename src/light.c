@@ -13,7 +13,9 @@ double   punch(t_scene *scene, double t, t_vec d)
 
     p = vec_scale(d, t);
     p = vec_sum(p, scene->cam.orig);
-    n = vec_sub(scene->c, p);
+    // n = vec_sub(scene->sphere.c, p); // sphere
+    // n = scene->plane.v; // plane
+    n = cylinder_norm(d, scene, t);
     n = vec_norm(n);
     l = vec_sub(p, scene->l);
     l = vec_norm(l);
@@ -31,7 +33,8 @@ double   dir(t_scene *scene, double t, t_vec d)
     double a;
 
     p = vec_scale(d, t);
-    n = vec_sub(scene->c, p);
+    // n = vec_sub(scene->sphere.c, p);
+    n = scene->plane.v;
     n = vec_norm(n);
     l = scene->ld;
     a = vec_dot(l, n);
@@ -45,7 +48,6 @@ t_color color(t_scene *scene, double t, t_vec d)
     t_color c;
     double a;
 
-    // a = punch(scene, t, d);
     a = 0.2 + punch(scene, t, d) + dir(scene, t, d);
     if (a < 0 || a > 1)
         printf("%d\n", a);
