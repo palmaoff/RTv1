@@ -26,7 +26,7 @@ t_color	ray(t_scene *scene, t_vec d)
 	t_color c;
 	double t;
 
-	t = IntersectCylinder(d, scene);
+	t = IntersectCone(d, scene);
 	c = color(scene, t, d);
 	return (c);
 }
