@@ -48,6 +48,13 @@ typedef struct      s_cylinder
     double	r;
 }                   t_cylinder;
 
+typedef struct      s_cone
+{
+    double k;
+    t_vec   c;
+    t_vec	v;
+}                   t_cone;
+
 typedef struct      s_plane
 {
     t_vec	p;
@@ -69,6 +76,7 @@ typedef	struct		s_scene
 	t_sphere sphere;
 	t_plane plane;
 	t_cylinder cylinder;
+	t_cone cone;
 }					t_scene;
 
 // vec
@@ -87,6 +95,8 @@ t_color color(t_scene *scene, double t, t_vec d);
 double	IntersectPlane(t_vec d, t_scene *scene);
 double	IntersectCylinder(t_vec d, t_scene *scene);
 t_vec   cylinder_norm(t_vec d, t_scene *scene, double t);
+double	IntersectCone(t_vec d, t_scene *scene);
+t_vec   cone_norm(t_vec d, t_scene *scene, double t);
 
 
 #endif

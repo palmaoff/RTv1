@@ -94,6 +94,12 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cylinder.v = vec_norm(scene->cylinder.v);
     scene->cylinder.r = 5;
 
+    // CONE
+    scene->cone.c = init_vec(0, 0,20);
+    scene->cone.v = init_vec(1, -1, 0);
+    scene->cone.v = vec_norm(scene->cone.v);
+    scene->cone.k = 0.6;
+
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError(); // change it
     sdl->window = SDL_CreateWindow("RTv1", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT,
