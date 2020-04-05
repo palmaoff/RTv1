@@ -28,14 +28,16 @@ double	IntersectCylinder(t_vec d, t_scene *scene)
     return ((t1 < t2 || t2 < 1.0) ? t1 : t2);
 }
 
-t_vec   cylinder_norm(t_vec d, t_scene *scene, double t)
+t_vec   cylinder_norm(t_scene *scene)
 {
     t_vec vec;
     double m;
     t_vec oc;
+    t_vec p;
 
+    p = vec_scale(scene->d, scene->t);
     oc = vec_sub(scene->cam.orig, scene->cylinder.c);
-    m = vec_dot(oc, scene->cylinder.v) + t * vec_dot(d, scene->cylinder.v);
-    vec = vec_sub(vec_sum(vec_scale(d, t), oc), vec_scale(scene->cylinder.v, m));
-    return (vec);
+    m = vec_dot(oc, scene->cylinder.v) + scene->t * vec_dot(scene->d, scene->cylinder.v);
+    vec = vec_sub(vec_sum(p, oc), vec_scale(scene->cylinder.v, m));
+    return (vec_scale(vec, -1));
 }

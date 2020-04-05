@@ -1,5 +1,5 @@
 //
-// Created by User on 01.04.2020.
+// Created by eflorean on 01.04.2020.
 //
 
 #include "RTv1.h"
@@ -7,6 +7,7 @@
 double	IntersectCone(t_vec d, t_scene *scene)
 {
     t_vec oc;
+    double m[6]; // add
     double a;
     double b;
     double c;
@@ -28,14 +29,16 @@ double	IntersectCone(t_vec d, t_scene *scene)
     return ((t1 < t2 || t2 < 1.0) ? t1 : t2);
 }
 
-t_vec   cone_norm(t_vec d, t_scene *scene, double t)
+t_vec   cone_norm(t_scene *scene)
 {
     t_vec vec;
     double m;
     t_vec oc;
+    t_vec p;
 
+    p = vec_scale(scene->d, scene->t);
     oc = vec_sub(scene->cam.orig, scene->cone.c);
-    m = vec_dot(oc, scene->cone.v) + t * vec_dot(d, scene->cone.v);
-    vec = vec_sub(vec_sum(vec_scale(d, t), oc), vec_scale(scene->cone.v, m * (1 + scene->cone.k * scene->cone.k)));
+    m = vec_dot(oc, scene->cone.v) + scene->t * vec_dot(scene->d, scene->cone.v);
+    vec = vec_sub(vec_sum(vec_scale(scene->d, scene->t), oc), vec_scale(scene->cone.v, m * (1 + scene->cone.k * scene->cone.k)));
     return (vec);
 }

@@ -15,3 +15,8 @@ double	IntersectPlane(t_vec d, t_scene *scene)
     t = -(vec_dot(oc, n) / vec_dot(d, n));
     return (t);
 }
+
+t_vec   plane_norm(t_scene *scene)
+{
+    return (vec_scale(scene->plane.v, -1));
+}

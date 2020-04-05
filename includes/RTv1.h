@@ -71,12 +71,15 @@ typedef	struct		s_scene
 {
 	t_vec   l;
 	t_vec   ld;
+	t_vec   d;
+	double  t;
 	t_color color;
 	t_camera cam;
 	t_sphere sphere;
 	t_plane plane;
 	t_cylinder cylinder;
 	t_cone cone;
+	t_vec (*f_norm)(struct s_scene *scene);
 }					t_scene;
 
 // vec
@@ -94,9 +97,10 @@ double	IntersectSphere(t_vec d, t_scene *scene);
 t_color color(t_scene *scene, double t, t_vec d);
 double	IntersectPlane(t_vec d, t_scene *scene);
 double	IntersectCylinder(t_vec d, t_scene *scene);
-t_vec   cylinder_norm(t_vec d, t_scene *scene, double t);
 double	IntersectCone(t_vec d, t_scene *scene);
-t_vec   cone_norm(t_vec d, t_scene *scene, double t);
-
+t_vec   cylinder_norm(t_scene *scene);
+t_vec   cone_norm(t_scene *scene);
+t_vec   sphere_norm(t_scene *scene);
+t_vec   plane_norm(t_scene *scene);
 
 #endif
