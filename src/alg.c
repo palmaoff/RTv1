@@ -25,9 +25,21 @@ t_color	ray(t_scene *scene, t_vec d)
 {
 	t_color c;
 	double t;
+	double mint;
 
-	t = IntersectCone(d, scene);
-	c = color(scene, t, d);
+	mint = IntersectSphere(d, scene);
+	scene->f_norm = sphere_norm;
+    if (((t = IntersectCylinder(d, scene)) < mint && t > 1) || mint == 0)
+    {
+        mint = t;
+        scene->f_norm = cylinder_norm;
+    }
+	if (((t = IntersectPlane(d, scene)) < mint && t > 1) || mint == 0)
+    {
+        mint = t;
+        scene->f_norm = plane_norm;
+    }
+	c = color(scene, mint, d);
 	return (c);
 }
 

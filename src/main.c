@@ -25,13 +25,29 @@ void loop(t_sdl *sdl, t_scene *scene)
                 if (event.key.keysym.sym == SDLK_ESCAPE)
                     run = 0;
                 if (event.key.keysym.sym == SDLK_d)
-                    scene->cam.orig.x += 1;
+                {
+                    vec = init_vec(0.5, 0, 0);
+                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
+                }
                 if (event.key.keysym.sym == SDLK_a)
-                    scene->cam.orig.x -= 1;
+                {
+                    vec = init_vec(-0.5, 0, 0);
+                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
+                }
                 if (event.key.keysym.sym == SDLK_s)
-                    scene->cam.orig.y -= 1;
+                {
+                    vec = init_vec(0, -0.5, 0);
+                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
+                }
                 if (event.key.keysym.sym == SDLK_w)
-                    scene->cam.orig.y += 1;
+                {
+                    vec = init_vec(0, 0.5, 0);
+                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
+                }
                 if (event.key.keysym.sym == SDLK_UP)
                     scene->cam.x_r += 0.1;
                 if (event.key.keysym.sym == SDLK_DOWN)
@@ -73,7 +89,7 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cam.z_r = 0;
 
     // LIGHT
-    scene->l = init_vec(50, 10, 50);
+    scene->l = init_vec(50, 50, 50);
     scene->ld = init_vec(1, 4, -3);
     scene->ld = vec_norm(scene->ld);
 
@@ -84,21 +100,21 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->sphere.r = 4;
 
     // PLANE
-    scene->plane.p = init_vec(0, 0, 1);
-    scene->plane.v = init_vec(1, 1, 0);
+    scene->plane.p = init_vec(0, -10, 0);
+    scene->plane.v = init_vec(0, 1, 0);
 
 
     // CYLINDER
-    scene->cylinder.c = init_vec(0, 0,20);
+    scene->cylinder.c = init_vec(-10, 0,20);
     scene->cylinder.v = init_vec(1, -1, 0);
     scene->cylinder.v = vec_norm(scene->cylinder.v);
     scene->cylinder.r = 5;
 
     // CONE
-    scene->cone.c = init_vec(0, 0,20);
+    scene->cone.c = init_vec(0, 0,40);
     scene->cone.v = init_vec(1, -1, 0);
     scene->cone.v = vec_norm(scene->cone.v);
-    scene->cone.k = 0.6;
+    scene->cone.k = 0.3;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError(); // change it
