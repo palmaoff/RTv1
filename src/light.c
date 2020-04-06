@@ -48,9 +48,9 @@ t_color color(t_scene *scene, double t, t_vec d)
     a = 0.2 + punch(scene) + dir(scene);
     if (t > 1 && t < 10000)
 	{
-		c.r = 200 * a;
-		c.g = 100 * a;
-		c.b = 100 * a;
+		c.r = scene->color.r * a;
+		c.g = scene->color.g * a;
+		c.b = scene->color.b * a;
 	}
 	else
 	{

@@ -7,25 +7,20 @@
 double	IntersectCylinder(t_vec d, t_scene *scene)
 {
     t_vec oc;
-    double a;
-    double b;
-    double c;
-    double discr;
-    double t1;
-    double t2;
+    double m[6];
 
     oc = vec_sub(scene->cam.orig, scene->cylinder.c);
-    a = vec_dot(d, d) - vec_dot(d, scene->cylinder.v) * vec_dot(d, scene->cylinder.v);
-    b = vec_dot(oc, d) - vec_dot(d, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v);
-    c = vec_dot(oc, oc) - vec_dot(oc, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v) - scene->cylinder.r * scene->cylinder.r;
-    discr = b * b - a * c;
-    if (discr < 0)
+    m[0] = vec_dot(d, d) - vec_dot(d, scene->cylinder.v) * vec_dot(d, scene->cylinder.v);
+    m[1] = vec_dot(oc, d) - vec_dot(d, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v);
+    m[2] = vec_dot(oc, oc) - vec_dot(oc, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v) - scene->cylinder.r * scene->cylinder.r;
+    m[3] = m[1] * m[1] - m[0] * m[2];
+    if (m[3] < 0)
         return (0);
-    t1 = (-b + sqrtf(discr)) / a;
-    t2 = (-b - sqrtf(discr)) / a;
-    if (t1 < 1 && t2 < 1)
+    m[4] = (-m[1] + sqrtf(m[3])) / m[0];
+    m[5] = (-m[1] - sqrtf(m[3])) / m[0];
+    if (m[4] < 1 && m[5] < 1)
         return (0);
-    return ((t1 < t2 || t2 < 1.0) ? t1 : t2);
+    return ((m[4] < m[5] || m[5] < 1.0) ? m[4] : m[5]);
 }
 
 t_vec   cylinder_norm(t_scene *scene)

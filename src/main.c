@@ -98,10 +98,17 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->sphere.c.y = 0;
     scene->sphere.c.z = 10;
     scene->sphere.r = 4;
+    scene->sphere.color.r = 10;
+    scene->sphere.color.g = 200;
+    scene->sphere.color.b = 200;
+
 
     // PLANE
     scene->plane.p = init_vec(0, -10, 0);
     scene->plane.v = init_vec(0, 1, 0);
+    scene->plane.color.r = 100;
+    scene->plane.color.g = 150;
+    scene->plane.color.b = 50;
 
 
     // CYLINDER
@@ -109,12 +116,19 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cylinder.v = init_vec(1, -1, 0);
     scene->cylinder.v = vec_norm(scene->cylinder.v);
     scene->cylinder.r = 5;
+    scene->cylinder.color.r = 100;
+    scene->cylinder.color.g = 200;
+    scene->cylinder.color.b = 100;
+
 
     // CONE
-    scene->cone.c = init_vec(0, 0,40);
+    scene->cone.c = init_vec(10, 0,40);
     scene->cone.v = init_vec(1, -1, 0);
     scene->cone.v = vec_norm(scene->cone.v);
     scene->cone.k = 0.3;
+    scene->cone.color.r = 100;
+    scene->cone.color.g = 150;
+    scene->cone.color.b = 0;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError(); // change it
