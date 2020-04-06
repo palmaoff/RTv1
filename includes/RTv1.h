@@ -46,6 +46,7 @@ typedef struct      s_cylinder
     t_vec   c;
     t_vec	v;
     double	r;
+    t_color color;
 }                   t_cylinder;
 
 typedef struct      s_cone
@@ -53,18 +54,21 @@ typedef struct      s_cone
     double k;
     t_vec   c;
     t_vec	v;
+    t_color color;
 }                   t_cone;
 
 typedef struct      s_plane
 {
     t_vec	p;
     t_vec	v;
+    t_color color;
 }                   t_plane;
 
 typedef struct      s_sphere
 {
     t_vec	c;
     double	r;
+    t_color color;
 }                   t_sphere;
 
 typedef	struct		s_scene
