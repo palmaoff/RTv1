@@ -41,11 +41,20 @@ typedef	struct		s_camera
 	double z_r;
 }					t_camera;
 
+typedef struct      s_figure
+{
+    int     type;
+    t_vec   c;
+    t_vec	v;
+    double	k;
+    t_color color;
+}                   t_figure;
+
 typedef struct      s_cylinder
 {
     t_vec   c;
     t_vec	v;
-    double	r;
+    double	k;
     t_color color;
 }                   t_cylinder;
 
@@ -59,7 +68,7 @@ typedef struct      s_cone
 
 typedef struct      s_plane
 {
-    t_vec	p;
+    t_vec	c;
     t_vec	v;
     t_color color;
 }                   t_plane;
@@ -67,7 +76,7 @@ typedef struct      s_plane
 typedef struct      s_sphere
 {
     t_vec	c;
-    double	r;
+    double	k;
     t_color color;
 }                   t_sphere;
 
@@ -96,6 +105,7 @@ t_vec	vec_scale(t_vec a, double t);
 // base raytracing
 void	draw(t_scene *scene, t_sdl *sdl);
 t_vec   init_vec(double x, double y, double z);
+t_color init_color(double r, double g, double b);
 void	rotate(t_camera cam, double *x, double *y, double *z);
 double	IntersectSphere(t_vec d, t_scene *scene);
 t_color color(t_scene *scene, double t, t_vec d);

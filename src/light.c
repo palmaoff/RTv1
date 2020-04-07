@@ -54,9 +54,7 @@ t_color color(t_scene *scene, double t, t_vec d)
 	}
 	else
 	{
-		c.r = 0;
-		c.g = 0;
-		c.b = 0;
+		c = init_color(0, 0,0);
 	}
     return (c);
 }

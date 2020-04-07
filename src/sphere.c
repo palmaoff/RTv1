@@ -12,7 +12,7 @@ double	IntersectSphere(t_vec d, t_scene *scene)
 	co = vec_sub(scene->cam.orig, scene->sphere.c);
 	m[0] = 1;
 	m[1] = vec_dot(co, d);
-	m[2] = (vec_dot(co, co)) - scene->sphere.r * scene->sphere.r;
+	m[2] = (vec_dot(co, co)) - scene->sphere.k * scene->sphere.k;
 	m[3] = m[1] * m[1] - m[0] * m[2];
 	if (m[3] < 0)
 		return (0);

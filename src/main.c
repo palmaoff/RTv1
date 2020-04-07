@@ -97,14 +97,14 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->sphere.c.x = 0;
     scene->sphere.c.y = 0;
     scene->sphere.c.z = 10;
-    scene->sphere.r = 4;
+    scene->sphere.k = 4;
     scene->sphere.color.r = 10;
     scene->sphere.color.g = 200;
     scene->sphere.color.b = 200;
 
 
     // PLANE
-    scene->plane.p = init_vec(0, -10, 0);
+    scene->plane.c = init_vec(0, -10, 0);
     scene->plane.v = init_vec(0, 1, 0);
     scene->plane.color.r = 100;
     scene->plane.color.g = 150;
@@ -115,7 +115,7 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cylinder.c = init_vec(-10, 0,20);
     scene->cylinder.v = init_vec(1, -1, 0);
     scene->cylinder.v = vec_norm(scene->cylinder.v);
-    scene->cylinder.r = 5;
+    scene->cylinder.k = 5;
     scene->cylinder.color.r = 100;
     scene->cylinder.color.g = 200;
     scene->cylinder.color.b = 100;
@@ -131,7 +131,7 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cone.color.b = 0;
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
-    	SDL_GetError(); // change it
+    	SDL_GetError();
     sdl->window = SDL_CreateWindow("RTv1", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT,
                            SDL_WINDOW_SHOWN);
     sdl->render = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED);

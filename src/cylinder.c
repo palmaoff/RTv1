@@ -12,7 +12,7 @@ double	IntersectCylinder(t_vec d, t_scene *scene)
     oc = vec_sub(scene->cam.orig, scene->cylinder.c);
     m[0] = vec_dot(d, d) - vec_dot(d, scene->cylinder.v) * vec_dot(d, scene->cylinder.v);
     m[1] = vec_dot(oc, d) - vec_dot(d, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v);
-    m[2] = vec_dot(oc, oc) - vec_dot(oc, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v) - scene->cylinder.r * scene->cylinder.r;
+    m[2] = vec_dot(oc, oc) - vec_dot(oc, scene->cylinder.v) * vec_dot(oc, scene->cylinder.v) - scene->cylinder.k * scene->cylinder.k;
     m[3] = m[1] * m[1] - m[0] * m[2];
     if (m[3] < 0)
         return (0);
