@@ -13,7 +13,7 @@ double   punch(t_scene *scene)
 
     p = vec_scale(scene->d, scene->t);
     p = vec_sum(p, scene->cam.orig);
-    n = scene->f_norm(scene); // norm
+    n = scene->f_norm[scene->cur](scene); // norm
     n = vec_norm(n);
     l = vec_sub(p, scene->l);
     l = vec_norm(l);
@@ -29,7 +29,7 @@ double   dir(t_scene *scene)
     t_vec n;
     double a;
 
-    n = scene->f_norm(scene); // norm
+    n = scene->f_norm[scene->cur](scene); // norm
     n = vec_norm(n);
     l = scene->ld;
     a = vec_dot(l, n);
@@ -45,12 +45,12 @@ t_color color(t_scene *scene, double t, t_vec d)
 
     scene->t = t;
     scene->d = d;
-    a = 0.2 + punch(scene) + dir(scene);
     if (t > 1 && t < 10000)
 	{
-		c.r = scene->color.r * a;
-		c.g = scene->color.g * a;
-		c.b = scene->color.b * a;
+        a = 0.2 + punch(scene) + dir(scene);
+		c.r = scene->fig[scene->cur].color.r * a;
+		c.g = scene->fig[scene->cur].color.g * a;
+		c.b = scene->fig[scene->cur].color.b * a;
 	}
 	else
 	{
