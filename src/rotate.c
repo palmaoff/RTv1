@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wquirrel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: null <null@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/17 21:49:17 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/03/12 15:34:58 by wquirrel         ###   ########.fr       */
+/*   Created: 2020/03/27 18:54:49 by null              #+#    #+#             */
+/*   Updated: 2020/03/27 18:55:15 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "RTv1.h"
 
@@ -29,4 +30,12 @@ void	rotate(t_camera cam, double *x, double *y, double *z)
 	pre_x = *x;
 	*x = pre_x * cos(0) - *y * sin(0);
 	*y = pre_x * sin(0) + *y * cos(0);
+
+	pre_z = *z;
+	*z = *x * sin(cam.dir.y) + pre_z * cos(cam.dir.y);
+	*x = pre_z * sin(cam.dir.y) + *x * cos(cam.dir.y);
+
+	pre_x = *x;
+	*x = pre_x * cos(cam.dir.z) - *y * sin(cam.dir.z);
+	*y = pre_x * sin(cam.dir.z) + *y * cos(cam.dir.z);
 }

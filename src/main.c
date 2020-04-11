@@ -2,9 +2,10 @@
 **	created by eflorean
 */
 
-#include "RTv1.h"
+#include <parser_rtv1.h>
+//#include "RTv1.h"
 
-void loop(t_sdl *sdl, t_cam *scene)
+/*void loop(t_sdl *sdl, t_cam *scene)
 {
     SDL_Event event;
     int run;
@@ -17,9 +18,9 @@ void loop(t_sdl *sdl, t_cam *scene)
     {
         while (SDL_PollEvent(&event))
         {
-            if (event.type == SDL_QUIT)
+            if (event.shape == SDL_QUIT)
                 run = 0;
-            if (event.type == SDL_KEYDOWN)
+            if (event.shape == SDL_KEYDOWN)
             {
                 if (event.key.keysym.sym == SDLK_ESCAPE)
                     run = 0;
@@ -77,15 +78,21 @@ void    init(t_sdl *sdl, t_cam *scene)
     	exit(0); // change it
     SDL_CreateWindowAndRenderer(WIDTH, HEIGHT, 0, &sdl->window, &sdl->render);
     SDL_RenderClear(sdl->render);
-}
+}*/
 
-int main() {
-    t_sdl sdl;
+int main(int argc, char **argv) {
+   /* t_sdl sdl;
     t_cam scene;
 
     init(&sdl, &scene);
     loop(&sdl, &scene);
     SDL_DestroyWindow(sdl.window);
-    SDL_Quit();
+    SDL_Quit();*/
+   	t_base scene;
+
+   	scene.n_lt = 0;
+   	scene.n_obj = 0;
+   	scene.file = argv[1];
+	parser(&scene);
     return 0;
 }
