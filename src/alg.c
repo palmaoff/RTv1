@@ -21,6 +21,28 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	return (d);
 }
 
+t_color ray_too(t_scene *scene, t_vec d)
+{
+    t_color c;
+    double t;
+    double mint;
+    int i;
+
+    i = 0;
+    mint = 0;
+    while (i < 4)
+    {
+        if (((t = scene->f_inter[scene->fig[i].type](d, scene, i)) < mint || mint == 0) && t > 1)
+        {
+            mint = t;
+            scene->cur = scene->fig[i].type;
+        }
+        i++;
+    }
+    c = color(scene, mint, d);
+    return (c);
+}
+/*
 t_color	ray(t_scene *scene, t_vec d)
 {
 	t_color c;
@@ -30,28 +52,28 @@ t_color	ray(t_scene *scene, t_vec d)
 	mint = IntersectSphere(d, scene);
 	scene->f_norm = sphere_norm;
     scene->color = scene->sphere.color;
-    if (((t = IntersectCylinder(d, scene)) < mint && t > 1) || mint == 0)
+    if (((t = IntersectCylinder(d, scene)) < mint || mint == 0) && t > 1)
     {
         mint = t;
         scene->f_norm = cylinder_norm;
         scene->color = scene->cylinder.color;
     }
-	if (((t = IntersectCone(d, scene)) < mint && t > 1) || mint == 0)
-    {
-        mint = t;
-        scene->f_norm = cone_norm;
-        scene->color = scene->cone.color;
-    }
-    if (((t = IntersectPlane(d, scene)) < mint && t > 1) || mint == 0)
+    if (((t = IntersectPlane(d, scene)) < mint || mint == 0) && t > 1)
     {
         mint = t;
         scene->f_norm = plane_norm;
         scene->color = scene->plane.color;
     }
+	if (((t = IntersectCone(d, scene)) < mint || mint == 0) && t > 1)
+    {
+        mint = t;
+        scene->f_norm = cone_norm;
+        scene->color = scene->cone.color;
+    }
 	c = color(scene, mint, d);
 	return (c);
 }
-
+*/
 void	draw(t_scene *scene, t_sdl *sdl)
 {
 	float i;
@@ -67,7 +89,7 @@ void	draw(t_scene *scene, t_sdl *sdl)
 			scene->cam.dir = vec_norm(scene->cam.dir);
 			d = viewpoint(i, j, scene);
 			d = vec_norm(d);
-			scene->color = ray(scene, d);
+			scene->color = ray_too(scene, d);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);
 			SDL_RenderDrawPoint(sdl->render, i, j);
 			j++;

@@ -79,6 +79,45 @@ void loop(t_sdl *sdl, t_scene *scene)
     }
 }
 
+void    init_too(t_scene *scene)
+{
+    // SPHERE
+    scene->fig[0].type = 0;
+    scene->fig[0].c = init_vec(0, 0, 10);
+    scene->fig[0].k = 4;
+    scene->fig[0].color = init_color(10, 200, 180);
+    scene->f_inter[0] = IntersectSphere;
+    scene->f_norm[0] = sphere_norm;
+
+    // PLANE
+    scene->fig[1].type = 1;
+    scene->fig[1].c = init_vec(0, -10, 0);
+    scene->fig[1].v = init_vec(0,1,0);
+    scene->fig[1].color = init_color(100, 150, 50);
+    scene->f_inter[1] = IntersectPlane;
+    scene->f_norm[1] = plane_norm;
+
+    // CYLINDER
+    scene->fig[2].type = 2;
+    scene->fig[2].c = init_vec(-10, 0, 20);
+    scene->fig[2].v = init_vec(1, -1, 0);
+    scene->fig[2].v = vec_norm(scene->fig[2].v);
+    scene->fig[2].k = 5;
+    scene->fig[2].color = init_color(100, 200, 100);
+    scene->f_inter[2] = IntersectCylinder;
+    scene->f_norm[2] = cylinder_norm;
+
+    // CONE
+    scene->fig[3].type = 3;
+    scene->fig[3].c = init_vec(10, 0, 40);
+    scene->fig[3].v = init_vec(1, -1, 0);
+    scene->fig[3].v = vec_norm(scene->fig[3].v);
+    scene->fig[3].k = 0.3;
+    scene->fig[3].color = init_color(100, 150, 0);
+    scene->f_inter[3] = IntersectCone;
+    scene->f_norm[3] = cone_norm;
+}
+
 void    init(t_sdl *sdl, t_scene *scene)
 {
     // CAMERA
@@ -92,43 +131,7 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->l = init_vec(50, 50, 50);
     scene->ld = init_vec(1, 4, -3);
     scene->ld = vec_norm(scene->ld);
-
-    // SPHERE
-    scene->sphere.c.x = 0;
-    scene->sphere.c.y = 0;
-    scene->sphere.c.z = 10;
-    scene->sphere.k = 4;
-    scene->sphere.color.r = 10;
-    scene->sphere.color.g = 200;
-    scene->sphere.color.b = 200;
-
-
-    // PLANE
-    scene->plane.c = init_vec(0, -10, 0);
-    scene->plane.v = init_vec(0, 1, 0);
-    scene->plane.color.r = 100;
-    scene->plane.color.g = 150;
-    scene->plane.color.b = 50;
-
-
-    // CYLINDER
-    scene->cylinder.c = init_vec(-10, 0,20);
-    scene->cylinder.v = init_vec(1, -1, 0);
-    scene->cylinder.v = vec_norm(scene->cylinder.v);
-    scene->cylinder.k = 5;
-    scene->cylinder.color.r = 100;
-    scene->cylinder.color.g = 200;
-    scene->cylinder.color.b = 100;
-
-
-    // CONE
-    scene->cone.c = init_vec(10, 0,40);
-    scene->cone.v = init_vec(1, -1, 0);
-    scene->cone.v = vec_norm(scene->cone.v);
-    scene->cone.k = 0.3;
-    scene->cone.color.r = 100;
-    scene->cone.color.g = 150;
-    scene->cone.color.b = 0;
+    init_too(scene);
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError();
