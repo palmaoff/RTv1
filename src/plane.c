@@ -4,13 +4,13 @@
 
 #include "RTv1.h"
 
-double	IntersectPlane(t_vec d, t_scene *scene, int i)
+double	IntersectPlane(t_vec d, t_scene *scene, int i, t_vec orig)
 {
     t_vec oc;
     t_vec n;
     double t;
 
-    oc = vec_sub(scene->cam.orig, scene->fig[i].c);
+    oc = vec_sub(orig, scene->fig[i].c);
     n = scene->fig[i].v;
     t = -(vec_dot(oc, n) / vec_dot(d, n));
     return (t);
