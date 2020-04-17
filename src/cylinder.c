@@ -4,12 +4,12 @@
 
 #include "RTv1.h"
 
-double	IntersectCylinder(t_vec d, t_scene *scene, int i)
+double	IntersectCylinder(t_vec d, t_scene *scene, int i, t_vec orig)
 {
     t_vec oc;
     double m[6];
 
-    oc = vec_sub(scene->cam.orig, scene->fig[i].c);
+    oc = vec_sub(orig, scene->fig[i].c);
     m[0] = vec_dot(d, d) - vec_dot(d, scene->fig[i].v) * vec_dot(d, scene->fig[i].v);
     m[1] = vec_dot(oc, d) - vec_dot(d, scene->fig[i].v) * vec_dot(oc, scene->fig[i].v);
     m[2] = vec_dot(oc, oc) - vec_dot(oc, scene->fig[i].v) * vec_dot(oc, scene->fig[i].v) - scene->fig[i].k * scene->fig[i].k;

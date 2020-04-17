@@ -17,7 +17,7 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl;
 	d.y = (1 - 2.0 * (y + 0.5) / HEIGHT) * angl;
 	d.z = 1.0;
-	rotate(scene->cam, &d.x, &d.y, &d.z);
+	rotate(scene->cam, &d);
 	return (d);
 }
 
@@ -32,7 +32,7 @@ t_color ray_too(t_scene *scene, t_vec d)
     mint = 0;
     while (i < 4)
     {
-        if (((t = scene->f_inter[scene->fig[i].type](d, scene, i)) < mint || mint == 0) && t > 1)
+        if (((t = scene->f_inter[scene->fig[i].type](d, scene, i, scene->cam.orig)) < mint || mint == 0) && t > 1)
         {
             mint = t;
             scene->cur = scene->fig[i].type;
@@ -42,38 +42,7 @@ t_color ray_too(t_scene *scene, t_vec d)
     c = color(scene, mint, d);
     return (c);
 }
-/*
-t_color	ray(t_scene *scene, t_vec d)
-{
-	t_color c;
-	double t;
-	double mint;
 
-	mint = IntersectSphere(d, scene);
-	scene->f_norm = sphere_norm;
-    scene->color = scene->sphere.color;
-    if (((t = IntersectCylinder(d, scene)) < mint || mint == 0) && t > 1)
-    {
-        mint = t;
-        scene->f_norm = cylinder_norm;
-        scene->color = scene->cylinder.color;
-    }
-    if (((t = IntersectPlane(d, scene)) < mint || mint == 0) && t > 1)
-    {
-        mint = t;
-        scene->f_norm = plane_norm;
-        scene->color = scene->plane.color;
-    }
-	if (((t = IntersectCone(d, scene)) < mint || mint == 0) && t > 1)
-    {
-        mint = t;
-        scene->f_norm = cone_norm;
-        scene->color = scene->cone.color;
-    }
-	c = color(scene, mint, d);
-	return (c);
-}
-*/
 void	draw(t_scene *scene, t_sdl *sdl)
 {
 	float i;

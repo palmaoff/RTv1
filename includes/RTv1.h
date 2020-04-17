@@ -9,7 +9,6 @@
 
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
-# include <SDL2/SDL_mixer.h>
 # include "math.h"
 
 typedef	struct		s_sdl
@@ -50,49 +49,25 @@ typedef struct      s_figure
     t_color color;
 }                   t_figure;
 
-typedef struct      s_cylinder
+typedef struct      s_light
 {
-    t_vec   c;
-    t_vec	v;
-    double	k;
-    t_color color;
-}                   t_cylinder;
-
-typedef struct      s_cone
-{
-    double k;
-    t_vec   c;
-    t_vec	v;
-    t_color color;
-}                   t_cone;
-
-typedef struct      s_plane
-{
-    t_vec	c;
-    t_vec	v;
-    t_color color;
-}                   t_plane;
-
-typedef struct      s_sphere
-{
-    t_vec	c;
-    double	k;
-    t_color color;
-}                   t_sphere;
+    double inst;
+    t_vec p;
+}                   t_light;
 
 typedef	struct		s_scene
 {
-	t_vec   l;
+    t_light light[2];
+	// t_vec   l[2];
 	t_vec   ld;
-	t_vec   d;
-	double  t;
-	t_color color;
 	t_camera cam;
-	t_sphere sphere;
-	t_plane plane;
-	t_cylinder cylinder;
-	t_cone cone;
-	t_vec (*f_norm)(struct s_scene *scene);
+    t_vec   d;
+    double  t;
+	t_figure fig[4];
+    t_color color;
+    t_vec (*f_norm[4])(struct s_scene *scene);
+    double (*f_inter[4])(t_vec d, struct s_scene *scene, int i, t_vec orig);
+    int cur;
 }					t_scene;
 
 // vec
@@ -103,15 +78,16 @@ t_vec	vec_sum(t_vec a, t_vec b);
 t_vec	vec_scale(t_vec a, double t);
 
 // base raytracing
+t_color ray_too(t_scene *scene, t_vec d);
 void	draw(t_scene *scene, t_sdl *sdl);
 t_vec   init_vec(double x, double y, double z);
 t_color init_color(double r, double g, double b);
-void	rotate(t_camera cam, double *x, double *y, double *z);
-double	IntersectSphere(t_vec d, t_scene *scene);
+void	rotate(t_camera cam, t_vec *d);
 t_color color(t_scene *scene, double t, t_vec d);
-double	IntersectPlane(t_vec d, t_scene *scene);
-double	IntersectCylinder(t_vec d, t_scene *scene);
-double	IntersectCone(t_vec d, t_scene *scene);
+double	IntersectSphere(t_vec d, t_scene *scene, int i, t_vec orig);
+double	IntersectPlane(t_vec d, t_scene *scene, int i, t_vec orig);
+double	IntersectCylinder(t_vec d, t_scene *scene, int i, t_vec orig);
+double	IntersectCone(t_vec d, t_scene *scene, int i, t_vec orig);
 t_vec   cylinder_norm(t_scene *scene);
 t_vec   cone_norm(t_scene *scene);
 t_vec   sphere_norm(t_scene *scene);

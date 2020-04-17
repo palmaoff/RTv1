@@ -4,12 +4,12 @@
 
 #include "RTv1.h"
 
-double	IntersectSphere(t_vec d, t_scene *scene, int i)
+double	IntersectSphere(t_vec d, t_scene *scene, int i, t_vec orig)
 {
 	t_vec co;
 	double m[6];
 
-	co = vec_sub(scene->cam.orig, scene->fig[i].c);
+	co = vec_sub(orig, scene->fig[i].c);
 	m[0] = 1;
 	m[1] = vec_dot(co, d);
 	m[2] = (vec_dot(co, co)) - scene->fig[i].k * scene->fig[i].k;

@@ -11,7 +11,6 @@ void loop(t_sdl *sdl, t_scene *scene)
     t_vec vec;
 
     run = 1;
-    vec = init_vec(0, 0, 1);
     draw(scene, sdl);
     SDL_RenderPresent(sdl->render);
     while (run)
@@ -27,25 +26,25 @@ void loop(t_sdl *sdl, t_scene *scene)
                 if (event.key.keysym.sym == SDLK_d)
                 {
                     vec = init_vec(0.5, 0, 0);
-                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == SDLK_a)
                 {
                     vec = init_vec(-0.5, 0, 0);
-                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == SDLK_s)
                 {
                     vec = init_vec(0, -0.5, 0);
-                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == SDLK_w)
                 {
                     vec = init_vec(0, 0.5, 0);
-                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == SDLK_UP)
@@ -59,13 +58,13 @@ void loop(t_sdl *sdl, t_scene *scene)
                 if (event.key.keysym.sym == 61)
                 {
                     vec = init_vec(0, 0, 1);
-                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == 45)
                 {
                     vec = init_vec(0, 0, 1);
-                    rotate(scene->cam, &vec.x, &vec.y, &vec.z);
+                    rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sub(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == SDLK_SPACE)
@@ -74,13 +73,30 @@ void loop(t_sdl *sdl, t_scene *scene)
                 draw(scene, sdl);
                 SDL_RenderPresent(sdl->render);
             }
-                
         }
     }
 }
 
-void    init_too(t_scene *scene)
+void    init(t_sdl *sdl, t_scene *scene)
 {
+    // CAMERA
+    scene->cam.orig = init_vec(0, 0, 0);
+    scene->cam.dir = init_vec(0, 0, 1); // суммировать с векотором (0, 0 , 1)
+    scene->cam.dir = vec_norm(scene->cam.dir);
+    scene->cam.x_r = scene->cam.dir.y;
+    scene->cam.y_r = scene->cam.dir.x;
+    scene->cam.z_r = 0;
+
+    // LIGHT
+    // scene->l[0] = init_vec(50, 50, 50);
+    // cene->l[1] = init_vec(-50, 50, 50);
+    scene->light[0].p = init_vec(50, 50, 50);
+    scene->light[1].p = init_vec(50, 50, -50);
+    scene->light[0].inst = 0.3;
+    scene->light[1].inst = 0.3;
+    scene->ld = init_vec(1, 4, -3);
+    scene->ld = vec_norm(scene->ld);
+
     // SPHERE
     scene->fig[0].type = 0;
     scene->fig[0].c = init_vec(0, 0, 10);
@@ -116,22 +132,6 @@ void    init_too(t_scene *scene)
     scene->fig[3].color = init_color(100, 150, 0);
     scene->f_inter[3] = IntersectCone;
     scene->f_norm[3] = cone_norm;
-}
-
-void    init(t_sdl *sdl, t_scene *scene)
-{
-    // CAMERA
-    scene->cam.orig = init_vec(0, 0, 0);
-    scene->cam.dir = init_vec(0, 0, 1); // суммировать с векотором (0, 0 , 1)
-    scene->cam.x_r = scene->cam.dir.y;
-    scene->cam.y_r = scene->cam.dir.x;
-    scene->cam.z_r = 0;
-
-    // LIGHT
-    scene->l = init_vec(50, 50, 50);
-    scene->ld = init_vec(1, 4, -3);
-    scene->ld = vec_norm(scene->ld);
-    init_too(scene);
 
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError();
