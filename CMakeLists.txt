@@ -80,6 +80,7 @@ add_executable(RTv1
         src/main.c
 #        src/rotate.c
         src/parser_main.c
+        src/ft_htoi.c
         includes/parser_rtv1.h
         getnextline/get_next_line.c
         getnextline/get_next_line.h)

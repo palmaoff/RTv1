@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 12:14:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/08 18:03:53 by null             ###   ########.fr       */
+/*   Updated: 2020/04/17 18:04:07 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@
 
 typedef enum	e_type_of_light
 {
-	DIRECTIONAL
+	DIRECTIONAL = 1,
+	POINT
 }				t_type_l;
 
 typedef enum	e_objects
 {
-	SPHERE,
+	SPHERE = 1,
 	PLANE,
 	CYLINDER,
 	CONE
@@ -49,7 +50,7 @@ typedef struct	s_obj
 	t_type_l	type;
 	t_vec 		pos;
 	t_vec		dir;
-	int			rad;
+	int			size;
 	t_rgb 		color;
 }				t_obj;
 
@@ -70,5 +71,6 @@ typedef struct	s_base
 }				t_base;
 
 void	parser(t_base *scene);
+int		ft_htoi(const char *hex);
 
 #endif
