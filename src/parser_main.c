@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/17 20:54:30 by null             ###   ########.fr       */
+/*   Updated: 2020/04/20 14:22:05 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,18 @@ void	parser_object(t_obj *obj, int fd, t_type_o id)
 	parser_identify(id, &obj->shape);
 	while(get_next_line(fd, &line))
 	{
-		if(ft_strequ(ft_strtrim(line), "]"))
+		if(ft_strequ(ft_strtrim(line), "}"))
 			break;
 		tmp = ft_strsplit(line, ' ');
 		free(line);
-		if(ft_strequ(tmp[1], "pos"))
-			parser_get_vec(&obj->pos, tmp + 2);
-		else if(ft_strequ(tmp[1], "dir"))
-			parser_get_vec(&obj->dir, tmp + 2);
-		else if(ft_strequ(tmp[1], "color"))
-			parser_get_color(&obj->color, tmp + 3);
-		else if(ft_strequ(tmp[1], "size"))
-			obj->size = ft_atoi(tmp[3]);
+		if(ft_strequ(ft_strtrim(tmp[0]), "pos"))
+			parser_get_vec(&obj->pos, tmp + 1);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
+			parser_get_vec(&obj->dir, tmp + 1);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "color"))
+			parser_get_color(&obj->color, tmp + 2);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "size"))
+			obj->size = ft_atoi(tmp[2]);
 	}
 	//free
 }
@@ -79,7 +79,7 @@ void	parser_sphere(t_obj *obj, int fd)
 	obj->shape = SPHERE;
 	while(get_next_line(fd, &line))
 	{
-		if(ft_strequ(ft_strtrim(line), "]"))
+		if(ft_strequ(ft_strtrim(line), "}"))
 			break;
 		tmp = ft_strsplit(line, ' ');
 		free(line);
@@ -126,16 +126,16 @@ void	parser_light(t_base *scene, t_obj *light, int fd)
 	line = NULL;
 	while(get_next_line(fd, &line))
 	{
-		if(ft_strequ(ft_strtrim(line), "]"))
+		if(ft_strequ(ft_strtrim(line), "}"))
 			break;
 		tmp = ft_strsplit(line, ' ');
 		free(line);
-		if(ft_strequ(tmp[1], "type"))
-			parser_get_type(&light->type, tmp + 2);
-		else if(ft_strequ(tmp[1], "pos"))
-			parser_get_vec(&light->pos, tmp + 2);
-		else if(ft_strequ(tmp[1], "dir"))
-			parser_get_vec(&light->dir, tmp + 2);
+		if(ft_strequ(ft_strtrim(tmp[0]), "type"))
+			parser_get_type(&light->type, tmp + 1);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "pos"))
+			parser_get_vec(&light->pos, tmp + 1);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
+			parser_get_vec(&light->dir, tmp + 1);
 	}
 	//free array
 	//free tmp
@@ -149,13 +149,13 @@ void 	parser_camera(t_base *scene, int fd)
 	line = NULL;
 	while (get_next_line(fd, &line))
 	{
-			if(ft_strequ(ft_strtrim(line), "]"))
+			if(ft_strequ(ft_strtrim(line), "}"))
 				break;
 			tmp = ft_strsplit(line, ' ');
-			if (ft_strequ(tmp[1], "pos"))
-				parser_get_vec(&scene->cam.pos, tmp + 2);
-			else if (ft_strequ(tmp[1], "dir"))
-				parser_get_vec(&scene->cam.dir, tmp + 2);
+			if (ft_strequ(ft_strtrim(tmp[0]), "pos"))
+				parser_get_vec(&scene->cam.pos, tmp + 1);
+			else if (ft_strequ(ft_strtrim(tmp[0]), "dir"))
+				parser_get_vec(&scene->cam.dir, tmp + 1);
 			free(tmp);
 			//free array
 		}
@@ -178,7 +178,7 @@ int 	parser_scene(t_base *scene, int fd)
 	i = 0;
 	while(get_next_line(fd, &line))
 	{
-		if(ft_strequ(line, "}") || i == scene->n_lt)
+		if(ft_strequ(line, "};") || i == scene->n_lt)
 			break;
 		if(ft_strequ(ft_strtrim(line), "camera"))
 			parser_camera(scene, fd);
