@@ -1,0 +1,9 @@
+scene
+{
+	camera
+
+	light
+	{
+		pos
+	}
+}
