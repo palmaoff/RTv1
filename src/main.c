@@ -88,8 +88,6 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cam.z_r = 0;
 
     // LIGHT
-    // scene->l[0] = init_vec(50, 50, 50);
-    // cene->l[1] = init_vec(-50, 50, 50);
     scene->light[0].p = init_vec(50, 50, 50);
     scene->light[1].p = init_vec(50, 50, -50);
     scene->light[0].inst = 0.3;
