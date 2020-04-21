@@ -12,7 +12,7 @@
 
 #include "parser_rtv1.h"
 
-void 	parser_get_color(t_rgb *col, char **tmp)
+void 	parser_get_color(t_color *col, char **tmp)
 {
 	col->r = ft_htoi(tmp[1]);
 	col->g = ft_htoi(tmp[2]);
@@ -153,7 +153,7 @@ void 	parser_camera(t_base *scene, int fd)
 				break;
 			tmp = ft_strsplit(line, ' ');
 			if (ft_strequ(ft_strtrim(tmp[0]), "pos"))
-				parser_get_vec(&scene->cam.pos, tmp + 1);
+				parser_get_vec(&scene->cam.orig, tmp + 1);
 			else if (ft_strequ(ft_strtrim(tmp[0]), "dir"))
 				parser_get_vec(&scene->cam.dir, tmp + 1);
 			free(tmp);
