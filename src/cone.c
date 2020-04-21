@@ -13,7 +13,7 @@ double	IntersectCone(t_vec d, t_scene *scene, int i, t_vec orig)
     m[0] = vec_dot(d, d) - (1 + scene->fig[i].k * scene->fig[i].k) * (vec_dot(d, scene->fig[i].v) * vec_dot(d, scene->fig[i].v));
     m[1] = vec_dot(oc, d) - (1 + scene->fig[i].k * scene->fig[i].k) * (vec_dot(d, scene->fig[i].v) * vec_dot(oc, scene->fig[i].v));
     m[2] = vec_dot(oc, oc) - (1 + scene->fig[i].k * scene->fig[i].k) * (vec_dot(oc, scene->fig[i].v) * vec_dot(oc, scene->fig[i].v));
-    m[3] = m[1] * m[1] - 4.0 * m[0] * m[2];
+    m[3] = m[1] * m[1] - m[0] * m[2];
     if (m[3] < 0)
         return (0);
     m[4] = (-m[1] + sqrtf(m[3])) / m[0];
