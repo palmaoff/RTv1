@@ -6,15 +6,26 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 12:14:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/17 18:04:07 by null             ###   ########.fr       */
+/*   Updated: 2020/04/20 20:35:32 by null             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_RTV1_H
 # define PARSER_RTV1_H
 
+# include <SDL2/SDL.h>
 # include <fcntl.h>
 # include <get_next_line.h>
+
+// For SDL{
+typedef struct	s_sdl
+{
+	SDL_Window *win;
+	SDL_Surface *scr;
+	SDL_Surface *smile;
+}				t_sdl;
+
+//}
 
 typedef enum	e_type_of_light
 {
