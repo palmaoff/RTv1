@@ -9,6 +9,7 @@
 
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
+//# include "SDL.h"
 # include "math.h"
 
 typedef	struct		s_sdl
@@ -58,15 +59,14 @@ typedef struct      s_light
 typedef	struct		s_scene
 {
     t_light light[2];
-	// t_vec   l[2];
 	t_vec   ld;
 	t_camera cam;
-    t_vec   d;
-    double  t;
 	t_figure fig[4];
-    t_color color;
     t_vec (*f_norm[4])(struct s_scene *scene);
     double (*f_inter[4])(t_vec d, struct s_scene *scene, int i, t_vec orig);
+    t_color color;
+    t_vec   d;
+    double  t;
     int cur;
 }					t_scene;
 
