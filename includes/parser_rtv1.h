@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 12:14:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/21 20:03:29 by null             ###   ########.fr       */
+/*   Updated: 2020/04/22 19:29:58 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct	s_obj
 	t_type_l	type;
 	t_vec 		pos;
 	t_vec		dir;
-	int			size;
+	double		size;
 //	t_rgb 		color;
 	t_color		color;
 }				t_obj;
@@ -86,5 +86,6 @@ typedef struct	s_base
 
 void	parser(t_base *scene);
 int		ft_htoi(const char *hex);
+double	ft_atof(const char *str);
 
 #endif

@@ -94,9 +94,11 @@ void    init(t_sdl *sdl, t_scene *scene, t_base *base)
 //    scene->light[0].p = init_vec(50, 50, 50);
 //    scene->light[1].p = init_vec(50, 50, -50);
     scene->light[0].p = base->lights[0].pos;
-    scene->light[1].p = base->lights[1].pos;;
-    scene->light[0].inst = 0.3;
-    scene->light[1].inst = 0.3;
+    scene->light[1].p = base->lights[1].pos;
+//    scene->light[0].inst = 0.3;
+//    scene->light[1].inst = 0.3;
+    scene->light[0].inst = base->lights[0].size;
+    scene->light[1].inst = base->lights[1].size;
     scene->ld = init_vec(1, 4, -3);
     scene->ld = vec_norm(scene->ld);
 
@@ -143,8 +145,9 @@ void    init(t_sdl *sdl, t_scene *scene, t_base *base)
     scene->fig[3].c = base->obj[3].pos;
     scene->fig[3].v = base->obj[3].dir;
     scene->fig[3].v = vec_norm(scene->fig[3].v);
-    scene->fig[3].k = 0.3;
+//    scene->fig[3].k = 0.3;
 //    scene->fig[3].color = init_color(100, 150, 0);
+    scene->fig[3].k = base->obj[3].size;
     scene->fig[3].color = base->obj[3].color;
     scene->f_inter[3] = IntersectCone;
     scene->f_norm[3] = cone_norm;
