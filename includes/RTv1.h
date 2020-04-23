@@ -10,6 +10,8 @@
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
 # include "math.h"
+# include "get_next_line.h"
+# include <fcntl.h>
 
 typedef enum	e_type_of_light
 {
@@ -73,10 +75,10 @@ typedef struct      s_light
 
 typedef	struct		s_scene
 {
-    t_light light[2];
+    t_light *light;
 	t_vec   ld;
 	t_camera cam;
-	t_figure fig[4];
+	t_figure *fig;
     t_vec (*f_norm[4])(struct s_scene *scene);
     double (*f_inter[4])(t_vec d, struct s_scene *scene, int i, t_vec orig);
     t_color color;
@@ -85,6 +87,7 @@ typedef	struct		s_scene
     int cur;
     int n_obj;
     int n_lt;
+    char *file;
 }					t_scene;
 
 // vec
@@ -109,5 +112,10 @@ t_vec   cylinder_norm(t_scene *scene);
 t_vec   cone_norm(t_scene *scene);
 t_vec   sphere_norm(t_scene *scene);
 t_vec   plane_norm(t_scene *scene);
+
+//parser
+void	parser(t_scene *scene);
+int		ft_htoi(const char *hex);
+double	ft_atof(const char *str);
 
 #endif

@@ -6,11 +6,12 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/22 20:00:07 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/04/23 15:08:05 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "parser_rtv1.h"
+//#include "parser_rtv1.h"
+#include "RTv1.h"
 
 void 	parser_get_color(t_color *col, char **tmp)
 {
@@ -46,7 +47,7 @@ void	parser_identify(t_type_o id, t_type_o *shape)
 		*shape = CONE;
 }
 
-void	parser_object(t_obj *obj, int fd, t_type_o id)
+void	parser_object(t_figure *obj, int fd, t_type_o id)
 {
 	char *line;
 	char **tmp;
@@ -59,15 +60,15 @@ void	parser_object(t_obj *obj, int fd, t_type_o id)
 		tmp = ft_strsplit(line, ' ');
 		free(line);
 		if(ft_strequ(ft_strtrim(tmp[0]), "pos"))
-			parser_get_vec(&obj->pos, tmp + 1);
+			parser_get_vec(&obj->c, tmp + 1);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
-			parser_get_vec(&obj->dir, tmp + 1);
+			parser_get_vec(&obj->v, tmp + 1);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "color"))
 			parser_get_color(&obj->color, tmp + 2);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "size"))
-			obj->size = ft_atoi(tmp[2]);
+			obj->k = ft_atoi(tmp[2]);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "angle"))
-			obj->size = ft_atof(tmp[2]);
+			obj->k = ft_atof(tmp[2]);
 	}
 	//free
 }
@@ -96,7 +97,7 @@ void	parser_sphere(t_obj *obj, int fd)
 }
 */
 
-void	parser_objects(t_base *scene, int fd)
+void	parser_objects(t_scene *scene, int fd)
 {
 	unsigned int	i;
 	char *line;
@@ -108,19 +109,19 @@ void	parser_objects(t_base *scene, int fd)
 		   || ft_strequ(ft_strtrim(line), "cylinder") || ft_strequ(ft_strtrim(line), "cone"))
 		{
 			if(ft_strequ(ft_strtrim(line), "sphere"))
-				parser_object(&scene->obj[i], fd, SPHERE);
+				parser_object(&scene->fig[i], fd, SPHERE);
 			else if(ft_strequ(ft_strtrim(line), "plane"))
-				parser_object(&scene->obj[i], fd, PLANE);
+				parser_object(&scene->fig[i], fd, PLANE);
 			else if(ft_strequ(ft_strtrim(line), "cylinder"))
-				parser_object(&scene->obj[i], fd, CYLINDER);
+				parser_object(&scene->fig[i], fd, CYLINDER);
 			else if(ft_strequ(ft_strtrim(line), "cone"))
-				parser_object(&scene->obj[i], fd, CONE);
+				parser_object(&scene->fig[i], fd, CONE);
 			i++;
 		}
 	}
 }
 
-void	parser_light(t_base *scene, t_obj *light, int fd)
+void	parser_light(t_scene *scene, t_light *light, int fd)
 {
 	char *line;
 	char **tmp;
@@ -135,17 +136,17 @@ void	parser_light(t_base *scene, t_obj *light, int fd)
 		if(ft_strequ(ft_strtrim(tmp[0]), "type"))
 			parser_get_type(&light->type, tmp + 1);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "pos"))
-			parser_get_vec(&light->pos, tmp + 1);
-		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
-			parser_get_vec(&light->dir, tmp + 1);
+			parser_get_vec(&light->p, tmp + 1);
+//		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
+//			parser_get_vec(&light->dir, tmp + 1);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "intensity"))
-			light->size = ft_atof(tmp[2]);
+			light->inst = ft_atof(tmp[2]);
 	}
 	//free array
 	//free tmp
 }
 
-void 	parser_camera(t_base *scene, int fd)
+void 	parser_camera(t_scene *scene, int fd)
 {
 	char *line;
 	char **tmp;
@@ -173,7 +174,7 @@ void 	parser_camera(t_base *scene, int fd)
 	free(line);*/
 }
 
-int 	parser_scene(t_base *scene, int fd)
+int 	parser_scene(t_scene *scene, int fd)
 {
 	char *line;
 	int i;
@@ -188,7 +189,7 @@ int 	parser_scene(t_base *scene, int fd)
 			parser_camera(scene, fd);
 		else if(ft_strequ(ft_strtrim(line), "light"))
 		{
-			parser_light(scene, &scene->lights[i], fd);
+			parser_light(scene, &scene->light[i], fd);
 			i++;
 		}
 		free(line);
@@ -196,10 +197,9 @@ int 	parser_scene(t_base *scene, int fd)
 	return(0);
 }
 
-void	parser_count_obj(t_base *scene)
+void	parser_count_obj(t_scene *scene)
 {
 	char *line;
-	t_obj *obj;
 	int fd;
 
 	fd = open(scene->file, O_RDONLY);
@@ -212,8 +212,8 @@ void	parser_count_obj(t_base *scene)
 			scene->n_lt++;
 		free(line);
 	}
-	scene->obj = ft_memalloc(sizeof(t_obj) * scene->n_obj);
-	scene->lights = ft_memalloc(sizeof(t_obj) * scene->n_lt);
+	scene->fig = ft_memalloc(sizeof(t_figure) * scene->n_obj);
+	scene->light = ft_memalloc(sizeof(t_figure) * scene->n_lt);
 }
 
 int		parser_validation(char *file)
@@ -221,10 +221,12 @@ int		parser_validation(char *file)
 	return (0);
 }
 
-void	parser(t_base *scene)
+void	parser(t_scene *scene)
 {
 	int fd;
 
+	scene->n_lt = 0;
+	scene->n_obj = 0;
 	if((fd = open(scene->file, O_RDONLY)) <= 0)
 		exit(1);
 	parser_validation(scene->file);

@@ -15,7 +15,7 @@ scene
 	{
 		type ( Point )
 		pos ( 50 50 -50 )
-		intensity ( 0.49 )
+		intensity ( 0.4 )
 	}
 };
 objects

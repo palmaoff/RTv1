@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 12:14:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/22 19:29:58 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/04/23 14:24:47 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 	SDL_Window *win;
 	SDL_Surface *scr;
 	SDL_Surface *smile;
-}				t_sdl;
+}				t_sdl;*/
 
 //}
 
@@ -41,7 +41,7 @@ typedef enum	e_objects
 	CYLINDER,
 	CONE
 }				t_type_o;
-*/
+
 /*typedef struct	s_rgb
 {
 	double r;
