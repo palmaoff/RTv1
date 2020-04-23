@@ -6,13 +6,13 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/20 14:22:05 by null             ###   ########.fr       */
+/*   Updated: 2020/04/22 20:00:07 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser_rtv1.h"
 
-void 	parser_get_color(t_rgb *col, char **tmp)
+void 	parser_get_color(t_color *col, char **tmp)
 {
 	col->r = ft_htoi(tmp[1]);
 	col->g = ft_htoi(tmp[2]);
@@ -66,6 +66,8 @@ void	parser_object(t_obj *obj, int fd, t_type_o id)
 			parser_get_color(&obj->color, tmp + 2);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "size"))
 			obj->size = ft_atoi(tmp[2]);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "angle"))
+			obj->size = ft_atof(tmp[2]);
 	}
 	//free
 }
@@ -136,6 +138,8 @@ void	parser_light(t_base *scene, t_obj *light, int fd)
 			parser_get_vec(&light->pos, tmp + 1);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
 			parser_get_vec(&light->dir, tmp + 1);
+		else if(ft_strequ(ft_strtrim(tmp[0]), "intensity"))
+			light->size = ft_atof(tmp[2]);
 	}
 	//free array
 	//free tmp
@@ -153,7 +157,7 @@ void 	parser_camera(t_base *scene, int fd)
 				break;
 			tmp = ft_strsplit(line, ' ');
 			if (ft_strequ(ft_strtrim(tmp[0]), "pos"))
-				parser_get_vec(&scene->cam.pos, tmp + 1);
+				parser_get_vec(&scene->cam.orig, tmp + 1);
 			else if (ft_strequ(ft_strtrim(tmp[0]), "dir"))
 				parser_get_vec(&scene->cam.dir, tmp + 1);
 			free(tmp);
