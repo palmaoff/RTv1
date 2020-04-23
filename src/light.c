@@ -17,10 +17,15 @@ double   punch(t_scene *scene, t_vec p)
     p = vec_sum(p, scene->cam.orig);
     n = scene->f_norm[scene->cur](scene);
     n = vec_norm(n);
-    while (i < 2)
+    while (i < scene->n_lt)
     {
-        l = vec_sub(p, scene->light[i].p);
-        l = vec_norm(l);
+        if (scene->light[i].type == POINT)
+        {
+            l = vec_sub(p, scene->light[i].p);
+            l = vec_norm(l);
+        }
+        if (scene->light[i].type == DIRECTIONAL)
+            l = scene->light[i].p;
         tmp[0] = vec_dot(l, n);
         if (tmp[0] > 0)
             tmp[1] += tmp[0] * scene->light[i].inst;
@@ -52,7 +57,7 @@ double     shadow(t_scene *scene, t_vec p, t_vec d)
 
     i[1] = 0;
     t[1] = 1;
-    while (i[1] < 2)
+    while (i[1] < scene->n_lt)
     {
         v[1] = vec_sub(scene->light[i[1]].p, p);
         d = vec_norm(v[1]);
@@ -88,7 +93,7 @@ t_color color(t_scene *scene, double t, t_vec d)
     scene->d = d;
     if (t > 1 && t < 10000)
 	{
-        a = 0.2 + punch(scene, p) + dir(scene);
+        a = 0.1 + punch(scene, p);
         a *= shadow(scene, p, d);
 		c.r = scene->fig[scene->cur].color.r * a;
 		c.g = scene->fig[scene->cur].color.g * a;

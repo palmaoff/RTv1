@@ -24,7 +24,7 @@
 	SDL_Window *win;
 	SDL_Surface *scr;
 	SDL_Surface *smile;
-}				t_sdl;*/
+}				t_sdl;
 
 //}
 
@@ -41,7 +41,7 @@ typedef enum	e_objects
 	CYLINDER,
 	CONE
 }				t_type_o;
-
+*/
 /*typedef struct	s_rgb
 {
 	double r;

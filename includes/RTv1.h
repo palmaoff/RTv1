@@ -9,8 +9,21 @@
 
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
-//# include "SDL.h"
 # include "math.h"
+
+typedef enum	e_type_of_light
+{
+    DIRECTIONAL = 1,
+    POINT
+}				t_type_l;
+
+typedef enum	e_objects
+{
+    SPHERE = 1,
+    PLANE,
+    CYLINDER,
+    CONE
+}				t_type_o;
 
 typedef	struct		s_sdl
 {
@@ -43,6 +56,7 @@ typedef	struct		s_camera
 
 typedef struct      s_figure
 {
+    t_type_o	shape;
     int     type;
     t_vec   c;
     t_vec	v;
@@ -52,6 +66,7 @@ typedef struct      s_figure
 
 typedef struct      s_light
 {
+    t_type_l type;
     double inst;
     t_vec p;
 }                   t_light;
@@ -68,6 +83,8 @@ typedef	struct		s_scene
     t_vec   d;
     double  t;
     int cur;
+    int n_obj;
+    int n_lt;
 }					t_scene;
 
 // vec
