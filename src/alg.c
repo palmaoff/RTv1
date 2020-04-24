@@ -30,12 +30,12 @@ t_color ray_too(t_scene *scene, t_vec d)
 
     i = 0;
     mint = 0;
-    while (i < 4)
+    while (i < scene->n_obj)
     {
-        if (((t = scene->f_inter[scene->fig[i].type](d, scene, i, scene->cam.orig)) < mint || mint == 0) && t > 1)
+        if (((t = scene->f_inter[scene->fig[i].shape - 1](d, scene, i, scene->cam.orig)) < mint || mint == 0) && t > 1)
         {
             mint = t;
-            scene->cur = scene->fig[i].type;
+            scene->cur = i;
         }
         i++;
     }

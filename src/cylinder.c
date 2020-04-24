@@ -9,6 +9,7 @@ double	IntersectCylinder(t_vec d, t_scene *scene, int i, t_vec orig)
     t_vec oc;
     double m[6];
 
+    scene->fig[i].v = vec_norm(scene->fig[i].v);
     oc = vec_sub(orig, scene->fig[i].c);
     m[0] = vec_dot(d, d) - vec_dot(d, scene->fig[i].v) * vec_dot(d, scene->fig[i].v);
     m[1] = vec_dot(oc, d) - vec_dot(d, scene->fig[i].v) * vec_dot(oc, scene->fig[i].v);

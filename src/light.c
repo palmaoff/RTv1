@@ -15,7 +15,7 @@ double   punch(t_scene *scene, t_vec p)
     tmp[1] = 0;
     p = vec_scale(scene->d, scene->t);
     p = vec_sum(p, scene->cam.orig);
-    n = scene->f_norm[scene->cur](scene);
+    n = scene->f_norm[scene->fig[scene->cur].shape - 1](scene);
     n = vec_norm(n);
     while (i < scene->n_lt)
     {
@@ -33,7 +33,7 @@ double   punch(t_scene *scene, t_vec p)
     }
     return (tmp[1]);
 }
-
+/*
 double   dir(t_scene *scene)
 {
     t_vec l;
@@ -48,7 +48,7 @@ double   dir(t_scene *scene)
         return (a * 0.2);
     return (0);
 }
-
+*/
 double     shadow(t_scene *scene, t_vec p, t_vec d)
 {
     int i[2];
@@ -62,11 +62,11 @@ double     shadow(t_scene *scene, t_vec p, t_vec d)
         v[1] = vec_sub(scene->light[i[1]].p, p);
         d = vec_norm(v[1]);
         i[0] = 0;
-        while (i[0] < 4) // add to another function
+        while (i[0] < scene->n_obj) // add to another function
         {
-            if (scene->fig[i[0]].type != scene->cur)
+            if (i[0] != scene->cur)
             {
-                t[0] = scene->f_inter[scene->fig[i[0]].type](d, scene, i[0], p);
+                t[0] = scene->f_inter[scene->fig[i[0]].shape - 1](d, scene, i[0], p);
                 v[0] = vec_scale(d, t[0]);
                 if (t[0] > 1 && vec_dot(v[0], v[0]) < vec_dot(v[1], v[1]))
                 {

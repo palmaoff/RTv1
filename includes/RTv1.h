@@ -59,7 +59,6 @@ typedef	struct		s_camera
 typedef struct      s_figure
 {
     t_type_o	shape;
-    int     type;
     t_vec   c;
     t_vec	v;
     double	k;
@@ -76,7 +75,6 @@ typedef struct      s_light
 typedef	struct		s_scene
 {
     t_light *light;
-	t_vec   ld;
 	t_camera cam;
 	t_figure *fig;
     t_vec (*f_norm[4])(struct s_scene *scene);
