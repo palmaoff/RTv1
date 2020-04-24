@@ -79,31 +79,25 @@ void loop(t_sdl *sdl, t_scene *scene)
 
 void    init(t_sdl *sdl, t_scene *scene)
 {
-    // CAMERA
+    t_vec tmp;
+
     scene->cam.dir = vec_norm(scene->cam.dir);
-    scene->cam.x_r = scene->cam.dir.y;
-    scene->cam.y_r = scene->cam.dir.x;
+    if (scene->cam.dir.z < 0)
+        scene->cam.ori = -1;
+    else
+        scene->cam.ori = 1;
+    tmp = vec_norm(init_vec(0, scene->cam.dir.y, scene->cam.dir.z));
+    scene->cam.x_r = acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp));
+    tmp = vec_norm(init_vec(scene->cam.dir.x, 0, scene->cam.dir.z));
+    scene->cam.y_r = acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp));
     scene->cam.z_r = 0;
 
-    // SPHERE
-//    scene->fig[0].type = 0;
     scene->f_inter[0] = IntersectSphere;
     scene->f_norm[0] = sphere_norm;
-
-    // PLANE
-//    scene->fig[1].type = 1;
     scene->f_inter[1] = IntersectPlane;
     scene->f_norm[1] = plane_norm;
-
-    // CYLINDER
-//    scene->fig[2].type = 2;
-//    scene->fig[2].v = vec_norm(scene->fig[2].v);
     scene->f_inter[2] = IntersectCylinder;
     scene->f_norm[2] = cylinder_norm;
-
-    // CONE
-//    scene->fig[3].type = 3;
-//    scene->fig[3].v = vec_norm(scene->fig[3].v);
     scene->f_inter[3] = IntersectCone;
     scene->f_norm[3] = cone_norm;
 

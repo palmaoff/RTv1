@@ -14,9 +14,9 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	angl = 0.577350;
 	(void)scene; // change parameters
 	rot =  (double)WIDTH / (double)HEIGHT;
-	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl;
+	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl * scene->cam.ori;
 	d.y = (1 - 2.0 * (y + 0.5) / HEIGHT) * angl;
-	d.z = 1.0;
+	d.z = scene->cam.ori;
 	rotate(scene->cam, &d);
 	return (d);
 }
