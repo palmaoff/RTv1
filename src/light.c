@@ -20,10 +20,7 @@ double   punch(t_scene *scene, t_vec p)
     while (i < scene->n_lt)
     {
         if (scene->light[i].type == POINT)
-        {
-            l = vec_sub(p, scene->light[i].p);
-            l = vec_norm(l);
-        }
+            l = vec_norm(vec_sub(p, scene->light[i].p));
         if (scene->light[i].type == DIRECTIONAL)
             l = scene->light[i].p;
         tmp[0] = vec_dot(l, n);
@@ -33,49 +30,47 @@ double   punch(t_scene *scene, t_vec p)
     }
     return (tmp[1]);
 }
-/*
-double   dir(t_scene *scene)
-{
-    t_vec l;
-    t_vec n;
-    double a;
 
-    n = scene->f_norm[scene->cur](scene);
-    n = vec_norm(n);
-    l = scene->ld;
-    a = vec_dot(l, n);
-    if (a > 0)
-        return (a * 0.2);
-    return (0);
+static double  shadow_obj(t_scene *scene, t_vec v1, t_vec p, int j)
+{
+    int i;
+    double t[2];
+    t_vec d;
+    t_vec v;
+
+    i = 0;
+    t[1] = 0;
+    d = vec_norm(v1);
+    while (i < scene->n_obj) // add to another function
+    {
+        if (i != scene->cur)
+        {
+            t[0] = scene->f_inter[scene->fig[i].shape - 1](d, scene, i, p);
+            v = vec_scale(d, t[0]);
+            if (t[0] > 1 && vec_dot(v, v) < vec_dot(v1, v1))
+            {
+                t[1] += scene->light[j].inst;
+                return (t[1]);
+            }
+        }
+        i++;
+    }
+    return (t[1]);
 }
-*/
+
 double     shadow(t_scene *scene, t_vec p, t_vec d)
 {
     int i[2];
     double t[2];
-    t_vec v[2];
+    t_vec v;
 
     i[1] = 0;
     t[1] = 1;
     while (i[1] < scene->n_lt)
     {
-        v[1] = vec_sub(scene->light[i[1]].p, p);
-        d = vec_norm(v[1]);
+        v = vec_sub(scene->light[i[1]].p, p);
         i[0] = 0;
-        while (i[0] < scene->n_obj) // add to another function
-        {
-            if (i[0] != scene->cur)
-            {
-                t[0] = scene->f_inter[scene->fig[i[0]].shape - 1](d, scene, i[0], p);
-                v[0] = vec_scale(d, t[0]);
-                if (t[0] > 1 && vec_dot(v[0], v[0]) < vec_dot(v[1], v[1]))
-                {
-                    t[1] -= scene->light[i[1]].inst;
-                    break ;
-                }
-            }
-            i[0]++;
-        }
+        t[1] -= shadow_obj(scene, v, p, i[1]);
         i[1]++;
     }
     return (t[1]);
