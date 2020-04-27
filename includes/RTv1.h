@@ -115,6 +115,11 @@ t_vec   plane_norm(t_scene *scene);
 
 //parser
 void	parser(t_scene *scene);
+int 	parser_scene(t_scene *scene, int fd);
+void	parser_objects(t_scene *scene, int fd);
+void	parser_get_vec(t_vec *vec, char **tmp);
+void 	parser_get_color(t_color *col, char **tmp);
+void 	parser_free_array(char **ar);
 int		ft_htoi(const char *hex);
 double	ft_atof(const char *str);
 
