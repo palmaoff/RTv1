@@ -4,7 +4,7 @@
 
 #include "RTv1.h"
 
-double   punch(t_scene *scene, t_vec p)
+static double   punch(t_scene *scene, t_vec p)
 {
     t_vec l;
     t_vec n;
@@ -41,7 +41,7 @@ static double  shadow_obj(t_scene *scene, t_vec v1, t_vec p, int j)
     i = 0;
     t[1] = 0;
     d = vec_norm(v1);
-    while (i < scene->n_obj) // add to another function
+    while (i < scene->n_obj)
     {
         if (i != scene->cur)
         {
@@ -58,7 +58,7 @@ static double  shadow_obj(t_scene *scene, t_vec v1, t_vec p, int j)
     return (t[1]);
 }
 
-double     shadow(t_scene *scene, t_vec p, t_vec d)
+static double     shadow(t_scene *scene, t_vec p, t_vec d)
 {
     int i[2];
     double t[2];

@@ -2,7 +2,6 @@
 **	created by eflorean
 */
 
-//#include "parser_rtv1.h"
 #include "RTv1.h"
 
 void loop(t_sdl *sdl, t_scene *scene)
@@ -49,9 +48,9 @@ void loop(t_sdl *sdl, t_scene *scene)
                     scene->cam.orig = vec_sum(scene->cam.orig, vec);
                 }
                 if (event.key.keysym.sym == SDLK_UP)
-                    scene->cam.x_r += 0.1;
+                    scene->cam.x_r += 0.1 * scene->cam.ori;
                 if (event.key.keysym.sym == SDLK_DOWN)
-                    scene->cam.x_r -= 0.1;
+                    scene->cam.x_r -= 0.1 * scene->cam.ori;
                 if (event.key.keysym.sym == SDLK_RIGHT)
                     scene->cam.y_r += 0.1;
                 if (event.key.keysym.sym == SDLK_LEFT)
@@ -68,8 +67,6 @@ void loop(t_sdl *sdl, t_scene *scene)
                     rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sub(scene->cam.orig, vec);
                 }
-                if (event.key.keysym.sym == SDLK_SPACE)
-                    printf("%f %f %f\n", scene->cam.orig.x, scene->cam.orig.y, scene->cam.orig.z);
                 draw(scene, sdl);
                 SDL_RenderPresent(sdl->render);
             }
@@ -81,17 +78,15 @@ void    init(t_sdl *sdl, t_scene *scene)
 {
     t_vec tmp;
 
+    scene->cam.ori = (scene->cam.dir.z < 0) ? -1 : 1;
     scene->cam.dir = vec_norm(scene->cam.dir);
-    if (scene->cam.dir.z < 0)
-        scene->cam.ori = -1;
-    else
-        scene->cam.ori = 1;
     tmp = vec_norm(init_vec(0, scene->cam.dir.y, scene->cam.dir.z));
     scene->cam.x_r = acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp));
     tmp = vec_norm(init_vec(scene->cam.dir.x, 0, scene->cam.dir.z));
     scene->cam.y_r = acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp));
+    scene->cam.y_r *= (scene->cam.dir.x * scene->cam.dir.z < 0) ? -1 : 1;
+    scene->cam.x_r *= (scene->cam.dir.y * scene->cam.dir.z < 0) ? -1 : 1;
     scene->cam.z_r = 0;
-
     scene->f_inter[0] = IntersectSphere;
     scene->f_norm[0] = sphere_norm;
     scene->f_inter[1] = IntersectPlane;

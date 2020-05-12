@@ -97,7 +97,6 @@ t_vec	vec_sum(t_vec a, t_vec b);
 t_vec	vec_scale(t_vec a, double t);
 
 // base raytracing
-t_color ray_too(t_scene *scene, t_vec d);
 void	draw(t_scene *scene, t_sdl *sdl);
 t_vec   init_vec(double x, double y, double z);
 t_color init_color(double r, double g, double b);
