@@ -64,6 +64,10 @@ static double     shadow(t_scene *scene, t_vec p, t_vec d)
     double t[2];
     t_vec v;
 
+    d = (t_vec){1, 1, 1};
+    // erase me
+    if(!d.x)
+    	return(0);
     i[1] = 0;
     t[1] = 1;
     while (i[1] < scene->n_lt)

@@ -108,6 +108,8 @@ int main(int ac, char *av[]) {
     t_sdl sdl;
     t_scene scene;
 
+    if(ac < 1)
+    	return(0);
     scene.file = av[1];
     parser(&scene);
     init(&sdl, &scene);

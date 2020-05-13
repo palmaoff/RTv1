@@ -11,6 +11,7 @@
 # include "SDL2/SDL.h"
 # include "math.h"
 # include "get_next_line.h"
+# include "libft.h"
 # include <fcntl.h>
 
 typedef enum	e_type_of_light
