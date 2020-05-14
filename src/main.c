@@ -81,12 +81,14 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cam.ori = (scene->cam.dir.z < 0) ? -1 : 1;
     scene->cam.dir = vec_norm(scene->cam.dir);
     tmp = vec_norm(init_vec(0, scene->cam.dir.y, scene->cam.dir.z));
-    scene->cam.x_r = acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp));
+    scene->cam.x_r = (vec_dot(tmp, tmp) != 0) ? acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp)) : 0;
     tmp = vec_norm(init_vec(scene->cam.dir.x, 0, scene->cam.dir.z));
-    scene->cam.y_r = acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp));
-    scene->cam.y_r *= (scene->cam.dir.x * scene->cam.dir.z < 0) ? -1 : 1;
-    scene->cam.x_r *= (scene->cam.dir.y * scene->cam.dir.z < 0) ? -1 : 1;
+    scene->cam.y_r = (vec_dot(tmp, tmp) != 0) ? acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp)) : 0;
+    scene->cam.y_r *= (scene->cam.dir.x * scene->cam.ori < 0) ? -1 : 1;
+    scene->cam.x_r *= (scene->cam.dir.y * scene->cam.ori < 0) ? -1 : 1;
     scene->cam.z_r = 0;
+
+
     scene->f_inter[0] = IntersectSphere;
     scene->f_norm[0] = sphere_norm;
     scene->f_inter[1] = IntersectPlane;

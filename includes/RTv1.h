@@ -4,8 +4,8 @@
 
 #ifndef RTV1_H
 # define RTV1_H
-# define WIDTH 600
-# define HEIGHT 600
+# define WIDTH 400
+# define HEIGHT 400
 
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"

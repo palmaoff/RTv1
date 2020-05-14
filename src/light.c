@@ -4,6 +4,19 @@
 
 #include "RTv1.h"
 
+static double specular(t_scene *scene, t_vec l, t_vec n)
+{
+    t_vec r;
+    t_vec v;
+    double spec;
+
+    // spec = scene->fig[scene->cur].spec;
+    v = vec_scale(scene->d, -1);
+    r = vec_sub(vec_scale(n, 2 * vec_dot(n, l)), l);
+    r = vec_norm(r);
+    return (pow(vec_dot(r, v), 100));
+}
+
 static double   punch(t_scene *scene, t_vec p)
 {
     t_vec l;
@@ -25,7 +38,7 @@ static double   punch(t_scene *scene, t_vec p)
             l = scene->light[i].p;
         tmp[0] = vec_dot(l, n);
         if (tmp[0] > 0)
-            tmp[1] += tmp[0] * scene->light[i].inst;
+            tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
         i++;
     }
     return (tmp[1]);
