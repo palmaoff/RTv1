@@ -21,7 +21,7 @@ double	IntersectCone(t_vec d, t_scene *scene, int i, t_vec orig)
     m[5] = (-m[1] - sqrtf(m[3])) / m[0];
     if (m[4] < 1 && m[5] < 1)
         return (0);
-    return ((m[4] < m[5] || m[5] < 1.0) ? m[4] : m[5]);
+    return (((m[4] < m[5] && m[4] >= 1) || m[5] < 1.0) ? m[4] : m[5]);
 }
 
 t_vec   cone_norm(t_scene *scene)
@@ -34,6 +34,9 @@ t_vec   cone_norm(t_scene *scene)
     p = vec_scale(scene->d, scene->t);
     oc = vec_sub(scene->cam.orig, scene->fig[scene->cur].c);
     m = vec_dot(oc, scene->fig[scene->cur].v) + scene->t * vec_dot(scene->d, scene->fig[scene->cur].v);
-    vec = vec_sub(vec_sum(vec_scale(scene->d, scene->t), oc), vec_scale(scene->fig[scene->cur].v, m * (1 + scene->fig[scene->cur].k * scene->fig[scene->cur].k)));
-    return (vec_scale(vec, -1));
+    vec = vec_sub(vec_sum(p, oc), vec_scale(scene->fig[scene->cur].v, m * (1 + scene->fig[scene->cur].k * scene->fig[scene->cur].k)));
+    vec = vec_norm(vec);
+    if (sin(vec_dot(vec, scene->d)) < 0)
+        return (vec_scale(vec, -1));
+    return (vec);
 }
