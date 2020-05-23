@@ -4,6 +4,18 @@
 
 #include "RTv1.h"
 
+static void calc(t_scene *scene)
+{
+    int i;
+
+    i = 0;
+    while (i < scene->n_obj)
+    {
+        scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
+        i++;
+    }
+}
+
 void loop(t_sdl *sdl, t_scene *scene)
 {
     SDL_Event event;
@@ -67,6 +79,13 @@ void loop(t_sdl *sdl, t_scene *scene)
                     rotate(scene->cam, &vec);
                     scene->cam.orig = vec_sub(scene->cam.orig, vec);
                 }
+                if (event.key.keysym.sym == SDLK_r)
+                {
+                    free(scene->fig);
+                    scene->fig = NULL;
+                    parser(scene);
+                    calc(&scene);
+                }
                 draw(scene, sdl);
                 SDL_RenderPresent(sdl->render);
             }
@@ -88,7 +107,6 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->cam.x_r *= (scene->cam.dir.y * scene->cam.ori < 0) ? -1 : 1;
     scene->cam.z_r = 0;
 
-
     scene->f_inter[0] = IntersectSphere;
     scene->f_norm[0] = sphere_norm;
     scene->f_inter[1] = IntersectPlane;
@@ -106,6 +124,18 @@ void    init(t_sdl *sdl, t_scene *scene)
     SDL_RenderClear(sdl->render);
 }
 
+void calc_fig(t_scene *scene, t_vec dir, t_vec o, int i)
+{
+    t_vec oc;
+
+    scene->d_d = vec_dot(dir, dir);
+    oc = vec_sub(o, scene->fig[i].c);
+    scene->fig[i].oc_d = vec_dot(oc, dir);
+    scene->fig[i].oc_v = vec_dot(oc, scene->fig[i].v);
+    scene->fig[i].d_v = vec_dot(dir, scene->fig[i].v);
+    scene->fig[i].oc_oc = vec_dot(oc, oc);
+}
+
 int main(int ac, char *av[]) {
     t_sdl sdl;
     t_scene scene;
@@ -113,6 +143,7 @@ int main(int ac, char *av[]) {
     scene.file = av[1];
     parser(&scene);
     init(&sdl, &scene);
+    calc(&scene);
     loop(&sdl, &scene);
     SDL_DestroyWindow(sdl.window);
     SDL_Quit();
