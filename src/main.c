@@ -7,10 +7,13 @@
 static void calc(t_scene *scene)
 {
     int i;
+    t_vec oc;
 
     i = 0;
     while (i < scene->n_obj)
     {
+        oc = vec_sub(scene->cam.orig, scene->fig[i].c);
+        scene->fig[i].orig_oc = vec_dot(oc, oc);
         scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
         i++;
     }
@@ -82,9 +85,11 @@ void loop(t_sdl *sdl, t_scene *scene)
                 if (event.key.keysym.sym == SDLK_r)
                 {
                     free(scene->fig);
+                    free(scene->light);
+                    scene->light = NULL;
                     scene->fig = NULL;
                     parser(scene);
-                    calc(&scene);
+                    calc(scene);
                 }
                 draw(scene, sdl);
                 SDL_RenderPresent(sdl->render);

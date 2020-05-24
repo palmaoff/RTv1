@@ -69,6 +69,8 @@ typedef struct      s_figure
     double oc_d;
     double oc_v;
     double oc_oc;
+    double orig_oc;
+	double origc_v;
 }                   t_figure;
 
 typedef struct      s_light
