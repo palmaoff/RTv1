@@ -29,8 +29,7 @@ t_vec   sphere_norm(t_scene *scene)
     p = vec_sum(p, scene->cam.orig);
     vec = vec_sub(scene->fig[scene->cur].c, p);
     vec = vec_norm(vec);
-    if (sin(vec_dot(vec, scene->d)) < 0)
+    if (vec_dot(vec, scene->d) < 0)
         return (vec_scale(vec, -1));
-    else
-        return (vec);
+    return (vec);
 }

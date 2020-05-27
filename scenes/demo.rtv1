@@ -2,8 +2,8 @@ scene
 {
 	camera
 	{
-		pos ( 0 0 0 )
-		dir ( 0 0 1 )
+		pos ( 0 0 -20 )
+		dir ( 0 0 0 )
 	}
 	light
 	{

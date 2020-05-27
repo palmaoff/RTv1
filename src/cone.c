@@ -34,7 +34,7 @@ t_vec   cone_norm(t_scene *scene)
     m = vec_dot(oc, scene->fig[scene->cur].v) + scene->t * vec_dot(scene->d, scene->fig[scene->cur].v);
     vec = vec_sub(vec_sum(p, oc), vec_scale(scene->fig[scene->cur].v, m * (1 + scene->fig[scene->cur].k_k)));
     vec = vec_norm(vec);
-    if (sin(vec_dot(vec, scene->d)) < 0)
+    if (vec_dot(vec, scene->d) < 0)
         return (vec_scale(vec, -1));
     return (vec);
 }

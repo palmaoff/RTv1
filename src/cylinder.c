@@ -33,7 +33,8 @@ t_vec   cylinder_norm(t_scene *scene)
     oc = vec_sub(scene->cam.orig, scene->fig[scene->cur].c);
     m = vec_dot(oc, scene->fig[scene->cur].v) + scene->t * vec_dot(scene->d, scene->fig[scene->cur].v);
     vec = vec_sub(vec_sum(p, oc), vec_scale(scene->fig[scene->cur].v, m));
-    if (sin(vec_dot(vec, scene->d)) < 0)
+    vec = vec_norm(vec);
+    if (vec_dot(vec, scene->d) < 0)
         return (vec_scale(vec, -1));
-    return (vec_scale(vec, -1));
+    return (vec);
 }

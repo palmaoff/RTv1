@@ -78,7 +78,7 @@ static double  shadow_obj(t_scene *scene, t_vec d, t_vec p, int j)
     return (t[1]);
 }
 
-static double     shadow(t_scene *scene, t_vec p, t_vec d)
+static double     shadow(t_scene *scene, t_vec p)
 {
     int i;
     double t;
@@ -106,10 +106,10 @@ t_color color(t_scene *scene, double t, t_vec d, t_vec o)
     scene->t = t;
     scene->d = d;
 
-    if (t > 1 && t < 10000)
+    if (t > 1 && t < 1000)
 	{
         a = 0.1 + punch(scene, p, o);
-        a *= shadow(scene, p, d);
+        a *= shadow(scene, p);
 		c.r = scene->fig[scene->cur].color.r * a;
 		c.g = scene->fig[scene->cur].color.g * a;
 		c.b = scene->fig[scene->cur].color.b * a;

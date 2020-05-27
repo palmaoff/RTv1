@@ -7,16 +7,17 @@
 static void calc(t_scene *scene)
 {
     int i;
-    t_vec oc;
 
     i = 0;
     while (i < scene->n_obj)
     {
-        oc = vec_sub(scene->cam.orig, scene->fig[i].c);
-        scene->fig[i].orig_oc = vec_dot(oc, oc);
         scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
         i++;
     }
+    scene->cam.ori = (scene->cam.dir.z < 0) ? -1 : 1;
+    scene->cam.x_r = 3.14 / 180 * scene->cam.dir.y;
+    scene->cam.y_r = 3.14 / 180 * scene->cam.dir.x;
+    scene->cam.z_r = 3.14 / 180 * scene->cam.dir.z;
 }
 
 void loop(t_sdl *sdl, t_scene *scene)
@@ -100,17 +101,7 @@ void loop(t_sdl *sdl, t_scene *scene)
 
 void    init(t_sdl *sdl, t_scene *scene)
 {
-    t_vec tmp;
 
-    scene->cam.ori = (scene->cam.dir.z < 0) ? -1 : 1;
-    scene->cam.dir = vec_norm(scene->cam.dir);
-    tmp = vec_norm(init_vec(0, scene->cam.dir.y, scene->cam.dir.z));
-    scene->cam.x_r = (vec_dot(tmp, tmp) != 0) ? acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp)) : 0;
-    tmp = vec_norm(init_vec(scene->cam.dir.x, 0, scene->cam.dir.z));
-    scene->cam.y_r = (vec_dot(tmp, tmp) != 0) ? acos(vec_dot(init_vec(0, 0, scene->cam.ori), tmp)) : 0;
-    scene->cam.y_r *= (scene->cam.dir.x * scene->cam.ori < 0) ? -1 : 1;
-    scene->cam.x_r *= (scene->cam.dir.y * scene->cam.ori < 0) ? -1 : 1;
-    scene->cam.z_r = 0;
 
     scene->f_inter[0] = IntersectSphere;
     scene->f_norm[0] = sphere_norm;
