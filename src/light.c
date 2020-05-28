@@ -20,6 +20,8 @@ static double specular(t_scene *scene, t_vec l, t_vec n)
 //    double spec;
 
 //    spec = scene->fig[scene->cur].spec;
+    if (scene->t > 100)
+        return (0);
     v = vec_scale(scene->d, -1);
     r = reflect_ray(l, n);
     return (pow(vec_dot(r, v), 100));
@@ -45,7 +47,7 @@ static double   punch(t_scene *scene, t_vec p, t_vec o)
         if (scene->light[i].type == DIRECTIONAL)
             l = scene->light[i].p;
         tmp[0] = vec_dot(l, n);
-        if (tmp[0] > 0)
+        if (tmp[0] > 0 )
             tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
         i++;
     }
@@ -106,7 +108,7 @@ t_color color(t_scene *scene, double t, t_vec d, t_vec o)
     scene->t = t;
     scene->d = d;
 
-    if (t > 1 && t < 1000)
+    if (t > 1 && t < MAX_T)
 	{
         a = 0.1 + punch(scene, p, o);
         a *= shadow(scene, p);

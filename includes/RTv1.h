@@ -6,6 +6,7 @@
 # define RTV1_H
 # define WIDTH 400
 # define HEIGHT 400
+# define MAX_T 10000
 
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
