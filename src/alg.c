@@ -20,17 +20,6 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 	return (d);
 }
 
-static t_color reflected_color(t_scene *scene, double t, t_vec d, int depth)
-{
-    t_vec p;
-    t_vec r;
-
-    r = reflect_ray(vec_scale(d, -1), vec_norm(scene->f_norm[scene->fig[scene->cur].shape - 1](scene)));
-    p = vec_scale(d, t);
-    p = vec_sum(p, scene->cam.orig);
-    return (ray(scene, r, p, depth - 1));
-}
-
 t_color ray(t_scene *scene, t_vec d, t_vec o, int depth)
 {
     t_color c;

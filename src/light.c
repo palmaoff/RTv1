@@ -4,15 +4,6 @@
 
 #include "RTv1.h"
 
-t_vec reflect_ray(t_vec l, t_vec n)
-{
-    t_vec vec;
-
-    vec = vec_sub(vec_scale(n, 2 * vec_dot(n, l)), l);
-    vec = vec_norm(vec);
-    return (vec);
-}
-
 static double specular(t_scene *scene, t_vec l, t_vec n)
 {
     t_vec r;

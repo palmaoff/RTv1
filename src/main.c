@@ -4,7 +4,7 @@
 
 #include "RTv1.h"
 
-static void calc(t_scene *scene)
+void calc(t_scene *scene)
 {
     int i;
 
@@ -20,89 +20,8 @@ static void calc(t_scene *scene)
     scene->cam.z_r = 3.14 / 180 * scene->cam.dir.z;
 }
 
-void loop(t_sdl *sdl, t_scene *scene)
-{
-    SDL_Event event;
-    int run;
-    t_vec vec;
-
-    run = 1;
-    draw(scene, sdl);
-    SDL_RenderPresent(sdl->render);
-    while (run)
-    {
-        while (SDL_PollEvent(&event))
-        {
-            if (event.type == SDL_QUIT)
-                run = 0;
-            if (event.type == SDL_KEYDOWN)
-            {
-                if (event.key.keysym.sym == SDLK_ESCAPE)
-                    run = 0;
-                if (event.key.keysym.sym == SDLK_d)
-                {
-                    vec = init_vec(0.5, 0, 0);
-                    rotate(scene->cam, &vec);
-                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
-                }
-                if (event.key.keysym.sym == SDLK_a)
-                {
-                    vec = init_vec(-0.5, 0, 0);
-                    rotate(scene->cam, &vec);
-                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
-                }
-                if (event.key.keysym.sym == SDLK_s)
-                {
-                    vec = init_vec(0, -0.5, 0);
-                    rotate(scene->cam, &vec);
-                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
-                }
-                if (event.key.keysym.sym == SDLK_w)
-                {
-                    vec = init_vec(0, 0.5, 0);
-                    rotate(scene->cam, &vec);
-                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
-                }
-                if (event.key.keysym.sym == SDLK_UP)
-                    scene->cam.x_r += 0.1 * scene->cam.ori;
-                if (event.key.keysym.sym == SDLK_DOWN)
-                    scene->cam.x_r -= 0.1 * scene->cam.ori;
-                if (event.key.keysym.sym == SDLK_RIGHT)
-                    scene->cam.y_r += 0.1;
-                if (event.key.keysym.sym == SDLK_LEFT)
-                    scene->cam.y_r -= 0.1;
-                if (event.key.keysym.sym == 61)
-                {
-                    vec = init_vec(0, 0, 1);
-                    rotate(scene->cam, &vec);
-                    scene->cam.orig = vec_sum(scene->cam.orig, vec);
-                }
-                if (event.key.keysym.sym == 45)
-                {
-                    vec = init_vec(0, 0, 1);
-                    rotate(scene->cam, &vec);
-                    scene->cam.orig = vec_sub(scene->cam.orig, vec);
-                }
-                if (event.key.keysym.sym == SDLK_r)
-                {
-                    free(scene->fig);
-                    free(scene->light);
-                    scene->light = NULL;
-                    scene->fig = NULL;
-                    parser(scene);
-                    calc(scene);
-                }
-                draw(scene, sdl);
-                SDL_RenderPresent(sdl->render);
-            }
-        }
-    }
-}
-
 void    init(t_sdl *sdl, t_scene *scene)
 {
-
-
     scene->f_inter[0] = IntersectSphere;
     scene->f_norm[0] = sphere_norm;
     scene->f_inter[1] = IntersectPlane;
@@ -111,7 +30,6 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->f_norm[2] = cylinder_norm;
     scene->f_inter[3] = IntersectCone;
     scene->f_norm[3] = cone_norm;
-
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError();
     sdl->window = SDL_CreateWindow("RTv1", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT,

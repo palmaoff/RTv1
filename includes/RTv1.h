@@ -64,6 +64,7 @@ typedef struct      s_figure
     t_vec   c;
     t_vec	v;
     double	k;
+    double	spec;
     t_color color;
     double k_k;
     double d_v;
@@ -124,6 +125,10 @@ t_vec   sphere_norm(t_scene *scene);
 t_vec   plane_norm(t_scene *scene);
 t_color ray(t_scene *scene, t_vec d, t_vec o, int depth);
 void    calc_fig(t_scene *scene, t_vec dir, t_vec o, int i);
+void    loop(t_sdl *sdl, t_scene *scene);
+void    calc(t_scene *scene);
+t_color reflected_color(t_scene *scene, double t, t_vec d, int depth);
+t_vec   reflect_ray(t_vec l, t_vec n);
 
 //parser
 void	parser(t_scene *scene);
