@@ -24,10 +24,10 @@ As basic ray tracing program you can add in your scene 4 basic figures with some
 
 Figures:
 
-[] - Sphere
-[] - Plane
-[] - Cylinder
-[] - Cone 
+- Sphere
+- Plane
+- Cylinder
+- Cone 
 
 And options you can change:
 
