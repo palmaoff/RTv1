@@ -10,7 +10,7 @@ Run #make in the root of the repository for build a RTv1 file.
 
 ./RTv1 [filename] 
 
-As parametr you put a file with scene config file, exampels you can find in scene folder.
+As parametr you put a file with scene config file, examples you can find in scene folder.
 
 ## Capabilities
 
