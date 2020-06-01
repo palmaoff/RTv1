@@ -7,11 +7,9 @@ RTv1 is simple ray tracing program, done as part of School21 course.
 Run `make` in the root of the repository for build a RTv1 file.
 
 ```
-
 git clone https://github.com/palmaoff/RTv1.git
 cd RTv1
 make
-
 ```
 
 ## Usage
