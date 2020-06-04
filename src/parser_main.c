@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/27 14:54:39 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/05/25 19:13:43 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,6 @@ void	parser_count_obj(t_scene *scene)
 	scene->light = ft_memalloc(sizeof(t_figure) * scene->n_lt);
 }
 
-int		parser_validation(int fd)
-{
-	char *line;
-
-	if (get_next_line(fd, &line) <= 0)
-		exit(1);
-	free(line);
-	return (0);
-}
 
 void	parser(t_scene *scene)
 {
@@ -49,9 +40,7 @@ void	parser(t_scene *scene)
 
 	scene->n_lt = 0;
 	scene->n_obj = 0;
-	if((fd = open(scene->file, O_RDONLY)) <= 0)
-		exit(1);
-	parser_validation(fd);
+	fd = parser_file(scene->file, &scene->cam_flag);
 	parser_count_obj(scene);
 	parser_scene(scene, fd);
 	parser_objects(scene, fd);

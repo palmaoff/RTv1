@@ -13,6 +13,12 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 
+typedef enum e_state
+{
+	FALSE,
+	TRUE
+}			t_state;
+
 typedef enum	e_type_of_light
 {
     DIRECTIONAL = 1,
@@ -88,6 +94,7 @@ typedef	struct		s_scene
     int n_obj;
     int n_lt;
     char *file;
+    t_state cam_flag;
 }					t_scene;
 
 // vec
@@ -115,6 +122,7 @@ t_vec   plane_norm(t_scene *scene);
 
 //parser
 void	parser(t_scene *scene);
+int		parser_file(char *file, t_state *cam_flag);
 int 	parser_scene(t_scene *scene, int fd);
 void	parser_objects(t_scene *scene, int fd);
 void	parser_get_vec(t_vec *vec, char **tmp);
