@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/05/25 19:13:43 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/10 17:04:01 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	parser_count_obj(t_scene *scene)
 	}
 	scene->fig = ft_memalloc(sizeof(t_figure) * scene->n_obj);
 	scene->light = ft_memalloc(sizeof(t_figure) * scene->n_lt);
+	close(fd);
 }
 
 
@@ -40,8 +41,11 @@ void	parser(t_scene *scene)
 
 	scene->n_lt = 0;
 	scene->n_obj = 0;
-	fd = parser_file(scene->file, &scene->cam_flag);
+	parser_file(scene->file, &scene->cam_flag);
+	if (scene->cam_flag == FALSE)
+		ft_putstr("Camera on default");
 	parser_count_obj(scene);
+	fd = open(scene->file, O_RDONLY);
 	parser_scene(scene, fd);
 	parser_objects(scene, fd);
 	close(fd);

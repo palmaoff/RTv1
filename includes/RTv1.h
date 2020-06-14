@@ -7,17 +7,20 @@
 # define WIDTH 600
 # define HEIGHT 600
 
+#define INT_MIN -2147483647 - 1
+#define INT_MAX 2147483647
+
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
 # include "math.h"
 # include "get_next_line.h"
 # include <fcntl.h>
 
-typedef enum e_state
+typedef enum e_bool
 {
 	FALSE,
 	TRUE
-}			t_state;
+}			t_bool;
 
 typedef enum	e_type_of_light
 {
@@ -94,7 +97,8 @@ typedef	struct		s_scene
     int n_obj;
     int n_lt;
     char *file;
-    t_state cam_flag;
+    t_bool cam_flag;
+    // t_bool light_flag;
 }					t_scene;
 
 // vec
@@ -121,14 +125,21 @@ t_vec   sphere_norm(t_scene *scene);
 t_vec   plane_norm(t_scene *scene);
 
 //parser
+
 void	parser(t_scene *scene);
-int		parser_file(char *file, t_state *cam_flag);
-int 	parser_scene(t_scene *scene, int fd);
+void 	parser_file(char *file, t_bool *cam_flag);
+void 	check_scene(int fd, t_bool *cam_flag);
 void	parser_objects(t_scene *scene, int fd);
 void	parser_get_vec(t_vec *vec, char **tmp);
 void 	parser_get_color(t_color *col, char **tmp);
 void 	parser_free_array(char **ar);
+void 	output_error(char *err);
+t_bool	check_vec(char **vec);
+t_bool	check_float(char **fl);
 int		ft_htoi(const char *hex);
+int 	ft_str1trim_equ(const char *line, const char *str);
+int 	parser_scene(t_scene *scene, int fd);
 double	ft_atof(const char *str);
+
 
 #endif

@@ -12,6 +12,11 @@
 
 #include "RTv1.h"
 
+int 	ft_str1trim_equ(const char *line, const char *str)
+{
+	return ft_strequ(ft_strtrim(line), str);
+}
+
 void 	parser_free_array(char **ar)
 {
 	int i;

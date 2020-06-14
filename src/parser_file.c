@@ -6,12 +6,23 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/01 18:38:34 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/11 17:31:35 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "RTv1.h"
+
+t_bool		check_float(char **fl)
+{
+	double tmp;
+
+	tmp = INT_MIN;
+	tmp = ft_atof(fl[0]);
+	if (tmp < 0 || tmp > 1)
+		return (FALSE);
+	return (TRUE);
+}
 
 void 	output_error(char *err)
 {
@@ -19,52 +30,32 @@ void 	output_error(char *err)
 	exit(1);
 }
 
-int		check_coord(const char *line)
+t_bool check_vec(char **vec)
 {
-	int count_c;
+	int i;
+	int j;
 
-	count_c = 0;
-	while (*line)
+	i = -1;
+	if (vec[0] && vec[1] && vec[2])
 	{
-		if (ft_isdigit(*line) && ft_isspace(*(line - 1)))
-			count_c++;
-		line++;
+		while (++i != 3)
+		{
+			j = -1;
+			while (vec[i][++j])
+				if (ft_isdigit(vec[i][j]) || vec[i][j] == '-')
+					continue;
+				else
+					return (FALSE);
+		}
+		return (TRUE);
 	}
-	if (count_c == 3)
-		return (0);
-	else
-		return (-1);
+	return (FALSE);
 }
 
-t_state		check_camera(int fd)
+void	check_file(const int fd, t_bool *cam_flag)
 {
-	t_state coo_state[2];
-	char *line;
-
-	while (ft_strequ(line, "}"))
-	{
-		get_next_line(fd, &line);
-		if (ft_strequ(line, "pos") && !check_coord(line))
-			coo_state[0] = TRUE;
-		else if (ft_strequ(line, "dir") && !check_coord(line))
-			coo_state[1] = TRUE;
-		if (coo_state[0] == FALSE || coo_state[1] == FALSE)
-			return (FALSE);
-		else
-			return (TRUE);
-	}
-}
-
-void 	check_scene(int fd)
-{
-	check_camera(fd);
-	check_lights(fd);
-}
-
-void	check_file(const int fd)
-{
-	t_state	scene;
-	t_state	objects;
+	t_bool	scene;
+	t_bool	objects;
 	char	*line;
 	int		ret;
 
@@ -72,7 +63,7 @@ void	check_file(const int fd)
 	{
 		if (ft_strequ(line, "scene"))
 		{
-			check_scene(fd);
+			check_scene(fd, cam_flag);
 			scene = TRUE;
 		}
 		else if(ft_strequ(line, "objects"))
@@ -87,7 +78,7 @@ void	check_file(const int fd)
 	else if(objects == FALSE)
 		output_error("Add \"objects\" tag\n");
 	else if(ret < 0)
-		output_error("Can't read file\n")
+		output_error("Can't read file\n");
 }
 
 int		check_extension(const char *file)
@@ -102,7 +93,7 @@ int		check_extension(const char *file)
 	return(0);
 }
 
-int		parser_file(char *file, t_state *cam_flag)
+void		parser_file(char *file, t_bool *cam_flag)
 {
 	int fd;
 
@@ -110,6 +101,6 @@ int		parser_file(char *file, t_state *cam_flag)
 		output_error("Can't open file\n");
 	if (check_extension(file) < 0)
 		output_error("Wrong extension, need \".rtv1\"\n");
-	check_file(fd);
-	return (fd);
+	check_file(fd, cam_flag);
+	close(fd);
 }
