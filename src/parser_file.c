@@ -6,20 +6,23 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/11 17:31:35 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/15 17:20:20 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "RTv1.h"
 
-t_bool		check_float(char **fl)
+t_bool check_float_int(char **str, char *type)
 {
-	double tmp;
+	double tmp1;
+	int tmp2;
 
-	tmp = INT_MIN;
-	tmp = ft_atof(fl[0]);
-	if (tmp < 0 || tmp > 1)
+	tmp1 = INT_MIN;
+	tmp2 = INT_MIN;
+	if (ft_strequ(type, "float") && ((tmp1 = ft_atof(str[0])) < 0 || tmp1 > 1))
+		return (FALSE);
+	if (ft_strequ(type, "int") && (tmp2 = ft_atoi(str[0])) < 0)
 		return (FALSE);
 	return (TRUE);
 }

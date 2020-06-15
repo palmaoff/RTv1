@@ -36,7 +36,8 @@ void 		check_lights(int fd)
 			features[0] = TRUE;
 		else if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
 			features[1] = TRUE;
-		else if (ft_strequ(tmp[0], "intensity") && check_float(tmp + 2))
+		else if (ft_strequ(tmp[0], "intensity")
+		&& check_float_int(tmp + 2, "float"))
 			features[2] = TRUE;
 	}
 	parser_free_array(tmp);

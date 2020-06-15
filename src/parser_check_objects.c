@@ -6,15 +6,46 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 17:27:14 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/14 22:20:42 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/15 20:42:21 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
+typedef enum	e_feature
+{
+	POS,
+	DIR,
+	COLOR,
+	SIZE,
+	ANGLE
+}				t_feature;
+
+
 t_bool	check_hex(char **hex)
 {
+	int h[3];
 
+	h[0] = INT_MIN;
+	h[1] = INT_MIN;
+	h[2] = INT_MIN;
+	if((h[0] = ft_htoi(hex[0])) == INT_MIN
+	|| (h[1] = ft_htoi(hex[1])) == INT_MIN
+	|| (h[2] = ft_htoi(hex[2])) == INT_MIN)
+		return (FALSE);
+	return (TRUE);
+}
+
+t_bool	check_features(t_type_o fig, const t_bool *features)
+{
+	if ((fig == SPHERE && features[POS] && features[COLOR] && features[SIZE])
+	|| (fig == PLANE && features[POS] && features[DIR] && features[COLOR])
+	|| (fig == CYLINDER && features[POS] && features[DIR] && features[COLOR]
+	&& features[SIZE])
+	|| (fig == CONE && features[POS] && features[DIR] && features[COLOR]
+	&& features[ANGLE]))
+		return (TRUE);
+	return (FALSE);
 }
 
 t_bool	check_object(int fd, t_type_o fig)
@@ -27,14 +58,24 @@ t_bool	check_object(int fd, t_type_o fig)
 	{
 		tmp = ft_strsplit(ft_strtrim(line), ' ');
 		free(line);
+		if (ft_strequ(tmp[0], "}"))
+			break;
 		if (ft_strequ(tmp[0], "pos"))
-			features[0] = check_vec(tmp + 2);
-		else if (ft_strequ(ft_strequ(tmp[0], "dir")))
-			features[1] = check_vec(tmp + 2);
+			features[POS] = check_vec(tmp + 2);
+		else if (ft_strequ(tmp[0], "dir"))
+			features[DIR] = check_vec(tmp + 2);
 		else if (ft_strequ(tmp[0], "color"))
-			features[2] = check_hex(tmp + 3);
+			features[COLOR] = check_hex(tmp + 3);
+		else if (ft_strequ(tmp[0], "size"))
+			features[SIZE] = check_float_int(tmp + 2, "int");
+		else if (ft_strequ(tmp[0], "angle"))
+			features[ANGLE] = check_float_int(tmp + 2, "float");
+		parser_free_array(tmp);
 	}
-
+	parser_free_array(tmp);
+	if (check_features(fig, features) == FALSE)
+		return (FALSE);
+	return (TRUE);
 }
 
 void	check_objects(int fd)
@@ -58,5 +99,5 @@ void	check_objects(int fd)
 	}
 	free(line);
 	if (obj == FALSE)
-		output_error("Scene doesn't have any object");
+		output_error("Scene doesn't have any valid object");
 }
