@@ -99,5 +99,10 @@ add_executable(RTv1 src/main.c
         src/parser_utils.c
         src/parser_file.c
         src/parser_check_scene.c src/parser_check_objects.c)
+        libft/ft_toupper.c src/ft_atof.c
+        src/color_sum.c
+        src/color_scale.c
+        src/loop.c
+        src/reflection.c)
 
 target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)
