@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/15 17:20:20 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/19 17:00:39 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ t_bool check_vec(char **vec)
 	return (FALSE);
 }
 
-void	check_file(const int fd, t_bool *cam_flag)
+void	check_file(const int fd, t_bool *cam_f)
 {
 	t_bool	scene;
 	t_bool	objects;
@@ -66,7 +66,7 @@ void	check_file(const int fd, t_bool *cam_flag)
 	{
 		if (ft_strequ(line, "scene"))
 		{
-			check_scene(fd, cam_flag);
+			check_scene(fd, cam_f);
 			scene = TRUE;
 		}
 		else if(ft_strequ(line, "objects"))
@@ -96,7 +96,7 @@ int		check_extension(const char *file)
 	return(0);
 }
 
-void		parser_file(char *file, t_bool *cam_flag)
+void parser_file(char *file, t_bool *cam_f)
 {
 	int fd;
 
@@ -104,6 +104,6 @@ void		parser_file(char *file, t_bool *cam_flag)
 		output_error("Can't open file\n");
 	if (check_extension(file) < 0)
 		output_error("Wrong extension, need \".rtv1\"\n");
-	check_file(fd, cam_flag);
+	check_file(fd, cam_f);
 	close(fd);
 }

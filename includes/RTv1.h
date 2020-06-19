@@ -26,7 +26,8 @@ typedef enum e_bool
 typedef enum	e_type_of_light
 {
     DIRECTIONAL = 1,
-    POINT
+    POINT,
+    AMBIENT
 }				t_type_l;
 
 typedef enum	e_objects
@@ -72,8 +73,8 @@ typedef struct      s_figure
     t_type_o	shape;
     t_vec   c;
     t_vec	v;
-    double	k;
-    double	spec;
+	int	spec;
+	double	k;
     t_color color;
     double k_k;
     double d_v;
@@ -105,6 +106,7 @@ typedef	struct		s_scene
     int n_lt;
     char *file;
     t_bool cam_flag;
+    t_bool spec_flag;
     // t_bool light_flag;
 }					t_scene;
 
@@ -144,7 +146,7 @@ t_vec   reflect_ray(t_vec l, t_vec n);
 //parser
 
 void	parser(t_scene *scene);
-void 	parser_file(char *file, t_bool *cam_flag);
+void parser_file(char *file, t_bool *cam_f);
 void 	check_scene(int fd, t_bool *cam_flag);
 void	check_objects(int fd);
 void	parser_objects(t_scene *scene, int fd);
@@ -153,7 +155,8 @@ void 	parser_get_color(t_color *col, char **tmp);
 void 	parser_free_array(char **ar);
 void 	output_error(char *err);
 t_bool	check_vec(char **vec);
-t_bool check_float_int(char **str, char *type);
+t_bool	check_float_int(char **str, char *type);
+t_bool	check_hex(char **hex);
 int		ft_htoi(const char *hex);
 int 	ft_str1trim_equ(const char *line, const char *str);
 int 	parser_scene(t_scene *scene, int fd);

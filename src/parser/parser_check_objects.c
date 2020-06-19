@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 17:27:14 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/16 18:18:21 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/19 16:24:49 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ typedef enum	e_feature
 	DIR,
 	COLOR,
 	SIZE,
-	ANGLE
+	ANGLE,
+	SPECULAR
 }				t_feature;
 
 void 	output_invalid_obj(t_type_o fig)
@@ -31,20 +32,6 @@ void 	output_invalid_obj(t_type_o fig)
 		ft_putstr("Object \"cylinder\" is not valid");
 	else if (fig == CONE)
 		ft_putstr("Object \"cone\" is not valid");
-}
-
-t_bool	check_hex(char **hex)
-{
-	int h[3];
-
-	h[0] = INT_MIN;
-	h[1] = INT_MIN;
-	h[2] = INT_MIN;
-	if((h[0] = ft_htoi(hex[0])) == INT_MIN
-	|| (h[1] = ft_htoi(hex[1])) == INT_MIN
-	|| (h[2] = ft_htoi(hex[2])) == INT_MIN)
-		return (FALSE);
-	return (TRUE);
 }
 
 t_bool	check_features(t_type_o fig, const t_bool *features)
@@ -71,6 +58,9 @@ void 	assign_feature(char **tmp, t_bool *features)
 		features[SIZE] = check_float_int(tmp + 2, "int");
 	else if (ft_strequ(tmp[0], "angle"))
 		features[ANGLE] = check_float_int(tmp + 2, "float");
+	else if (ft_strequ(tmp[0], "specular"))
+		if (!(features[SPECULAR] = check_float_int(tmp + 2, "int")))
+			ft_putstr("Value of specular is undefined");
 }
 
 t_bool	check_object(int fd, t_type_o fig)
@@ -79,7 +69,7 @@ t_bool	check_object(int fd, t_type_o fig)
 	char	*line;
 	char	**tmp;
 
-	features = (t_bool [5]){FALSE};
+	features = (t_bool [6]){FALSE};
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strsplit(ft_strtrim(line), ' ');

@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:17:09 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/27 18:07:26 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/19 15:26:57 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void	parser_get_type(t_type_l *type, char **tmp)
 		*type = DIRECTIONAL;
 	else if(ft_strequ(tmp[1], "Point"))
 		*type = POINT;
+	else if(ft_strequ(tmp[1], "Ambient"))
+		*type = AMBIENT;
 }
 
 void	parser_light(t_scene *scene, t_light *light, int fd)

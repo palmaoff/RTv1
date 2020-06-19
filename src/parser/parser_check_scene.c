@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/11 17:24:45 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/19 15:46:18 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,22 @@
 
 int			check_type_light(char  **type)
 {
-	if (ft_strequ(type[0], "Directional") || ft_strequ(type[0], "Point"))
-		return (1);
+	if (ft_strequ(type[0], "Directional"))
+		return (DIRECTIONAL);
+	else if (ft_strequ(type[0], "Point"))
+		return (POINT);
+	else if (ft_strequ(type[0], "Ambient"))
+		return (AMBIENT);
 	else
 		return (0);
 }
 
 void 		check_lights(int fd)
 {
-	char **tmp;
-	char *line;
-	t_bool features[3];
+	t_bool	features[3];
+	char	**tmp;
+	char	*line;
+	int		type;
 
 	while (get_next_line(fd, &line))
 	{
@@ -32,7 +37,7 @@ void 		check_lights(int fd)
 		free(line);
 		if (ft_strequ(tmp[0], "}"))
 			break;
-		if (ft_strequ(tmp[0], "type") && check_type_light(tmp + 2))
+		if (ft_strequ(tmp[0], "type") && (type = check_type_light(tmp + 2)))
 			features[0] = TRUE;
 		else if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
 			features[1] = TRUE;
@@ -41,7 +46,8 @@ void 		check_lights(int fd)
 			features[2] = TRUE;
 	}
 	parser_free_array(tmp);
-	if (features[0] != TRUE || features[1] != TRUE || features[2] != TRUE)
+	if ((type == AMBIENT && features[2] != TRUE)
+	|| (features[0] != TRUE || features[1] != TRUE || features[2] != TRUE))
 		output_error("Check a light");
 }
 
