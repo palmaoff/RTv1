@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:21:12 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/27 17:32:47 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/19 17:14:14 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,9 @@ void	parser_identify(t_type_o id, t_type_o *shape)
 
 void	parser_object(t_figure *obj, int fd, t_type_o id)
 {
-	char *line;
-	char **tmp;
+	t_bool	spec;
+	char	*line;
+	char	**tmp;
 
 	parser_identify(id, &obj->shape);
 	while(get_next_line(fd, &line))
@@ -46,6 +47,8 @@ void	parser_object(t_figure *obj, int fd, t_type_o id)
 			obj->k = ft_atoi(tmp[2]);
 		else if(ft_strequ(ft_strtrim(tmp[0]), "angle"))
 			obj->k = ft_atof(tmp[2]);
+		else if (ft_str1trim_equ(tmp[0], "specular"))
+			obj->spec = ft_atoi(tmp[2]);
 		parser_free_array(tmp);
 	}
 	if (line)

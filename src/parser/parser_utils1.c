@@ -22,7 +22,7 @@ void 	parser_free_array(char **ar)
 	int i;
 
 	i = 0;
-	if (!ar || ar[0])
+	if (!ar)
 		return ;
 	while(ar[i])
 	{
