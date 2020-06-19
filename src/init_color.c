@@ -4,7 +4,7 @@
 
 #include "RTv1.h"
 
-t_color   init_color(double r, double g, double b)
+t_color init_color(double r, double g, double b)
 {
     t_color color;
 

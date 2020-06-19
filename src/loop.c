@@ -4,12 +4,12 @@
 
 #include "RTv1.h"
 
-static void move_keys_too(t_scene *scene, SDL_Event event, t_vec vec)
+static  void    move_keys_too(t_scene *scene, SDL_Event event, t_vec vec)
 {
     if (event.key.keysym.sym == SDLK_UP)
-        scene->cam.x_r += 0.1 * scene->cam.ori;
+        scene->cam.x_r += 0.1;
     if (event.key.keysym.sym == SDLK_DOWN)
-        scene->cam.x_r -= 0.1 * scene->cam.ori;
+        scene->cam.x_r -= 0.1;
     if (event.key.keysym.sym == SDLK_RIGHT)
         scene->cam.y_r += 0.1;
     if (event.key.keysym.sym == SDLK_LEFT)
@@ -37,7 +37,7 @@ static void move_keys_too(t_scene *scene, SDL_Event event, t_vec vec)
     }
 }
 
-static void move_keys(t_scene *scene, SDL_Event event, t_vec vec)
+static  void    move_keys(t_scene *scene, SDL_Event event, t_vec vec)
 {
     if (event.key.keysym.sym == SDLK_d)
     {
@@ -65,7 +65,7 @@ static void move_keys(t_scene *scene, SDL_Event event, t_vec vec)
     }
 }
 
-static int    keys(t_scene *scene, t_sdl *sdl)
+static  int  keys(t_scene *scene, t_sdl *sdl)
 {
     t_vec vec;
     SDL_Event event;
@@ -85,7 +85,7 @@ static int    keys(t_scene *scene, t_sdl *sdl)
     return (1);
 }
 
-void loop(t_sdl *sdl, t_scene *scene)
+void    loop(t_sdl *sdl, t_scene *scene)
 {
     int run;
 

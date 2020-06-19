@@ -52,7 +52,6 @@ typedef	struct		s_camera
 {
 	t_vec dir;
 	t_vec orig;
-	double ori;
 	double x_r;
 	double y_r;
 	double z_r;

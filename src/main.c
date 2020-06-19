@@ -14,9 +14,8 @@ void calc(t_scene *scene)
         scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
         i++;
     }
-    scene->cam.ori = (scene->cam.dir.z < 0) ? -1 : 1;
-    scene->cam.x_r = 3.14 / 180 * scene->cam.dir.y;
-    scene->cam.y_r = 3.14 / 180 * scene->cam.dir.x;
+    scene->cam.x_r = 3.14 / 180 * scene->cam.dir.x;
+    scene->cam.y_r = 3.14 / 180 * scene->cam.dir.y;
     scene->cam.z_r = 3.14 / 180 * scene->cam.dir.z;
 }
 
@@ -32,8 +31,8 @@ void    init(t_sdl *sdl, t_scene *scene)
     scene->f_norm[3] = cone_norm;
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
     	SDL_GetError();
-    sdl->window = SDL_CreateWindow("RTv1", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT,
-                           SDL_WINDOW_SHOWN);
+    sdl->window = SDL_CreateWindow("RTv1", SDL_WINDOWPOS_UNDEFINED,
+        SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
     sdl->render = SDL_CreateRenderer(sdl->window, -1, SDL_RENDERER_ACCELERATED);
     SDL_RenderClear(sdl->render);
 }
@@ -56,8 +55,8 @@ int main(int ac, char *av[]) {
 
     scene.file = av[1];
     parser(&scene);
-    init(&sdl, &scene);
     calc(&scene);
+    init(&sdl, &scene);
     loop(&sdl, &scene);
     SDL_DestroyWindow(sdl.window);
     SDL_Quit();

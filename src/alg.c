@@ -13,9 +13,9 @@ static	t_vec	viewpoint(double x, double y, t_scene *scene)
 
 	angl = 0.577350;
 	rot =  (double)WIDTH / (double)HEIGHT;
-	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl * scene->cam.ori;
+	d.x = (2.0 * (x + 0.5) / WIDTH - 1) * rot * angl;
 	d.y = (1 - 2.0 * (y + 0.5) / HEIGHT) * angl;
-	d.z = scene->cam.ori;
+	d.z = 1;
 	rotate(scene->cam, &d);
 	return (d);
 }
@@ -65,7 +65,8 @@ void	draw(t_scene *scene, t_sdl *sdl)
 			d = viewpoint(i, j, scene);
 			d = vec_norm(d);
 			scene->color = ray(scene, d, scene->cam.orig, 0);
-			SDL_SetRenderDrawColor(sdl->render, scene->color.r, scene->color.g, scene->color.b, 1);
+			SDL_SetRenderDrawColor(sdl->render, scene->color.r,
+				scene->color.g, scene->color.b, 1);
 			SDL_RenderDrawPoint(sdl->render, i, j);
 			j++;
 		}

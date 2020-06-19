@@ -18,7 +18,7 @@ static double specular(t_scene *scene, t_vec l, t_vec n)
     return (pow(vec_dot(r, v), 100));
 }
 
-static double  shadow_obj(t_scene *scene, t_vec d, t_vec p, int j)
+static double  shadow(t_scene *scene, t_vec d, t_vec p, int j)
 {
     int i;
     double t[2];
@@ -63,7 +63,7 @@ static double   punch(t_scene *scene, t_vec p)
         if (scene->light[i].type == DIRECTIONAL)
             l = scene->light[i].p;
         tmp[0] = vec_dot(l, n);
-        if (tmp[0] > 0 && !shadow_obj(scene, vec_sub(scene->light[i].p, p), p, i))
+        if (tmp[0] > 0 && !shadow(scene, vec_sub(scene->light[i].p, p), p, i))
             tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
         i++;
     }
