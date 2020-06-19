@@ -20,5 +20,5 @@ t_vec   plane_norm(t_scene *scene)
     vec = scene->fig[scene->cur].v;
     if (vec_dot(vec, scene->d) < 0)
         return (vec_scale(vec, -1));
-    return (vec_scale(vec, -1));
+    return (vec);
 }
