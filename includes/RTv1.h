@@ -4,8 +4,8 @@
 
 #ifndef RTV1_H
 # define RTV1_H
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 500
+# define HEIGHT 500
 # define MAX_T 10000
 
 #define INT_MIN -2147483647 - 1

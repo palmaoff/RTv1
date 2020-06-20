@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:17:09 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/19 15:26:57 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/20 19:41:09 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	parser_light(t_scene *scene, t_light *light, int fd)
 	}
 	if (line)
 		free(line);
-	parser_free_array(tmp);
 }
 
 void 	parser_camera(t_scene *scene, int fd)
@@ -67,7 +66,6 @@ void 	parser_camera(t_scene *scene, int fd)
 	}
 	if (line)
 		free(line);
-	parser_free_array(tmp);
 }
 
 int 	parser_scene(t_scene *scene, int fd)
@@ -77,11 +75,12 @@ int 	parser_scene(t_scene *scene, int fd)
 
 	line = NULL;
 	i = 0;
+	scene->cam = (t_camera){0};
 	while(get_next_line(fd, &line))
 	{
 		if(ft_strequ(line, "};") || i == scene->n_lt)
 			break;
-		if(ft_strequ(ft_strtrim(line), "camera"))
+		if(ft_str1trim_equ((line), "camera") && scene->cam_flag)
 			parser_camera(scene, fd);
 		else if(ft_strequ(ft_strtrim(line), "light"))
 		{

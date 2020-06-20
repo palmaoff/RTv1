@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/19 17:00:39 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/20 19:29:13 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_bool check_float_int(char **str, char *type)
 
 	tmp1 = INT_MIN;
 	tmp2 = INT_MIN;
+	if (!str || !*str)
+		return (FALSE);
 	if (ft_strequ(type, "float") && ((tmp1 = ft_atof(str[0])) < 0 || tmp1 > 1))
 		return (FALSE);
 	if (ft_strequ(type, "int") && (tmp2 = ft_atoi(str[0])) < 0)

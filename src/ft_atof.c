@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#define INT_MIN -2147483647 - 1
+#define INT_MAX 2147483647
+
 double	ft_atof(const char *str)
 {
 	double	res;
@@ -20,7 +23,7 @@ double	ft_atof(const char *str)
 	f = 1;
 	p = 0;
 	if (*str == '\0' || *str == 27 || *str == '\200')
-		return (0);
+		return (INT_MIN);
 	while(*str <= 32)
 		str++;
 	if (*str == '-' || *str == '+')

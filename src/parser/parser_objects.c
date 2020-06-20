@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:21:12 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/19 17:14:14 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/20 18:40:12 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	parser_identify(t_type_o id, t_type_o *shape)
 
 void	parser_object(t_figure *obj, int fd, t_type_o id)
 {
-	t_bool	spec;
 	char	*line;
 	char	**tmp;
 
@@ -37,15 +36,15 @@ void	parser_object(t_figure *obj, int fd, t_type_o id)
 			break;
 		tmp = ft_strsplit(line, ' ');
 		free(line);
-		if(ft_strequ(ft_strtrim(tmp[0]), "pos"))
+		if(ft_str1trim_equ(tmp[0], "pos"))
 			parser_get_vec(&obj->c, tmp + 1);
-		else if(ft_strequ(ft_strtrim(tmp[0]), "dir"))
+		else if(ft_str1trim_equ(tmp[0], "dir"))
 			parser_get_vec(&obj->v, tmp + 1);
-		else if(ft_strequ(ft_strtrim(tmp[0]), "color"))
+		else if(ft_str1trim_equ(tmp[0], "color"))
 			parser_get_color(&obj->color, tmp + 2);
-		else if(ft_strequ(ft_strtrim(tmp[0]), "size"))
+		else if(ft_str1trim_equ(tmp[0], "size"))
 			obj->k = ft_atoi(tmp[2]);
-		else if(ft_strequ(ft_strtrim(tmp[0]), "angle"))
+		else if(ft_str1trim_equ(tmp[0], "angle"))
 			obj->k = ft_atof(tmp[2]);
 		else if (ft_str1trim_equ(tmp[0], "specular"))
 			obj->spec = ft_atoi(tmp[2]);
@@ -53,7 +52,6 @@ void	parser_object(t_figure *obj, int fd, t_type_o id)
 	}
 	if (line)
 		free(line);
-	parser_free_array(tmp);
 }
 
 void	parser_objects(t_scene *scene, int fd)

@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 17:27:14 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/19 16:24:49 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/20 19:55:40 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ typedef enum	e_feature
 void 	output_invalid_obj(t_type_o fig)
 {
 	if (fig == SPHERE)
-		ft_putstr("Object \"sphere\" is not valid");
+		output_error("Object \"sphere\" is not valid");
 	else if (fig == PLANE)
-		ft_putstr("Object \"plane\" is not valid");
+		output_error("Object \"plane\" is not valid");
 	else if (fig == CYLINDER)
-		ft_putstr("Object \"cylinder\" is not valid");
+		output_error("Object \"cylinder\" is not valid");
 	else if (fig == CONE)
-		ft_putstr("Object \"cone\" is not valid");
+		output_error("Object \"cone\" is not valid");
 }
 
 t_bool	check_features(t_type_o fig, const t_bool *features)
@@ -48,19 +48,19 @@ t_bool	check_features(t_type_o fig, const t_bool *features)
 
 void 	assign_feature(char **tmp, t_bool *features)
 {
-	if (ft_strequ(tmp[0], "pos"))
+	if (ft_strequ(tmp[0], "pos") && *(tmp + 1))
 		features[POS] = check_vec(tmp + 2);
-	else if (ft_strequ(tmp[0], "dir"))
+	else if (ft_strequ(tmp[0], "dir") && *(tmp + 1))
 		features[DIR] = check_vec(tmp + 2);
-	else if (ft_strequ(tmp[0], "color"))
+	else if (ft_strequ(tmp[0], "color") && *(tmp + 1))
 		features[COLOR] = check_hex(tmp + 3);
-	else if (ft_strequ(tmp[0], "size"))
+	else if (ft_strequ(tmp[0], "size") && *(tmp + 1))
 		features[SIZE] = check_float_int(tmp + 2, "int");
-	else if (ft_strequ(tmp[0], "angle"))
+	else if (ft_strequ(tmp[0], "angle") && *(tmp + 1))
 		features[ANGLE] = check_float_int(tmp + 2, "float");
 	else if (ft_strequ(tmp[0], "specular"))
-		if (!(features[SPECULAR] = check_float_int(tmp + 2, "int")))
-			ft_putstr("Value of specular is undefined");
+		if (!*(tmp + 1) || !(features[SPECULAR] = check_float_int(tmp + 2, "int")))
+			output_error("Value of specular is undefined");
 }
 
 t_bool	check_object(int fd, t_type_o fig)
