@@ -8,14 +8,15 @@ static double specular(t_scene *scene, t_vec l, t_vec n)
 {
     t_vec r;
     t_vec v;
-    //double spec;
+    int spec;
 
-    //spec = scene->fig[scene->cur].spec;
-    if (scene->t > 1)
+    // spec = scene->fig[scene->cur].spec;
+    spec = 100;
+    if (scene->t > spec)
         return (0);
     v = vec_scale(scene->d, -1);
     r = reflect_ray(l, n);
-    return (pow(vec_dot(r, v), 1));
+    return (pow(vec_dot(r, v), spec));
 }
 
 static double  shadow(t_scene *scene, t_vec d, t_vec p, int j)
@@ -79,8 +80,6 @@ t_color color(t_scene *scene, double t, t_vec d, t_vec o)
     p = vec_scale(d, t);
     p = vec_sum(p, o);
     scene->t = t;
-    scene->d = d;
-
     if (t > 1 && t < MAX_T)
 	{
         a = 0.1 + punch(scene, p);

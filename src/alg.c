@@ -32,9 +32,9 @@ t_color ray(t_scene *scene, t_vec d, t_vec o, int depth)
     while (i < scene->n_obj)
     {
         calc_fig(scene, d, o, i);
-        if (((t = scene->f_inter[scene->fig[i].shape - 1]
-			(d, scene, i, vec_sub(o, scene->fig[i].c))) < mint || mint == 0)
-			&& t > 1)
+		t = scene->f_inter[scene->fig[i].shape - 1]
+			(d, scene, i, vec_sub(o, scene->fig[i].c));
+        if ((t < mint || mint == 0) && t > 1)
         {
             mint = t;
             scene->cur = i;
@@ -53,7 +53,6 @@ void	draw(t_scene *scene, t_sdl *sdl)
 {
 	float i;
 	float j;
-	t_vec d;
 
 	i = 0;
 	while (i < WIDTH)
@@ -62,9 +61,9 @@ void	draw(t_scene *scene, t_sdl *sdl)
 		while (j < HEIGHT)
 		{
 			scene->cam.dir = vec_norm(scene->cam.dir);
-			d = viewpoint(i, j, scene);
-			d = vec_norm(d);
-			scene->color = ray(scene, d, scene->cam.orig, 0);
+			scene->d = viewpoint(i, j, scene);
+			scene->d = vec_norm(scene->d);
+			scene->color = ray(scene, scene->d, scene->cam.orig, 1);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r,
 				scene->color.g, scene->color.b, 1);
 			SDL_RenderDrawPoint(sdl->render, i, j);
