@@ -12,16 +12,3 @@
 
 #include "RTv1.h"
 
-t_bool	check_hex(char **hex)
-{
-	int h[3];
-
-	h[0] = INT_MIN;
-	h[1] = INT_MIN;
-	h[2] = INT_MIN;
-	if((h[0] = ft_htoi(hex[0])) == INT_MIN
-	   || (h[1] = ft_htoi(hex[1])) == INT_MIN
-	   || (h[2] = ft_htoi(hex[2])) == INT_MIN)
-		return (FALSE);
-	return (TRUE);
-}

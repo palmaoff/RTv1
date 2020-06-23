@@ -34,9 +34,9 @@ void 	parser_free_array(char **ar)
 
 void 	parser_get_color(t_color *col, char **tmp)
 {
-	col->r = ft_htoi(tmp[1]);
-	col->g = ft_htoi(tmp[2]);
-	col->b = ft_htoi(tmp[3]);
+	col->r = ft_htoi(tmp[0]);
+	col->g = ft_htoi(tmp[1]);
+	col->b = ft_htoi(tmp[2]);
 }
 
 void	parser_get_vec(t_vec *vec, char **tmp)

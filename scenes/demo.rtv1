@@ -2,7 +2,7 @@ scene
 {
 	camera
 	{
-		pos ( 0 0 0 )
+		pos ( 0 0 -2 )
 		dir ( 0 0 0 )
 	}
 	light
@@ -23,27 +23,28 @@ objects
     sphere
     {
     	pos ( 0 0 10 )
-    	color rgb ( 0x00 0xFF 0x00 )
-    	size ( 5 )
+    	color_rgb ( 0x00 0xFF 0x00 )
+    	size ( -5 )
+    	specular ( 5 )
     }
 	cone
 	{
 		pos ( 10 0 40 )
 		dir ( 1 -1 0 )
-		color rgb ( 0xFF 0xFF 0x00 )
-		angle ( 0.3 )
+		color_rgb ( 0xFF 0xFF 0x00 )
+		angle ( 0.5 )
 	}
     plane
     {
         pos ( 0 -10 0 )
         dir ( 0 1 0 )
-       	color rgb ( 0xFF 0x00 0x00 )
+		color_rgb ( 0xFF 0x00 0x00 )
     }
     cylinder
     {
     	pos ( -20 0 20 )
     	dir ( 1 -1 0 )
-    	color rgb ( 0x00 0x00 0xFF )
-    	size ( 19 )
+		color_rgb ( 0x00 0x00 0xFF )
+    	size ( 5 )
     }
 };

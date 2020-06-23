@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/19 15:46:18 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/22 18:32:49 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void 		check_lights(int fd)
 		else if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
 			features[1] = TRUE;
 		else if (ft_strequ(tmp[0], "intensity")
-		&& check_float_int(tmp + 2, "float"))
+				 && check_float(tmp + 1))
 			features[2] = TRUE;
 	}
 	parser_free_array(tmp);

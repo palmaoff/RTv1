@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:21:12 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/20 18:40:12 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/23 12:31:46 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	parser_object(t_figure *obj, int fd, t_type_o id)
 	{
 		if(ft_strequ(ft_strtrim(line), "}"))
 			break;
-		tmp = ft_strsplit(line, ' ');
+		tmp = ft_strsplit(ft_strtrim(line), ' ');
 		free(line);
 		if(ft_str1trim_equ(tmp[0], "pos"))
 			parser_get_vec(&obj->c, tmp + 1);
 		else if(ft_str1trim_equ(tmp[0], "dir"))
 			parser_get_vec(&obj->v, tmp + 1);
-		else if(ft_str1trim_equ(tmp[0], "color"))
+		else if(ft_str1trim_equ(tmp[0], "color_rgb"))
 			parser_get_color(&obj->color, tmp + 2);
 		else if(ft_str1trim_equ(tmp[0], "size"))
 			obj->k = ft_atoi(tmp[2]);

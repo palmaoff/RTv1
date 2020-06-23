@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 17:27:14 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/20 19:55:40 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/23 12:25:31 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,14 @@ void 	assign_feature(char **tmp, t_bool *features)
 		features[POS] = check_vec(tmp + 2);
 	else if (ft_strequ(tmp[0], "dir") && *(tmp + 1))
 		features[DIR] = check_vec(tmp + 2);
-	else if (ft_strequ(tmp[0], "color") && *(tmp + 1))
-		features[COLOR] = check_hex(tmp + 3);
+	else if (ft_strequ(tmp[0], "color_rgb") && *(tmp + 1))
+		features[COLOR] = check_hex(tmp + 2);
 	else if (ft_strequ(tmp[0], "size") && *(tmp + 1))
-		features[SIZE] = check_float_int(tmp + 2, "int");
+		features[SIZE] = check_int(tmp + 1);
 	else if (ft_strequ(tmp[0], "angle") && *(tmp + 1))
-		features[ANGLE] = check_float_int(tmp + 2, "float");
+		features[ANGLE] = check_float(tmp + 1);
 	else if (ft_strequ(tmp[0], "specular"))
-		if (!*(tmp + 1) || !(features[SPECULAR] = check_float_int(tmp + 2, "int")))
+		if (!*(tmp + 1) || !(features[SPECULAR] = check_int(tmp + 1)))
 			output_error("Value of specular is undefined");
 }
 

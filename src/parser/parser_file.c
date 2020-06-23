@@ -6,55 +6,17 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/20 19:29:13 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/22 18:32:49 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "RTv1.h"
 
-t_bool check_float_int(char **str, char *type)
-{
-	double tmp1;
-	int tmp2;
-
-	tmp1 = INT_MIN;
-	tmp2 = INT_MIN;
-	if (!str || !*str)
-		return (FALSE);
-	if (ft_strequ(type, "float") && ((tmp1 = ft_atof(str[0])) < 0 || tmp1 > 1))
-		return (FALSE);
-	if (ft_strequ(type, "int") && (tmp2 = ft_atoi(str[0])) < 0)
-		return (FALSE);
-	return (TRUE);
-}
-
 void 	output_error(char *err)
 {
 	ft_putstr(err);
 	exit(1);
-}
-
-t_bool check_vec(char **vec)
-{
-	int i;
-	int j;
-
-	i = -1;
-	if (vec[0] && vec[1] && vec[2])
-	{
-		while (++i != 3)
-		{
-			j = -1;
-			while (vec[i][++j])
-				if (ft_isdigit(vec[i][j]) || vec[i][j] == '-')
-					continue;
-				else
-					return (FALSE);
-		}
-		return (TRUE);
-	}
-	return (FALSE);
 }
 
 void	check_file(const int fd, t_bool *cam_f)
