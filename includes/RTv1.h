@@ -17,7 +17,7 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 
-typedef enum e_bool
+typedef enum    e_bool
 {
 	FALSE,
 	TRUE

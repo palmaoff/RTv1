@@ -63,7 +63,7 @@ void	draw(t_scene *scene, t_sdl *sdl)
 			scene->cam.dir = vec_norm(scene->cam.dir);
 			scene->d = viewpoint(i, j, scene);
 			scene->d = vec_norm(scene->d);
-			scene->color = ray(scene, scene->d, scene->cam.orig, 1);
+			scene->color = ray(scene, scene->d, scene->cam.orig, 0);
 			SDL_SetRenderDrawColor(sdl->render, scene->color.r,
 				scene->color.g, scene->color.b, 1);
 			SDL_RenderDrawPoint(sdl->render, i, j);
