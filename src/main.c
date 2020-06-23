@@ -53,6 +53,7 @@ int main(int ac, char *av[]) {
     t_sdl sdl;
     t_scene scene;
 
+//    scene = (t_scene){0};
     scene.file = av[1];
     parser(&scene);
     calc(&scene);

@@ -4,9 +4,12 @@
 
 #ifndef RTV1_H
 # define RTV1_H
-# define WIDTH 400
-# define HEIGHT 400
+# define WIDTH 500
+# define HEIGHT 500
 # define MAX_T 10000
+
+#define INT_MIN -2147483647 - 1
+#define INT_MAX 2147483647
 
 # include <stdio.h> // KILL ME
 # include "SDL2/SDL.h"
@@ -14,10 +17,17 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 
+typedef enum e_bool
+{
+	FALSE,
+	TRUE
+}			t_bool;
+
 typedef enum	e_type_of_light
 {
     DIRECTIONAL = 1,
-    POINT
+    POINT,
+    AMBIENT
 }				t_type_l;
 
 typedef enum	e_objects
@@ -62,8 +72,8 @@ typedef struct      s_figure
     t_type_o	shape;
     t_vec   c;
     t_vec	v;
-    double	k;
-    double	spec;
+	int	spec;
+	double	k;
     t_color color;
     double k_k;
     double d_v;
@@ -94,6 +104,9 @@ typedef	struct		s_scene
     int n_obj;
     int n_lt;
     char *file;
+    t_bool cam_flag;
+    t_bool spec_flag;
+    // t_bool light_flag;
 }					t_scene;
 
 // vec
@@ -130,8 +143,24 @@ t_color reflected_color(t_scene *scene, double t, t_vec d, int depth);
 t_vec   reflect_ray(t_vec l, t_vec n);
 
 //parser
+
 void	parser(t_scene *scene);
+void parser_file(char *file, t_bool *cam_f);
+void 	check_scene(int fd, t_bool *cam_flag);
+void	check_objects(int fd);
+void	parser_objects(t_scene *scene, int fd);
+void	parser_get_vec(t_vec *vec, char **tmp);
+void 	parser_get_color(t_color *col, char **tmp);
+void 	parser_free_array(char **ar);
+void 	output_error(char *err);
+t_bool	check_vec(char **vec);
+t_bool	check_int(char **str);
+t_bool	check_float(char **str);
+t_bool	check_hex(char **hex);
 int		ft_htoi(const char *hex);
+int 	ft_str1trim_equ(const char *line, const char *str);
+int 	parser_scene(t_scene *scene, int fd);
 double	ft_atof(const char *str);
+
 
 #endif

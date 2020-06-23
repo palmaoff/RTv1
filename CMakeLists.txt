@@ -27,7 +27,7 @@ add_executable(RTv1 src/main.c
         src/cylinder.c
         src/cone.c
         src/init_color.c
-        src/parser_main.c
+        src/parser/parser_main.c
         src/ft_htoi.c
         getnextline/get_next_line.c
         libft/ft_atoi.c
@@ -92,10 +92,17 @@ add_executable(RTv1 src/main.c
         libft/ft_strsub.c
         libft/ft_strtrim.c
         libft/ft_tolower.c
-        libft/ft_toupper.c src/ft_atof.c
+        libft/ft_toupper.c
+        src/ft_atof.c
+        src/parser/parser_scene.c
+        src/parser/parser_objects.c
+        src/parser/parser_utils1.c
+        src/parser/parser_file.c
+        src/parser/parser_check_scene.c
+        src/parser/parser_check_objects.c
         src/color_sum.c
         src/color_scale.c
         src/loop.c
-        src/reflection.c)
+        src/reflection.c src/parser/parser_utils2.c src/parser/parser_check_value.c)
 
 target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)
