@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/25 14:52:37 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/25 16:44:39 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,13 @@ int		check_extension(const char *file)
 	return(0);
 }
 
-void parser_file(char *file, t_bool *cam_f)
+void parser_file(char *file, t_bool *cam_f, int ac)
 {
 	int fd;
 	int amount_obj;
 
+	if (ac != 2)
+		output_error("Usage: ./rtv1 /*filepath*\n");
 	if ((fd = open(file, O_RDONLY)) < 0)
 		output_error("Can't open file\n");
 	if (check_extension(file) < 0)

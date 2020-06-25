@@ -1,0 +1,32 @@
+Text objects description:");
+# scene");
+# camera !(only one)");
+## (vec_int_3)pos ( x x x )- camera position");
+## (vec_int_3)dir ( x x x ) - camera direction");
+# light");
+## (string)type ( string ) - type of light (Directional, Point, Ambient");
+## (vec_int_3)pos ( x x x) - light position");
+## (float)intensity ( x.x ) - light intensity");
+## (vec_int_3)(!only for Directional)dir ( x x x ) - light direction");
+# objects
+# all objects
+## (int)(optional) specular ( x ) - reflection (if not specified 0)
+# sphere
+## (vec_int_3)pos ( x x x ) - sphere position
+## (vec_hex_3)color_rgb ( 0x00 0x00 0x00 )- color of sphere
+## (int)size ( x ) - size of sphere
+# cone
+## (vec_int_3)pos ( x x x ) - cone position
+## (vec_int_3)dir ( x x x ) - cone direction
+## (vec_hex_3)color_rgb ( 0x00 0x00 0x00 ) - color of cone
+## (float)angle - ( x.x ) angle of cone
+# plane
+## (vec_int_3)pos ( x x x ) - plane position
+## (vec_int_3)dir ( x x x ) - plane direction
+## (vec_hex_3)color_rgb ( 0x00 0x00 0x00 ) - color of plane
+# cylinder
+## (vec_int_3)pos ( x x x ) - cylinder position
+## (vec_int_3)dir ( x x x ) - cylinder direction
+## (vec_hex_3)color_rgb ( 0x00 0x00 0x00 ) - color of cylinder
+## (int)size - ( x ) size of cylinder
+

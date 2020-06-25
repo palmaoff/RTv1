@@ -25,7 +25,6 @@ objects
     	pos ( 0 0 10 )
     	color_rgb ( 0x00 0xFF 0x00 )
     	size ( -5 )
-    	specular ( 5 )
     }
 	cone
 	{

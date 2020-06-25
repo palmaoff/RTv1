@@ -56,7 +56,8 @@ int main(int ac, char *av[]) {
 
 //    scene = (t_scene){0};
     scene.file = av[1];
-    parser(&scene);
+	parser(&scene, ac);
+    output_help();
     init(&sdl, &scene);
     calc(&scene);
     loop(&sdl, &scene);

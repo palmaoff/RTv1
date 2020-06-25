@@ -38,6 +38,7 @@ int		valid_count_obj(char *file)
 			a_obj++;
 		free(line);
 	}
+	free(line);
 	close(fd);
 	return (a_obj);
 }
