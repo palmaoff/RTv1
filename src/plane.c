@@ -6,7 +6,6 @@
 
 double	IntersectPlane(t_vec d, t_scene *scene, int i, t_vec oc)
 {
-    t_vec n;
     double t;
 
     t = -(scene->fig[i].oc_v / scene->fig[i].d_v);

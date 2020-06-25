@@ -28,21 +28,17 @@ static double  shadow(t_scene *scene, t_vec d, t_vec p, int j)
     t[1] = 0;
     while (i < scene->n_obj)
     {
-        calc_fig(scene, vec_norm(d), p, i);
-        if (i != scene->cur)
-        {
-            t[0] = scene->f_inter[scene->fig[i].shape - 1]
-                    (vec_norm(d), scene, i, vec_sub(p, scene->fig[i].c));
-            v = vec_scale(vec_norm(d), t[0]);
-            if (t[0] > 0 && vec_dot(v, v) < vec_dot(d, d))
-            {
-                t[1] += scene->light[j].inst;
-                return (t[1]);
+            calc_fig(scene, vec_norm(d), p, i);
+            if (scene->fig[scene->cur].shape != 2 || scene->fig[i].shape != 2) {
+                t[0] = scene->f_inter[scene->fig[i].shape - 1]
+                        (vec_norm(d), scene, i, vec_sub(p, scene->fig[i].c));
+                v = vec_scale(vec_norm(d), t[0]);
+                if (t[0] > 0 && vec_dot(v, v) < vec_dot(d, d))
+                    return (1);
             }
-        }
         i++;
     }
-    return (t[1]);
+    return (0);
 }
 
 static double   punch(t_scene *scene, t_vec p)
@@ -65,7 +61,8 @@ static double   punch(t_scene *scene, t_vec p)
         tmp[0] = vec_dot(l, n);
         if (scene->light[i].type == AMBIENT)
             tmp[1] += scene->light[i].inst;
-        else if (tmp[0] > 0 && !shadow(scene, vec_sub(scene->light[i].p, p), p, i))
+        else if (tmp[0] > 0 &&
+            !shadow(scene, vec_sub(scene->light[i].p, p), p, i))
             tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
         i++;
     }
