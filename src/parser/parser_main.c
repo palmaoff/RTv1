@@ -21,10 +21,10 @@ void	parser_count_obj(t_scene *scene)
 	fd = open(scene->file, O_RDONLY);
 	while(get_next_line(fd, &line))
 	{
-		if(ft_strequ(ft_strtrim(line), "sphere") || ft_strequ(ft_strtrim(line), "plane")
-		   || ft_strequ(ft_strtrim(line), "cylinder") || ft_strequ(ft_strtrim(line), "cone"))
+		if(ft_str1trim_equ(line, "sphere") || ft_str1trim_equ(line, "plane")
+		   || ft_str1trim_equ(line, "cylinder") || ft_str1trim_equ(line, "cone"))
 			scene->n_obj++;
-		else if(ft_strequ(ft_strtrim(line), "light"))
+		else if(ft_str1trim_equ(line, "light"))
 			scene->n_lt++;
 		free(line);
 	}

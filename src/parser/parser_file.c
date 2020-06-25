@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/23 13:10:30 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/25 14:52:37 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_file(const int fd, t_bool *cam_f)
 	if (scene == FALSE)
 		output_error("Add \"scene\" tag\n");
 	else if(objects == FALSE)
-		output_error("Add \"objects\" tag\n");
+		output_error("Add \"objects\" tag or close brackets\n");
 	else if(ret < 0)
 		output_error("Can't read file\n");
 }
@@ -63,11 +63,15 @@ int		check_extension(const char *file)
 void parser_file(char *file, t_bool *cam_f)
 {
 	int fd;
+	int amount_obj;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		output_error("Can't open file\n");
 	if (check_extension(file) < 0)
-		output_error("Wrong extension, need \".rtv1\"\n");
+		output_error("Wrong file, need \"*filename*.rtv1\"\n");
 	check_file(fd, cam_f);
+	amount_obj = valid_count_obj(file);
 	close(fd);
+	if (count_brackets("finish") != 4 + 2 * amount_obj)
+		output_error("Please check expected brackets");
 }

@@ -161,6 +161,8 @@ t_bool	check_hex(char **hex);
 int		ft_htoi(const char *hex);
 int 	ft_str1trim_equ(const char *line, const char *str);
 int 	parser_scene(t_scene *scene, int fd);
+int		valid_count_obj(char *file);
+int		count_brackets(char *str);
 double	ft_atof(const char *str);
 
 

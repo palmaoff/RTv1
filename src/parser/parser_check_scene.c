@@ -35,6 +35,7 @@ void 		check_lights(int fd)
 	{
 		tmp = ft_strsplit(ft_strtrim(line), ' ');
 		free(line);
+		count_brackets(tmp[0]);
 		if (ft_strequ(tmp[0], "}"))
 			break;
 		if (ft_strequ(tmp[0], "type") && (type = check_type_light(tmp + 2)))
@@ -61,6 +62,7 @@ t_bool		check_camera(int fd)
 	{
 		tmp = ft_strsplit(ft_strtrim(line), ' ');
 		free(line);
+		count_brackets(tmp[0]);
 		if (ft_str1trim_equ(tmp[0], "}"))
 			break;
 		if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
@@ -83,6 +85,7 @@ void 	check_scene(int fd, t_bool *cam_flag)
 
 	while (get_next_line(fd, &line))
 	{
+		count_brackets(ft_strtrim(line));
 		if (ft_str1trim_equ(line, "};"))
 			break;
 		if (ft_str1trim_equ(line, "camera"))
