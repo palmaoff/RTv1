@@ -73,6 +73,7 @@ t_bool	check_object(int fd, t_type_o fig)
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strsplit(ft_strtrim(line), ' ');
+		count_brackets(tmp[0]);
 		free(line);
 		if (ft_strequ(tmp[0], "}"))
 			break;
@@ -96,6 +97,7 @@ void	check_objects(int fd)
 	obj = 0;
 	while (get_next_line(fd, &line))
 	{
+		count_brackets(ft_strtrim(line));
 		if (ft_str1trim_equ(line, "};"))
 			break;
 		if (ft_str1trim_equ(line, "sphere"))

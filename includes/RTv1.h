@@ -144,8 +144,8 @@ t_vec   reflect_ray(t_vec l, t_vec n);
 
 //parser
 
-void	parser(t_scene *scene);
-void parser_file(char *file, t_bool *cam_f);
+void parser(t_scene *scene, int ac);
+void parser_file(char *file, t_bool *cam_f, int ac);
 void 	check_scene(int fd, t_bool *cam_flag);
 void	check_objects(int fd);
 void	parser_objects(t_scene *scene, int fd);
@@ -153,6 +153,7 @@ void	parser_get_vec(t_vec *vec, char **tmp);
 void 	parser_get_color(t_color *col, char **tmp);
 void 	parser_free_array(char **ar);
 void 	output_error(char *err);
+void	output_help();
 t_bool	check_vec(char **vec);
 t_bool	check_int(char **str);
 t_bool	check_float(char **str);
@@ -160,6 +161,8 @@ t_bool	check_hex(char **hex);
 int		ft_htoi(const char *hex);
 int 	ft_str1trim_equ(const char *line, const char *str);
 int 	parser_scene(t_scene *scene, int fd);
+int		valid_count_obj(char *file);
+int		count_brackets(char *str);
 double	ft_atof(const char *str);
 
 
