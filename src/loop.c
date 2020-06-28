@@ -32,7 +32,7 @@ static  void    move_keys_too(t_scene *scene, SDL_Event event, t_vec vec)
         free(scene->light);
         scene->light = NULL;
         scene->fig = NULL;
-		parser(scene, 0);
+		parser(scene, 2);
         calc(scene);
     }
 }

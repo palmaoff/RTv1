@@ -6,12 +6,9 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 18:40:10 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/04/22 19:52:05 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/28 14:17:20 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#define INT_MIN -2147483647 - 1
-#define INT_MAX 2147483647
 
 double	ft_atof(const char *str)
 {
@@ -23,7 +20,7 @@ double	ft_atof(const char *str)
 	f = 1;
 	p = 0;
 	if (*str == '\0' || *str == 27 || *str == '\200')
-		return (INT_MIN);
+		return (0);
 	while(*str <= 32)
 		str++;
 	if (*str == '-' || *str == '+')

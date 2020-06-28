@@ -105,4 +105,7 @@ add_executable(RTv1 src/main.c
         src/loop.c
         src/reflection.c src/parser/parser_utils2.c src/parser/parser_check_value.c src/help.c)
 
-target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)
+#Ubuntu
+target_link_libraries(RTv1 ${SDL2_LIBRARY} -lm)
+#Windows10
+#target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)

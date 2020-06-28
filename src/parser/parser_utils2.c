@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 13:58:24 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/25 14:46:16 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/28 18:35:04 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int		count_brackets(char *str)
 	if (ft_strequ(str, "}") || ft_strequ(str, "{")
 	|| ft_strequ(str, "};"))
 		br++;
+	else if (ft_strequ(str, "scene"))
+		br = 0;
 	return (br);
 }
 

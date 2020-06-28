@@ -14,7 +14,6 @@ void calc(t_scene *scene)
         scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
         i++;
     }
-    scene->cam.ori = (scene->cam.dir.z < 0) ? -1 : 1;
     scene->cam.x_r = 3.14 / 180 * scene->cam.dir.y;
     scene->cam.y_r = 3.14 / 180 * scene->cam.dir.x;
     scene->cam.z_r = 3.14 / 180 * scene->cam.dir.z;

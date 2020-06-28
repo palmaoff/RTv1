@@ -16,7 +16,7 @@ make
 
 ./RTv1 [filename] 
 
-As parametr you put a file with scene config file, examples you can find in scene folder.
+As parameter you put a file with scene config file, examples you can find in scene folder.
 
 ## Capabilities
 
@@ -40,13 +40,14 @@ And options you can change:
 - R - redraw scene
 - Esc - exit"
 
-##Syntax requirements for scene
-- !NO TABULATION between words (separated by spaces) ONLY SPACES
-- Add tags for \"scene\" and \"objects\"
-- Add CURLY brackets for all text objects
+## Syntax requirements for scene
+- !NO TABULATION between words (separated by spaces) - ONLY SPACES
+- Add tags for \"scene\" (camera & lights) and \"objects\" (figures)
+- Tag "scene" is the first, "objects" is second
+- Add CURLY brackets for all text objects (e.g. camera, light, sphere)
 - CURLY brackets \"scene\" and \"camera\": \"{\" & \"};\"
 - CURLY brackets other: \"{\" & \"}\"
-- Add USUAL brackets for all configurations + spaces
+- Add USUAL brackets + spaces for all object's configurations
 - New line \"\\n\" after curly brackets, tags and config
 - For example, use prepared scenes
 

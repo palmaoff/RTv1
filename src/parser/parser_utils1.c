@@ -12,27 +12,27 @@
 
 #include "RTv1.h"
 
-int 	ft_str1trim_equ(const char *line, const char *str)
+int		ft_str1trim_equ(const char *line, const char *str)
 {
-	return ft_strequ(ft_strtrim(line), str);
+	return (ft_strequ(ft_strtrim(line), str));
 }
 
-void 	parser_free_array(char **ar)
+void	parser_free_array(char **ar)
 {
 	int i;
 
 	i = 0;
 	if (!ar)
 		return ;
-	while(ar[i])
+	while (ar[i])
 	{
-		ft_memdel((void **) &ar[i]);
+		ft_memdel((void **)&ar[i]);
 		i++;
 	}
 	free(ar);
 }
 
-void 	parser_get_color(t_color *col, char **tmp)
+void	parser_get_color(t_color *col, char **tmp)
 {
 	col->r = ft_htoi(tmp[0]);
 	col->g = ft_htoi(tmp[1]);
@@ -45,4 +45,3 @@ void	parser_get_vec(t_vec *vec, char **tmp)
 	vec->y = ft_atoi(tmp[2]);
 	vec->z = ft_atoi(tmp[3]);
 }
-

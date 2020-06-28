@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 16:36:36 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/28 13:18:11 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/06/28 18:50:36 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ void output_help()
 		   " ONLY SPACES");
 	ft_putendl("## Add tags \"scene\" (camera & lights) and \"objects\" "
 			"(figures)");
+	ft_putendl("## Tag \"scene\" is the first, \"objects\" is second");
 	ft_putendl("## Add CURLY brackets for all text objects");
 	ft_putendl("## CURLY brackets \"scene\" and \"objects\": \"{\" & \"};\"");
 	ft_putendl("## CURLY brackets other: \"{\" & \"}\"");
-	ft_putendl("## Add USUAL brackets for all configurations + spaces");
+	ft_putendl("## Add USUAL brackets + spaces for all object's configurations");
 	ft_putendl("## New line \"\\n\" after curly brackets, tags and config");
 	ft_putendl("## For example, use prepared scenes");
 	ft_putendl("## Full information in README");
