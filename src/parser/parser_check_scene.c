@@ -48,7 +48,7 @@ void 		check_lights(int fd)
 	}
 	parser_free_array(tmp);
 	if ((type == AMBIENT && features[2] != TRUE)
-	|| (features[0] != TRUE || features[1] != TRUE || features[2] != TRUE))
+	|| (type != AMBIENT && (features[0] != TRUE || features[1] != TRUE || features[2] != TRUE)))
 		output_error("Check a light");
 }
 
