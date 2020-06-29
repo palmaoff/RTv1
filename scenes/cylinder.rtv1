@@ -1,0 +1,29 @@
+scene
+{
+	camera
+	{
+		pos ( 0 0 -20 )
+		dir ( 0 0 0 )
+	}
+	light
+	{
+		type ( Ambient )
+		intensity ( 0.2 )
+	}
+	light
+	{
+		type ( Point )
+		pos ( 50 50 0 )
+		intensity ( 0.8 )
+	}
+};
+objects
+{
+    cylinder
+    {
+    	pos ( 0 0 20 )
+    	dir ( 1 -1 0 )
+		color_rgb ( 0x00 0x00 0xFF )
+    	size ( 5 )
+    }
+};

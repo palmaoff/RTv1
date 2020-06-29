@@ -1,0 +1,55 @@
+scene
+{
+	camera
+	{
+		pos ( 0 0 -20 )
+		dir ( 0 0 0 )
+    }
+    light
+    {
+    	type ( Ambient )
+    	intensity ( 0.1 )
+    }
+	light
+	{
+		type ( Point )
+		pos ( 50 50 50 )
+		intensity ( 0.3 )
+	}
+	light
+	{
+		type ( Point )
+		pos ( 50 50 0 )
+		intensity ( 0.3 )
+	}
+};
+objects
+{
+    sphere
+    {
+    	pos ( 0 0 10 )
+    	color_rgb ( 0x00 0xFF 0x00 )
+    	size ( 5 )
+    	specular ( 100 )
+    }
+	cone
+	{
+		pos ( 10 0 40 )
+		dir ( 1 -1 0 )
+		color_rgb ( 0xFF 0xFF 0x00 )
+		angle ( 0.5 )
+    }
+    plane
+    {
+        pos ( 0 -10 0 )
+        dir ( 0 1 0 )
+		color_rgb ( 0xFF 0x00 0x00 )
+	}
+    cylinder
+    {
+    	pos ( -20 0 20 )
+    	dir ( 1 -1 0 )
+		color_rgb ( 0x00 0x00 0xFF )
+    	size ( 5 )
+    }
+};
