@@ -6,15 +6,32 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:24:09 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/25 13:01:35 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:03:10 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
+char	**ft_strtrim_split(const char *line, const char c)
+{
+	char *s;
+	char **res;
+
+	s = ft_strtrim(line);
+	res = ft_strsplit(s, c);
+	free(s);
+	return (res);
+}
+
 int		ft_str1trim_equ(const char *line, const char *str)
 {
-	return (ft_strequ(ft_strtrim(line), str));
+	char	*s;
+	int		res;
+
+	s = ft_strtrim(line);
+	res = ft_strequ(s, str);
+	free(s);
+	return (res);
 }
 
 void	parser_free_array(char **ar)

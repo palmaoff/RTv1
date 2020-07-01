@@ -17,6 +17,16 @@
 # include "get_next_line.h"
 # include <fcntl.h>
 
+typedef enum	e_feature
+{
+	POS,
+	DIR,
+	COLOR,
+	SIZE,
+	ANGLE,
+	SPECULAR
+}				t_feature;
+
 typedef enum    e_bool
 {
 	FALSE,
@@ -158,6 +168,7 @@ t_bool	check_vec(char **vec);
 t_bool	check_int(char **str);
 t_bool	check_float(char **str);
 t_bool	check_hex(char **hex);
+char	**ft_strtrim_split(const char *line, const char c);
 int		ft_htoi(const char *hex);
 int 	ft_str1trim_equ(const char *line, const char *str);
 int 	parser_scene(t_scene *scene, int fd);

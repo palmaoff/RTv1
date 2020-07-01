@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/28 19:14:06 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:08:29 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_file(const int fd, t_bool *cam_f, t_bool *s_o)
 	{
 		if (ft_strequ(line, "scene"))
 		{
-			count_brackets(ft_strtrim(line));
+			count_brackets(line);
 			check_scene(fd, cam_f);
 			s_o[0] = TRUE;
 		}

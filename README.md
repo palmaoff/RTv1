@@ -59,7 +59,7 @@ And options you can change:
   **`light`**\
  `type` ( string ) - type of light (Directional, Point, Ambient")\
  `pos` (except Ambient)(vec_int_3) ( x x x) - light position")\
- `intensity` (float) ( x.x ) - light intensity")\
+ `intensity` (positive float) ( x.x ) - light intensity")\
  `dir` (! only for Directional)(vec_int_3) ( x x x ) - light direction")
 - **`objects`**\
   **`all objects`**\

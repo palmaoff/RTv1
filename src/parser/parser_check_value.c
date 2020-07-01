@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:33:07 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/23 12:37:04 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/01 14:26:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ t_bool	check_hex(char **hex)
 	h[0] = INT_MIN;
 	h[1] = INT_MIN;
 	h[2] = INT_MIN;
-	if((h[0] = ft_htoi(hex[0])) == INT_MIN
-	   || (h[1] = ft_htoi(hex[1])) == INT_MIN
-	   || (h[2] = ft_htoi(hex[2])) == INT_MIN)
+	if ((h[0] = ft_htoi(hex[0])) == INT_MIN
+	|| (h[1] = ft_htoi(hex[1])) == INT_MIN
+	|| (h[2] = ft_htoi(hex[2])) == INT_MIN)
 		return (FALSE);
 	return (TRUE);
 }
 
-t_bool check_float(char **str)
+t_bool	check_float(char **str)
 {
 	int p;
 	int i;
@@ -48,7 +48,7 @@ t_bool check_float(char **str)
 	return (TRUE);
 }
 
-t_bool check_int(char **str)
+t_bool	check_int(char **str)
 {
 	int i;
 
@@ -65,7 +65,7 @@ t_bool check_int(char **str)
 	return (TRUE);
 }
 
-t_bool check_vec(char **vec)
+t_bool	check_vec(char **vec)
 {
 	int i;
 	int j;

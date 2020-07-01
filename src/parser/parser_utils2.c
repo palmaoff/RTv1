@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 13:58:24 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/28 18:35:04 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:08:30 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,32 @@
 
 int		count_brackets(char *str)
 {
-	static int br = 0;
+	char		*s;
+	static int	br = 0;
 
-	if (ft_strequ(str, "}") || ft_strequ(str, "{")
-	|| ft_strequ(str, "};"))
+	s = ft_strtrim(str);
+	if (ft_strequ(s, "}") || ft_strequ(s, "{")
+	|| ft_strequ(s, "};"))
 		br++;
-	else if (ft_strequ(str, "scene"))
+	else if (ft_strequ(s, "scene"))
 		br = 0;
+	free(s);
 	return (br);
 }
 
 int		valid_count_obj(char *file)
 {
-	char *line;
-	int fd;
-	int a_obj;
+	char	*line;
+	int		fd;
+	int		a_obj;
 
 	fd = open(file, O_RDONLY);
 	a_obj = 0;
-	while(get_next_line(fd, &line))
+	while (get_next_line(fd, &line))
 	{
-		if(ft_str1trim_equ(line, "sphere") || ft_str1trim_equ(line, "plane")
-		   || ft_str1trim_equ(line, "cylinder") || ft_str1trim_equ(line, "cone")
-		   || ft_str1trim_equ(line, "light") || ft_str1trim_equ(line, "camera"))
+		if (ft_str1trim_equ(line, "sphere") || ft_str1trim_equ(line, "plane")
+		|| ft_str1trim_equ(line, "cylinder") || ft_str1trim_equ(line, "cone")
+		|| ft_str1trim_equ(line, "light") || ft_str1trim_equ(line, "camera"))
 			a_obj++;
 		free(line);
 	}

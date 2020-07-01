@@ -6,13 +6,13 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/23 12:59:03 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/01 17:08:30 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RTv1.h"
 
-int			check_type_light(char  **type)
+int		check_type_light(char **type)
 {
 	if (ft_strequ(type[0], "Directional"))
 		return (DIRECTIONAL);
@@ -24,7 +24,7 @@ int			check_type_light(char  **type)
 		return (0);
 }
 
-void 		check_lights(int fd)
+void	check_lights(int fd)
 {
 	t_bool	features[3];
 	char	**tmp;
@@ -33,38 +33,39 @@ void 		check_lights(int fd)
 
 	while (get_next_line(fd, &line))
 	{
-		tmp = ft_strsplit(ft_strtrim(line), ' ');
+		tmp = ft_strtrim_split(line, ' ');
 		free(line);
 		count_brackets(tmp[0]);
 		if (ft_strequ(tmp[0], "}"))
-			break;
+			break ;
 		if (ft_strequ(tmp[0], "type") && (type = check_type_light(tmp + 2)))
 			features[0] = TRUE;
 		else if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
 			features[1] = TRUE;
-		else if (ft_strequ(tmp[0], "intensity")
-				 && check_float(tmp + 1))
+		else if (ft_strequ(tmp[0], "intensity") && check_float(tmp + 1))
 			features[2] = TRUE;
+		parser_free_array(tmp);
 	}
 	parser_free_array(tmp);
 	if ((type == AMBIENT && features[2] != TRUE)
-	|| (type != AMBIENT && (features[0] != TRUE || features[1] != TRUE || features[2] != TRUE)))
+	|| (type != AMBIENT && (features[0] != TRUE || features[1] != TRUE
+	|| features[2] != TRUE)))
 		output_error("Check a light");
 }
 
-t_bool		check_camera(int fd)
+t_bool	check_camera(int fd)
 {
-	char *line;
-	char **tmp;
-	t_bool coo_state[2];
+	char	*line;
+	char	**tmp;
+	t_bool	coo_state[2];
 
 	while (get_next_line(fd, &line))
 	{
-		tmp = ft_strsplit(ft_strtrim(line), ' ');
+		tmp = ft_strtrim_split(line, ' ');
 		free(line);
 		count_brackets(tmp[0]);
 		if (ft_str1trim_equ(tmp[0], "}"))
-			break;
+			break ;
 		if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
 			coo_state[0] = TRUE;
 		else if (ft_strequ(tmp[0], "dir") && check_vec(tmp + 2))
@@ -78,16 +79,16 @@ t_bool		check_camera(int fd)
 		return (TRUE);
 }
 
-void 	check_scene(int fd, t_bool *cam_flag)
+void	check_scene(int fd, t_bool *cam_flag)
 {
-	char *line;
-	t_bool light;
+	char	*line;
+	t_bool	light;
 
 	while (get_next_line(fd, &line))
 	{
-		count_brackets(ft_strtrim(line));
+		count_brackets(line);
 		if (ft_str1trim_equ(line, "};"))
-			break;
+			break ;
 		if (ft_str1trim_equ(line, "camera"))
 			*cam_flag = check_camera(fd);
 		else if (ft_str1trim_equ(line, "light"))

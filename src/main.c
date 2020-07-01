@@ -57,10 +57,10 @@ int main(int ac, char *av[]) {
     scene.file = av[1];
 	parser(&scene, ac);
     output_help();
-    init(&sdl, &scene);
-    calc(&scene);
-    loop(&sdl, &scene);
-    SDL_DestroyWindow(sdl.window);
-    SDL_Quit();
+//    init(&sdl, &scene);
+//    calc(&scene);
+//    loop(&sdl, &scene);
+//    SDL_DestroyWindow(sdl.window);
+//    SDL_Quit();
     return (0);
 }

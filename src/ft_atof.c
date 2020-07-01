@@ -6,29 +6,33 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 18:40:10 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/28 14:17:20 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/01 20:52:59 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+double	sign(const char *c)
+{
+	double f;
+
+	f = 1;
+	if (*c == '-' || *c == '+')
+		f = (*c == '-') ? -1 : 1;
+	return (f);
+}
+
 double	ft_atof(const char *str)
 {
-	double	res;
-	double	f;
+	double	*d;
 	int		p;
 
-	res = 0;
-	f = 1;
+	d = (double[2]){0};
 	p = 0;
 	if (*str == '\0' || *str == 27 || *str == '\200')
 		return (0);
-	while(*str <= 32)
+	while (*str <= 32)
 		str++;
-	if (*str == '-' || *str == '+')
-	{
-		f = (*str == '-') ? -1 : 1;
-		str++;
-	}
-	while(*str)
+	d[1] = sign(str++);
+	while (*str)
 	{
 		if ((*str < '0' || *str > '9') && *str != '.')
 			return (1);
@@ -37,11 +41,10 @@ double	ft_atof(const char *str)
 		else
 		{
 			if (p)
-				f /= 10.0;
-			res = res * 10 + (*str - '0');
+				d[1] /= 10.0;
+			d[0] = d[0] * 10 + (*str - '0');
 		}
 		str++;
 	}
-	return((double)res * f);
+	return ((double)d[0] * d[1]);
 }
-
