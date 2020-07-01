@@ -17,15 +17,13 @@ static char	*ft_check(char const *s1, char const *s2)
 	char *s;
 
 	if (s1 == NULL && s2 == NULL)
-		return (0);
+		return (NULL);
 	else if (s1 == NULL)
 		s = (char *)malloc(ft_strlen(s2) + 1);
 	else if (s2 == NULL)
 		s = (char *)malloc(ft_strlen(s1) + 1);
 	else
 		s = (char *)malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!s)
-		return (NULL);
 	return (s);
 }
 
@@ -39,14 +37,14 @@ char		*ft_strjoin(char const *s1, char const *s2)
 	if (!s)
 		return (NULL);
 	if (s1 != NULL)
-		while (*s1 && s1 != NULL)
+		while (*s1)
 		{
 			s[i] = *s1;
 			s1++;
 			i++;
 		}
 	if (s2 != NULL)
-		while (*s2 && s2 != NULL)
+		while (*s2)
 		{
 			s[i] = *s2;
 			s2++;
