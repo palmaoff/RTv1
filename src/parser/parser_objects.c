@@ -82,5 +82,7 @@ void	parser_objects(t_scene *scene, int fd)
 				parser_object(&scene->fig[i], fd, CONE);
 			i++;
 		}
+		free(line);
 	}
+	free(line);
 }
