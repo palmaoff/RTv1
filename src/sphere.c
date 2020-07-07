@@ -12,7 +12,7 @@
 
 #include "RTv1.h"
 
-double	IntersectSphere(t_vec d, t_scene *scene, int i, t_vec co)
+double	intersect_sphere(t_vec d, t_scene *scene, int i, t_vec co)
 {
 	double m[6];
 
@@ -25,19 +25,19 @@ double	IntersectSphere(t_vec d, t_scene *scene, int i, t_vec co)
 	m[5] = -m[1] - sqrtf(m[3]);
 	if (m[4] < 1 && m[5] < 1)
 		return (0);
-    return (((m[4] < m[5] && m[4] >= 1) || m[5] < 1.0) ? m[4] : m[5]);
+	return (((m[4] < m[5] && m[4] >= 1) || m[5] < 1.0) ? m[4] : m[5]);
 }
 
-t_vec   sphere_norm(t_scene *scene)
+t_vec	sphere_norm(t_scene *scene)
 {
-    t_vec vec;
-    t_vec p;
+	t_vec vec;
+	t_vec p;
 
-    p = vec_scale(scene->d, scene->t);
-    p = vec_sum(p, scene->cam.orig);
-    vec = vec_sub(scene->fig[scene->cur].c, p);
-    vec = vec_norm(vec);
-    if (vec_dot(vec, scene->d) < 0)
-        return (vec_scale(vec, -1));
-    return (vec);
+	p = vec_scale(scene->d, scene->t);
+	p = vec_sum(p, scene->cam.orig);
+	vec = vec_sub(scene->fig[scene->cur].c, p);
+	vec = vec_norm(vec);
+	if (vec_dot(vec, scene->d) < 0)
+		return (vec_scale(vec, -1));
+	return (vec);
 }
