@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 16:50:14 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/06 16:50:14 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 t_vec	init_vec(double x, double y, double z)
 {

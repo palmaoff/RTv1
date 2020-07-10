@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:21:12 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/01 17:03:11 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 void	parser_identify(t_type_o id, t_type_o *shape)
 {

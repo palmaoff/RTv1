@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 17:06:08 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/07 17:06:08 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 t_vec	reflect_ray(t_vec l, t_vec n)
 {

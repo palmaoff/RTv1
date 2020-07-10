@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:33:07 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/01 14:26:24 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 t_bool	check_hex(char **hex)
 {

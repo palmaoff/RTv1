@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 16:29:31 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/07 16:45:10 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 static	void	move_keys_too_too(t_scene *scene, SDL_Event event, t_vec vec)
 {

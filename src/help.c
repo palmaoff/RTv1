@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/25 16:36:36 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/01 15:04:31 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 void	output_help(void)
 {

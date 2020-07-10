@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 17:05:08 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/07 17:05:08 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 t_vec	vec_scale(t_vec a, double t)
 {

@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/13 12:14:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/06/28 14:17:20 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <SDL2/SDL.h>
 # include <fcntl.h>
-# include "RTv1.h"
+# include "rtv1.h"
 # include "get_next_line.h"
 
 // For SDL{

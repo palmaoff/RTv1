@@ -52,7 +52,7 @@ $(NAME): obj $(LIBFT) $(OBJ)
 obj:
 	@mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o:$(SRCDIR)%.c ./includes/RTv1.h
+$(OBJDIR)%.o:$(SRCDIR)%.c includes/rtv1.h
 		$(CC) $(FLAGS) $(INK) $(LIB_INK) $(SDL_INK) $(SDL_INK) -c $< -o $@
 
 $(LIBFT): ./libft

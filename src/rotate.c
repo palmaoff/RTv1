@@ -6,11 +6,11 @@
 /*   By: wquirrel <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 21:49:17 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/07 16:24:08 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 void	rotate(t_camera cam, t_vec *d)
 {

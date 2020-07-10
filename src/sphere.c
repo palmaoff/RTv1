@@ -6,11 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 16:51:26 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/06 16:51:29 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "RTv1.h"
+#include "rtv1.h"
 
 double	intersect_sphere(t_vec d, t_scene *scene, int i, t_vec co)
 {
