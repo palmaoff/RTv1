@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-static	void	move_keys_too_too(t_scene *scene, SDL_Event event, t_vec vec)
+static void move_keys_too_too(t_scene *scene, SDL_Event event)
 {
 	if (event.key.keysym.sym == SDLK_r)
 	{
@@ -92,7 +92,7 @@ static	int		keys(t_scene *scene, t_sdl *sdl)
 				return (0);
 			move_keys(scene, event, vec);
 			move_keys_too(scene, event, vec);
-			move_keys_too_too(scene, event, vec);
+			move_keys_too_too(scene, event);
 			draw(scene, sdl);
 			SDL_RenderPresent(sdl->render);
 		}

@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 18:53:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:24:51 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/13 22:16:27 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ typedef	struct	s_scene
 	t_figure	*fig;
 	t_vec		(*f_norm[4])(struct s_scene *scene);
 	double		(*f_inter[4])
-(t_vec d, struct s_scene *scene, int i, t_vec orig);
+(struct s_scene *scene, int i);
 	t_color		color;
 	double		d_d;
 	t_vec		d;
@@ -123,7 +123,6 @@ typedef	struct	s_scene
 	int			n_lt;
 	char		*file;
 	t_bool		cam_flag;
-	t_bool		spec_flag;
 }				t_scene;
 
 /*
@@ -153,10 +152,10 @@ void			draw(t_scene *scene, t_sdl *sdl);
 t_vec			init_vec(double x, double y, double z);
 void			rotate(t_camera cam, t_vec *d);
 t_color			color(t_scene *scene, double t, t_vec d, t_vec o);
-double			intersect_sphere(t_vec d, t_scene *scene, int i, t_vec co);
-double			intersect_plane(t_vec d, t_scene *scene, int i, t_vec oc);
-double			intersect_cylinder(t_vec d, t_scene *scene, int i, t_vec oc);
-double			intersect_cone(t_vec d, t_scene *scene, int i, t_vec oc);
+double			intersect_sphere(t_scene *scene, int i);
+double			intersect_plane(t_scene *scene, int i);
+double			intersect_cylinder(t_scene *scene, int i);
+double			intersect_cone(t_scene *scene, int i);
 t_vec			cylinder_norm(t_scene *scene);
 t_vec			cone_norm(t_scene *scene);
 t_vec			sphere_norm(t_scene *scene);
@@ -181,7 +180,7 @@ void			parser_get_vec(t_vec *vec, char **tmp);
 void			parser_get_color(t_color *col, char **tmp);
 void			parser_free_array(char **ar);
 void			output_error(char *err);
-void			output_help();
+void			output_help(void);
 t_bool			check_vec(char **vec);
 t_bool			check_int(char **str);
 t_bool			check_float(char **str);

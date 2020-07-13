@@ -22,7 +22,7 @@ void	parser_get_type(t_type_l *type, char **tmp)
 		*type = AMBIENT;
 }
 
-void	parser_light(t_scene *scene, t_light *light, int fd)
+void parser_light(t_light *light, int fd)
 {
 	char *line;
 	char **tmp;
@@ -84,7 +84,7 @@ int		parser_scene(t_scene *scene, int fd)
 			parser_camera(scene, fd);
 		else if (ft_str1trim_equ(line, "light"))
 		{
-			parser_light(scene, &scene->light[i], fd);
+			parser_light(&scene->light[i], fd);
 			i++;
 		}
 		free(line);

@@ -6,13 +6,13 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/13 21:43:51 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void	parser_count_obj(t_scene *scene)
+static void	parser_count_objects(t_scene *scene)
 {
 	char	*line;
 	int		fd;
@@ -43,7 +43,7 @@ void	parser(t_scene *scene, int ac)
 	parser_file(scene->file, &scene->cam_flag, ac);
 	if (scene->cam_flag == FALSE)
 		ft_putstr("Camera on default");
-	parser_count_obj(scene);
+	parser_count_objects(scene);
 	fd = open(scene->file, O_RDONLY);
 	parser_scene(scene, fd);
 	parser_objects(scene, fd);

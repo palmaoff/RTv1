@@ -60,6 +60,7 @@ t_bool	check_object(int fd, t_type_o fig)
 	char	**tmp;
 
 	features = (t_bool[6]){FALSE};
+	tmp = NULL;
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strtrim_split(line, ' ');

@@ -39,8 +39,7 @@ t_color			ray(t_scene *scene, t_vec d, t_vec o, int depth)
 	while (i < scene->n_obj)
 	{
 		calc_fig(scene, d, o, i);
-		t = scene->f_inter[scene->fig[i].shape - 1]
-(d, scene, i, vec_sub(o, scene->fig[i].c));
+		t = scene->f_inter[scene->fig[i].shape - 1](scene, i);
 		if ((t < mint || mint == 0) && t > 1)
 		{
 			mint = t;

@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-double	intersect_sphere(t_vec d, t_scene *scene, int i, t_vec co)
+double intersect_sphere(t_scene *scene, int i)
 {
 	double m[6];
 

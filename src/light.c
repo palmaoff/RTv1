@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 16:53:16 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/13 21:29:19 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static	double	specular(t_scene *scene, t_vec l, t_vec n)
 	return (pow(vec_dot(r, v), spec));
 }
 
-static	double	shadow(t_scene *scene, t_vec d, t_vec p, int j)
+static double shadow(t_scene *scene, t_vec d, t_vec p)
 {
 	int		i;
 	double	t[2];
@@ -39,8 +39,7 @@ static	double	shadow(t_scene *scene, t_vec d, t_vec p, int j)
 		calc_fig(scene, vec_norm(d), p, i);
 		if (scene->fig[scene->cur].shape != 2 || scene->fig[i].shape != 2)
 		{
-			t[0] = scene->f_inter[scene->fig[i].shape - 1]
-(vec_norm(d), scene, i, vec_sub(p, scene->fig[i].c));
+			t[0] = scene->f_inter[scene->fig[i].shape - 1](scene, i);
 			v = vec_scale(vec_norm(d), t[0]);
 			if (t[0] > 0 && vec_dot(v, v) < vec_dot(d, d))
 				return (1);
@@ -71,7 +70,7 @@ static	double	punch(t_scene *scene, t_vec p)
 		if (scene->light[i].type == AMBIENT)
 			tmp[1] += scene->light[i].inst;
 		else if (tmp[0] > 0 &&
-			!shadow(scene, vec_sub(scene->light[i].p, p), p, i))
+			!shadow(scene, vec_sub(scene->light[i].p, p), p))
 			tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
 		i++;
 	}

@@ -31,6 +31,7 @@ void	check_lights(int fd)
 	char	*line;
 	int		type;
 
+	tmp = NULL;
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strtrim_split(line, ' ');
@@ -59,6 +60,7 @@ t_bool	check_camera(int fd)
 	char	**tmp;
 	t_bool	coo_state[2];
 
+	tmp = NULL;
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strtrim_split(line, ' ');
