@@ -2,7 +2,14 @@ NAME =	RTv1
 
 SRC =   main.c \
 		alg.c \
+		cone.c \
+		cylinder.c \
+		ft_atof.c \
+		ft_htoi.c \
+		init_color.c \
 		init_vec.c \
+		parser_main.c \
+		plane.c \
 		rotate.c \
 		vec_dot.c \
 		vec_norm.c \
@@ -15,8 +22,12 @@ SRC =   main.c \
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -O3 `sdl2-config --cflags`
+LDFLAGS  = `sdl2-config --libs` -lm
 INK = -I ./includes
+
+GNL = ./getnextline
+GNL_INK = -I ./getnextline
 
 LIB = ./libft
 LIB_INK = -I ./libft
@@ -41,19 +52,17 @@ SRCDIR	= ./src/
 INKDIR	= ./includes/
 OBJDIR	= ./obj/
 
-
-
 all: $(NAME) 
 
 $(NAME): obj $(LIBFT) $(OBJ)
-		@$(CC) $(FLAGS) $(SDL_INK) $(OBJ) $(LIBFT) -o $(NAME) $(SDL_LNK)
+		@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(LDFLAGS)
 		@echo "\033[32m- RTv1 compiled\033[0m"
 
 obj:
 	@mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o:$(SRCDIR)%.c includes/rtv1.h
-		$(CC) $(FLAGS) $(INK) $(LIB_INK) $(SDL_INK) $(SDL_INK) -c $< -o $@
+$(OBJDIR)%.o:$(SRCDIR)%.c ./includes/RTv1.h
+		$(CC) $(FLAGS) $(INK) $(LIB_INK)  -c $< -o $@
 
 $(LIBFT): ./libft
 	@make -C $(LIB)
