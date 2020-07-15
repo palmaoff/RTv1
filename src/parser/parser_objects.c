@@ -61,8 +61,8 @@ void	parser_object(t_figure *obj, int fd, t_type_o id)
 
 void	parser_objects(t_scene *scene, int fd)
 {
-	int	i;
-	char			*line;
+	int		i;
+	char	*line;
 
 	i = 0;
 	while (get_next_line(fd, &line) && i != scene->n_obj)

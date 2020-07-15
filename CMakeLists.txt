@@ -29,7 +29,7 @@ add_executable(RTv1 src/main.c
         src/init_color.c
         src/parser/parser_main.c
         src/ft_htoi.c
-        getnextline/get_next_line.c
+        src/getnextline/get_next_line.c
         libft/ft_atoi.c
         libft/ft_bzero.c
         libft/ft_isalnum.c

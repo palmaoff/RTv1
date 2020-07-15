@@ -22,7 +22,7 @@ void	parser_get_type(t_type_l *type, char **tmp)
 		*type = AMBIENT;
 }
 
-void parser_light(t_light *light, int fd)
+void	parser_light(t_light *light, int fd)
 {
 	char *line;
 	char **tmp;

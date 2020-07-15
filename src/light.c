@@ -26,7 +26,7 @@ static	double	specular(t_scene *scene, t_vec l, t_vec n)
 	return (pow(vec_dot(r, v), spec));
 }
 
-static double shadow(t_scene *scene, t_vec d, t_vec p)
+static double	shadow(t_scene *scene, t_vec d, t_vec p)
 {
 	int		i;
 	double	t[2];

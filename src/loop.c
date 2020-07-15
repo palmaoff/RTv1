@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-static void move_keys_too_too(t_scene *scene, SDL_Event event)
+static void		move_keys_too_too(t_scene *scene, SDL_Event event)
 {
 	if (event.key.keysym.sym == SDLK_r)
 	{

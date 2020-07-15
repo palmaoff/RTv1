@@ -34,7 +34,7 @@ static void	parser_count_objects(t_scene *scene)
 	close(fd);
 }
 
-void	parser(t_scene *scene, int ac)
+void		parser(t_scene *scene, int ac)
 {
 	int fd;
 

@@ -6,12 +6,11 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 17:00:38 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/13 22:13:12 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/15 19:07:10 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
-void	parser(t_scene *scene, int ac);
 
 void	calc(t_scene *scene)
 {
@@ -38,7 +37,7 @@ void	init(t_sdl *sdl, t_scene *scene)
 	scene->f_norm[2] = cylinder_norm;
 	scene->f_inter[3] = intersect_cone;
 	scene->f_norm[3] = cone_norm;
-	if (SDL_Init(SDL_INIT_EVERYTHING) != 0)
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 		SDL_GetError();
 	sdl->window = SDL_CreateWindow("RTv1", SDL_WINDOWPOS_UNDEFINED
 			, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, SDL_WINDOW_SHOWN);
@@ -72,7 +71,9 @@ int		main(int ac, char *av[])
 	loop(&sdl, &scene);
 	free(scene.fig);
 	free(scene.light);
+	SDL_DestroyRenderer(sdl.render);
 	SDL_DestroyWindow(sdl.window);
+	SDL_QuitSubSystem(SDL_INIT_EVERYTHING);
 	SDL_Quit();
 	return (0);
 }

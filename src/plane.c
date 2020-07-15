@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-double intersect_plane(t_scene *scene, int i)
+double	intersect_plane(t_scene *scene, int i)
 {
 	double t;
 

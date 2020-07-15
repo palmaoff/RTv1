@@ -6,13 +6,13 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/06 16:51:26 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/15 15:43:24 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double intersect_sphere(t_scene *scene, int i)
+double	intersect_sphere(t_scene *scene, int i)
 {
 	double m[6];
 

@@ -6,13 +6,13 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/15 15:37:02 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-int		check_type_light(char **type)
+static	int		check_type_light(char **type)
 {
 	if (ft_strequ(type[0], "Directional"))
 		return (DIRECTIONAL);
@@ -24,7 +24,17 @@ int		check_type_light(char **type)
 		return (0);
 }
 
-void	check_lights(int fd)
+static	void	check_light_feature(char **tmp, t_bool *features, int *type)
+{
+	if (ft_strequ(tmp[0], "type") && (*type = check_type_light(tmp + 2)))
+		features[0] = TRUE;
+	else if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
+		features[1] = TRUE;
+	else if (ft_strequ(tmp[0], "intensity") && check_float(tmp + 1))
+		features[2] = TRUE;
+}
+
+static	void	check_lights(int fd)
 {
 	t_bool	features[3];
 	char	**tmp;
@@ -39,12 +49,7 @@ void	check_lights(int fd)
 		count_brackets(tmp[0]);
 		if (ft_strequ(tmp[0], "}"))
 			break ;
-		if (ft_strequ(tmp[0], "type") && (type = check_type_light(tmp + 2)))
-			features[0] = TRUE;
-		else if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
-			features[1] = TRUE;
-		else if (ft_strequ(tmp[0], "intensity") && check_float(tmp + 1))
-			features[2] = TRUE;
+		check_light_feature(tmp, &features[0], &type);
 		parser_free_array(tmp);
 	}
 	parser_free_array(tmp);
@@ -54,7 +59,7 @@ void	check_lights(int fd)
 		output_error("Check a light");
 }
 
-t_bool	check_camera(int fd)
+static	t_bool	check_camera(int fd)
 {
 	char	*line;
 	char	**tmp;
@@ -81,7 +86,7 @@ t_bool	check_camera(int fd)
 		return (TRUE);
 }
 
-void	check_scene(int fd, t_bool *cam_flag)
+void			check_scene(int fd, t_bool *cam_flag)
 {
 	char	*line;
 	t_bool	light;
