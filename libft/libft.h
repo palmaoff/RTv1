@@ -16,7 +16,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-# include "get_next_line.h"
+//# include "get_next_line.h"
 
 typedef struct	s_list
 {
@@ -25,7 +25,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-int				get_next_line(const int fd, char **line);
+//int				get_next_line(const int fd, char **line);
 void			*ft_memset(void *str, int c, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
