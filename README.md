@@ -48,6 +48,7 @@ And options you can change:
 - CURLY brackets \"scene\" and \"camera\": \"{\" & \"};\"
 - CURLY brackets other: \"{\" & \"}\"
 - Add USUAL brackets + spaces for all object's configurations
+- Positive values for all objects configurations except pos and dir
 - New line \"\\n\" after curly brackets, tags and config
 - For example, use prepared scenes
 
@@ -57,10 +58,10 @@ And options you can change:
  `pos` (vec_int_3) ( x x x ) - camera position\
  `dir` (vec_int_3) ( x x x ) - camera direction\
   **`light`**\
- `type` ( string ) - type of light (Directional, Point, Ambient")\
+ `type` ( string ) - type of light (Directional, Point, Ambient)\
  `pos` (except Ambient)(vec_int_3) ( x x x) - light position")\
- `intensity` (positive float) ( x.x ) - light intensity")\
- `dir` (! only for Directional)(vec_int_3) ( x x x ) - light direction")
+ `intensity` (positive float) ( x.x ) - light intensity\
+ `dir` (! only for Directional)(vec_int_3) ( x x x ) - light direction
 - **`objects`**\
   **`all objects`**\
  `specular`(int)(optional) ( x ) - reflection (if not specified - 0)\
