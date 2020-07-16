@@ -34,11 +34,11 @@ And options you can change:
 //...\
 
 ## Hotkeys
-- W A S D - move camera Up/Left/Down/Right
-- Arrows Up/Down/Left/Right - turn camera Up/Down/Left/Right"
-- Top row +/- - Zoom in/Zoom out
-- R - redraw scene
-- Esc - exit"
+- W A S D - <move camera Up/Left/Down/Right>
+- Arrows Up/Down/Left/Right - <turn camera Up/Down/Left/Right>
+- Top row +/- - <Zoom in/Zoom out>
+- R - <redraw scene>
+- Esc - <exit>
 
 ## Syntax requirements for scene
 - !NO TABULATION between words (separated by spaces) - ONLY SPACES
