@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/15 15:37:02 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/16 18:52:05 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,14 @@ static	void	check_light_feature(char **tmp, t_bool *features, int *type)
 
 static	void	check_lights(int fd)
 {
-	t_bool	features[3];
+	t_bool	*features;
 	char	**tmp;
 	char	*line;
 	int		type;
 
 	tmp = NULL;
+	features = (t_bool[3]){FALSE};
+	type = 0;
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strtrim_split(line, ' ');

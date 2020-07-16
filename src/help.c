@@ -32,6 +32,8 @@ void	output_help(void)
 	ft_putendl("## CURLY brackets other: \"{\" & \"}\"");
 	ft_putendl("## Add USUAL brackets + spaces for all object's "
 			"configurations");
+	ft_putendl("## Positive values for all objects configurations except"
+			"pos and dir");
 	ft_putendl("## New line \"\\n\" after curly brackets, tags and config");
 	ft_putendl("## For example, use prepared scenes");
 	ft_putendl("## Full information in README");

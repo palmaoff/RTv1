@@ -6,7 +6,7 @@
 /*   By: eflorean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/04 14:02:21 by eflorean          #+#    #+#             */
-/*   Updated: 2020/07/13 15:05:09 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/16 18:54:48 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
-//# include "get_next_line.h"
 
 typedef struct	s_list
 {
@@ -25,7 +24,6 @@ typedef struct	s_list
 	struct s_list	*next;
 }				t_list;
 
-//int				get_next_line(const int fd, char **line);
 void			*ft_memset(void *str, int c, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
 void			*ft_memccpy(void *dst, const void *src, int c, size_t n);
@@ -47,6 +45,7 @@ char			*ft_strstr(const char *haystack, const char *needle);
 char			*ft_strnstr(const char *haystack, const char *needle, size_t n);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *s, size_t n);
+int				ft_countwords(const char *s, char c);
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
 int				ft_isalnum(int c);

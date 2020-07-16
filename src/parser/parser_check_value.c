@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/22 18:33:07 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/16 18:03:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,12 @@ t_bool	check_hex(char **hex)
 	h[0] = INT_MIN;
 	h[1] = INT_MIN;
 	h[2] = INT_MIN;
-	if ((h[0] = ft_htoi(hex[0])) == INT_MIN
-	|| (h[1] = ft_htoi(hex[1])) == INT_MIN
-	|| (h[2] = ft_htoi(hex[2])) == INT_MIN)
+	if (!ft_isdigit((char)*hex[0]) || !ft_isdigit((char)*hex[1])
+	|| !ft_isdigit((char)*hex[2]))
+		return (FALSE);
+	if ((h[0] = ft_htoi(hex[0])) < 0
+	|| (h[1] = ft_htoi(hex[1])) < 0
+	|| (h[2] = ft_htoi(hex[2])) < 0)
 		return (FALSE);
 	return (TRUE);
 }
@@ -39,7 +42,7 @@ t_bool	check_float(char **str)
 	{
 		if (str[1][i] == '.')
 			p++;
-		else if (!ft_isdigit(str[1][i]) && str[1][i] != '-')
+		else if (!ft_isdigit(str[1][i]))
 			return (FALSE);
 		i++;
 	}
@@ -57,7 +60,7 @@ t_bool	check_int(char **str)
 		return (FALSE);
 	while (str[1][i])
 	{
-		if (ft_isdigit(str[1][i]) || str[1][i] == '-')
+		if (ft_isdigit(str[1][i]))
 			i++;
 		else
 			return (FALSE);

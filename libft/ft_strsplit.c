@@ -22,24 +22,6 @@ static int		ft_strchrlen(const char *s, char c)
 	return (i);
 }
 
-static int		ft_countwords(const char *s, char c)
-{
-	int i;
-
-	i = 1;
-	while (*s && *s == (unsigned char)c)
-		s++;
-	while (*s)
-	{
-		while (*s != c && *s)
-			s++;
-		i++;
-		while (*s == (unsigned char)c)
-			s++;
-	}
-	return (i);
-}
-
 static char		**ft_fr(char **d, int i)
 {
 	while (i >= 0)

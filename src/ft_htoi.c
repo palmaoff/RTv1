@@ -10,6 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "rtv1.h"
+
 int	ft_htoi(const char *hex)
 {
 	int i;
@@ -19,7 +21,7 @@ int	ft_htoi(const char *hex)
 	res = 0;
 	if (hex[i] == '\0' || hex[i] == 27 || hex[i] == '\200'
 		|| (hex[i] != '0' && hex[i + 1] != 'x'))
-		return (0);
+		return (INT_MIN);
 	i = 2;
 	while (hex[i] != '\0')
 	{
@@ -30,7 +32,7 @@ int	ft_htoi(const char *hex)
 		else if (hex[i] >= 'A' && hex[i] <= 'F')
 			res = 16 * res + (hex[i] - 55);
 		else
-			return (0);
+			return (INT_MIN);
 		i++;
 	}
 	return (res);
