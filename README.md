@@ -11,6 +11,10 @@ git clone https://github.com/palmaoff/RTv1.git
 cd RTv1
 make
 ```
+If don't have SDL2:
+```
+make install
+```
 
 ## Usage
 
