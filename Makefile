@@ -87,4 +87,7 @@ fclean: clean
 
 re: fclean all
 
+install:
+		./install_SDL2.sh
+
 .PHONY : all, re, clean, fclean

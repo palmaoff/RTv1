@@ -29,8 +29,10 @@ static void	parser_count_objects(t_scene *scene)
 			scene->n_lt++;
 		free(line);
 	}
-	scene->fig = ft_memalloc(sizeof(t_figure) * scene->n_obj);
-	scene->light = ft_memalloc(sizeof(t_figure) * scene->n_lt);
+	if (!(scene->fig = ft_memalloc(sizeof(t_figure) * scene->n_obj)))
+		output_error("Memory error");
+	if (!(scene->light = ft_memalloc(sizeof(t_figure) * scene->n_lt)))
+		output_error("Memory error");
 	close(fd);
 }
 
