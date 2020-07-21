@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 18:53:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/15 20:30:52 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/21 20:32:58 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 
 # include "SDL2/SDL.h"
 # include "math.h"
-# include "../src/getnextline/get_next_line.h"
+# include "get_next_line.h"
+# include "libft.h"
 # include <fcntl.h>
 
 typedef enum	e_feature

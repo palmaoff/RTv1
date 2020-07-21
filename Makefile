@@ -49,7 +49,7 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 CC = gcc
 FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
 LDFLAGS  = `sdl2-config --libs` -lm
-INK = -I ./includes -I ./getnextline
+INK = -I ./includes -I ./src/getnextline
 
 LIB = ./libft
 LIB_INK = -I ./libft
