@@ -48,8 +48,10 @@ SRC =   main.c \
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 CC = gcc
-FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
-LDFLAGS  = `sdl2-config --libs` -lm
+#FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
+#LDFLAGS  = `sdl2-config --libs` -lm
+FLAGS = -O3 -lSDL2 -Wall -Wextra -Werror
+LDFLAGS  = -lSDL2 -lm
 INK = -I ./includes -I ./src/getnextline
 
 LIB = ./libft
