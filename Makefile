@@ -51,8 +51,8 @@ CC = gcc
 #FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
 #LDFLAGS  = `sdl2-config --libs` -lm
 FLAGS = -O3 -Wall -Wextra -Werror
-LDFLAGS  = -lSDL2 -lm
-INK = -I ./includes -I ./src/getnextline
+LDFLAGS  = -L/usr/local/lib -lSDL2 -lm
+INK = -I ./includes -I ./src/getnextline -I/usr/local/include
 
 LIB = ./libft
 LIB_INK = -I ./libft
