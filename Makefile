@@ -50,7 +50,7 @@ OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 CC = gcc
 #FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
 #LDFLAGS  = `sdl2-config --libs` -lm
-FLAGS = -O3 -Wall -Wextra -Werror
+MFLAGS = -O3 -Wall -Wextra -Werror
 LDFLAGS  = -L/usr/local/lib -lSDL2 -lm
 INK = -I ./includes -I ./src/getnextline -I/usr/local/include
 
@@ -58,8 +58,26 @@ LIB = ./libft
 LIB_INK = -I ./libft
 LIBFT =	libft/libft.a
 
+SDL_INK	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
+			-I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
+			-I./frameworks/SDL2_image.framework/Versions/A/Headers \
+			-I./frameworks/SDL2_mixer.framework/Headers \
+			-F./frameworks/
+
+SDL_LNK =	-framework SDL2 \
+			-rpath ./frameworks \
+			-framework SDL2_ttf \
+			-framework SDL2_image \
+			-framework SDL2_mixer \
+			-framework OpenGL \
+			-framework AppKit \
+			-F./frameworks \
 
 all: $(NAME) 
+
+mac: obj $(LIBFT) $(OBJ)
+	@$(CC) $(MFLAGS) $(SDL_INK) $(OBJ) $(LIBFT) -o $(NAME) $(SDL_LNK)
+	@echo "\033[32m- RTv1 compiled\033[0m"
 
 $(NAME): obj $(LIBFT) $(OBJ)
 		@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(LDFLAGS)
