@@ -83,7 +83,7 @@ static	int		keys(t_scene *scene, t_sdl *sdl)
 	SDL_Event	event;
 
 	vec = init_vec(0, 0, 0);
-	while (SDL_PollEvent(&event))
+	while (SDL_WaitEvent(&event))
 	{
 		if (event.type == SDL_QUIT)
 			return (0);
@@ -97,6 +97,7 @@ static	int		keys(t_scene *scene, t_sdl *sdl)
 			draw(scene, sdl);
 			SDL_RenderPresent(sdl->render);
 		}
+		correct_queue();
 	}
 	return (1);
 }

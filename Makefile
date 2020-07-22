@@ -41,6 +41,7 @@ SRC =   main.c \
 		sphere.c \
 		light.c \
 		loop.c \
+		correct_queue.c \
 		$(PARSER_SRC) \
 		$(GNL_DIR)get_next_line.c
 

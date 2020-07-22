@@ -167,6 +167,7 @@ void			loop(t_sdl *sdl, t_scene *scene);
 void			calc(t_scene *scene);
 t_color			reflected_color(t_scene *scene, double t, t_vec d, int depth);
 t_vec			reflect_ray(t_vec l, t_vec n);
+void			correct_queue(void);
 
 /*
 ** parser
