@@ -8,7 +8,7 @@ set(CMAKE_C_STANDARD 99)
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIR})
 include_directories(includes)
-include_directories(getnextline)
+include_directories(src/getnextline)
 include_directories(libft)
 
 add_executable(RTv1 src/main.c
@@ -106,6 +106,6 @@ add_executable(RTv1 src/main.c
         src/reflection.c src/parser/parser_utils2.c src/parser/parser_check_value.c src/help.c libft/ft_countwords.c)
 
 #Ubuntu
-target_link_libraries(RTv1 ${SDL2_LIBRARY} -lm)
+#target_link_libraries(RTv1 ${SDL2_LIBRARY} -lm)
 #Windows10
-#target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)
+target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)

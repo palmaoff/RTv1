@@ -82,6 +82,7 @@ static	int		keys(t_scene *scene, t_sdl *sdl)
 	t_vec		vec;
 	SDL_Event	event;
 
+	vec = init_vec(0, 0, 0);
 	while (SDL_PollEvent(&event))
 	{
 		if (event.type == SDL_QUIT)
