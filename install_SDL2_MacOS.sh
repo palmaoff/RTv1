@@ -1,3 +1,4 @@
 #!/bin/bash
 
+brew install pkg-config
 brew install SDL2 SDL2_image SDL2_mixer SDL2_ttf
