@@ -1,5 +1,33 @@
 NAME =	RTv1
 
+#  MAC
+ifeq "$(shell uname)" "Darwin"
+FLAGS = -O3 -Wall -Wextra -Werror
+LIBS =	-framework SDL2 \
+		-rpath ./frameworks \
+		-framework SDL2_ttf \
+		-framework SDL2_image \
+		-framework SDL2_mixer \
+		-framework OpenGL \
+		-framework AppKit \
+		-F./frameworks
+
+INK =	-I ./includes \
+		-I ./src/getnextline \
+		-I./frameworks/SDL2.framework/Versions/A/Headers \
+		-I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
+		-I./frameworks/SDL2_image.framework/Versions/A/Headers \
+		-I./frameworks/SDL2_mixer.framework/Headers \
+		-F./frameworks/
+#  Linux
+else
+FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
+LIBS= `sdl2-config --libs` -lm
+INK =	-I ./includes \
+		-I ./src/getnextline \
+		-I includes/include
+endif
+
 GNL_DIR = getnextline/
 PARSER_DIR = parser/
 
@@ -48,66 +76,44 @@ SRC =   main.c \
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 CC = gcc
-FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
 LDFLAGS  = `sdl2-config --libs` -lm
-MFLAGS = -O3 -Wall -Wextra -Werror
-INK = -I ./includes -I ./src/getnextline -I/usr/local/include
 
 LIB = ./libft
 LIB_INK = -I ./libft
 LIBFT =	libft/libft.a
 
-SDL_INK	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
-			-I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
-			-I./frameworks/SDL2_image.framework/Versions/A/Headers \
-			-I./frameworks/SDL2_mixer.framework/Headers \
-			-F./frameworks/
-
-SDL_LNK =	-framework SDL2 \
-			-rpath ./frameworks \
-			-framework SDL2_ttf \
-			-framework SDL2_image \
-			-framework SDL2_mixer \
-			-framework OpenGL \
-			-framework AppKit \
-			-F./frameworks \
-
 all: $(NAME) 
 
-mac: obj $(LIBFT) $(OBJ)
-	@$(CC) $(MFLAGS) $(SDL_INK) $(OBJ) $(LIBFT) -o $(NAME) $(SDL_LNK)
-	@echo "\033[32m- RTv1 compiled\033[0m"
-
 $(NAME): obj $(LIBFT) $(OBJ)
-		@$(CC) $(FLAGS) $(OBJ) $(LIBFT) -o $(NAME) $(LDFLAGS)
-		@echo "\033[32m- RTv1 compiled\033[0m"
+	$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(INK) -o $(NAME) $(LIBS)
+	@echo "\033[32m- RTv1 compiled\033[0m"
 
 obj:
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(dir $(OBJ))
 
 $(OBJDIR)%.o:$(SRCDIR)%.c ./includes/rtv1.h
-		$(CC) $(MFLAGS) $(INK) $(SDL_INK) $(LIB_INK)  -c $< -o $@
+	$(CC) $(MFLAGS) $(INK) $(LIB_INK)  -c $< -o $@
 
 $(LIBFT): ./libft
 	@make -C $(LIB)
 	@echo "\033[32m- libft compiled\033[0m"
 
 clean:
-		@#rm -f $(OBJ)
-		@rm -rf $(OBJDIR)
-		@make -C $(LIB) clean
-		@echo "\033[31m- RTv1 object files removed\033[0m"
+	@#rm -f $(OBJ)
+	@rm -rf $(OBJDIR)
+	@make -C $(LIB) clean
+	@echo "\033[31m- RTv1 object files removed\033[0m"
 
 fclean: clean
-		@rm -f $(NAME)
-		@echo "\033[31m- libmlx.a removed\033[0m"
-		@make -C $(LIB) fclean
-		@echo "\033[31m- libft.a removed\033[0m"
+	@rm -f $(NAME)
+	@echo "\033[31m- libmlx.a removed\033[0m"
+	@make -C $(LIB) fclean
+	@echo "\033[31m- libft.a removed\033[0m"
 
 re: fclean all
 
 install:
-		./install_SDL2.sh
+	./install_SDL2.sh
 
 .PHONY : all, re, clean, fclean
