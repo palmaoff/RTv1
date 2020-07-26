@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/07 17:00:38 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/15 19:07:10 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/26 12:41:00 by student          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		main(int ac, char *av[])
 	t_sdl	sdl;
 	t_scene	scene;
 
-	scene = (t_scene){0};
+	scene = (t_scene){};
 	scene.file = av[1];
 	parser(&scene, ac);
 	output_help();
