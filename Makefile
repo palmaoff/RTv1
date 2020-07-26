@@ -60,6 +60,7 @@ LIBFT =	libft/libft.a
 SDL_INK	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
 			-I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
 			-I./frameworks/SDL2_image.framework/Versions/A/Headers \
+			-I./frameworks/SDL2_mixer.framework/Headers \
 			-F./frameworks/
 
 SDL_LNK =	-framework SDL2 \
