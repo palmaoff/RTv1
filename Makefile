@@ -48,10 +48,9 @@ SRC =   main.c \
 OBJ = $(addprefix $(OBJDIR), $(SRC:.c=.o))
 
 CC = gcc
-#FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
-#LDFLAGS  = `sdl2-config --libs` -lm
+FLAGS = -O3 `sdl2-config --cflags` -Wall -Wextra -Werror
+LDFLAGS  = `sdl2-config --libs` -lm
 MFLAGS = -O3 -Wall -Wextra -Werror
-LDFLAGS  = -L/usr/local/lib `pkg-config --libs sdl2` -lm
 INK = -I ./includes -I ./src/getnextline -I/usr/local/include
 
 LIB = ./libft
@@ -61,7 +60,6 @@ LIBFT =	libft/libft.a
 SDL_INK	=	-I./frameworks/SDL2.framework/Versions/A/Headers \
 			-I./frameworks/SDL2_ttf.framework/Versions/A/Headers \
 			-I./frameworks/SDL2_image.framework/Versions/A/Headers \
-			-I./frameworks/SDL2_mixer.framework/Headers \
 			-F./frameworks/
 
 SDL_LNK =	-framework SDL2 \
@@ -88,7 +86,7 @@ obj:
 	@mkdir -p $(dir $(OBJ))
 
 $(OBJDIR)%.o:$(SRCDIR)%.c ./includes/rtv1.h
-		$(CC) $(FLAGS) $(INK) $(LIB_INK)  -c $< -o $@
+		$(CC) $(MFLAGS) $(INK) $(SDL_INK) $(LIB_INK)  -c $< -o $@
 
 $(LIBFT): ./libft
 	@make -C $(LIB)
