@@ -20,9 +20,9 @@
 # define INT_MAX 2147483647
 
 # ifdef __APPLE__
-# include "SDL.h"
+#  include "SDL.h"
 # else
-# include "SDL2/SDL.h"
+#  include "SDL2/SDL.h"
 # endif
 
 # include "math.h"
