@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:17:09 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/26 12:41:56 by student          ###   ########.fr       */
+/*   Updated: 2020/07/27 17:17:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		parser_scene(t_scene *scene, int fd)
 
 	line = NULL;
 	i = 0;
-	scene->cam = (t_camera){};
+	scene->cam = (t_camera){0};
 	while (get_next_line(fd, &line))
 	{
 		if (ft_strequ(line, "};") || i == scene->n_lt)

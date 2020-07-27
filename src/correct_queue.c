@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-void correct_queue(void)
+void	correct_queue(void)
 {
 	SDL_EventState(SDL_KEYDOWN, SDL_DISABLE);
 	SDL_EventState(SDL_KEYDOWN, SDL_ENABLE);
