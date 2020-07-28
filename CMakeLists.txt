@@ -108,7 +108,8 @@ add_executable(RTv1 src/main.c
         src/parser/parser_check_value.c
         src/help.c
         libft/ft_countwords.c
-        src/correct_queue.c)
+        src/correct_queue.c
+        src/check_color.c)
 
 #Ubuntu
 #target_link_libraries(RTv1 ${SDL2_LIBRARY} -lm)

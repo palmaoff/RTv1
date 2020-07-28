@@ -19,6 +19,7 @@ void	calc(t_scene *scene)
 	i = 0;
 	while (i < scene->n_obj)
 	{
+		scene->fig[i].color = check_color(scene->fig[i].color);
 		scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
 		i++;
 	}

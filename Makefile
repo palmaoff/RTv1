@@ -70,6 +70,7 @@ SRC =   main.c \
 		light.c \
 		loop.c \
 		correct_queue.c \
+		check_color.c \
 		$(PARSER_SRC) \
 		$(GNL_DIR)get_next_line.c
 
@@ -85,7 +86,7 @@ LIBFT =	libft/libft.a
 all: $(NAME) 
 
 $(NAME): obj $(LIBFT) $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(INK) -o $(NAME) $(LIBS)
+	@$(CC) $(FLAGS) $(OBJ) $(LIBFT) $(INK) -o $(NAME) $(LIBS)
 	@echo "\033[32m- RTv1 compiled\033[0m"
 
 obj:
