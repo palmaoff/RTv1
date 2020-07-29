@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/16 18:52:05 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/29 17:33:09 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ static	t_bool	check_camera(int fd)
 		parser_free_array(tmp);
 	}
 	parser_free_array(tmp);
-	if (coo_state[0] == FALSE || coo_state[1] == FALSE)
-		return (FALSE);
-	else
+	if (coo_state[0] == TRUE && coo_state[1] == TRUE)
 		return (TRUE);
+	else
+		return (FALSE);
 }
 
 void			check_scene(int fd, t_bool *cam_flag)

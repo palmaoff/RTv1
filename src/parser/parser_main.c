@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/12 17:41:51 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/13 21:43:51 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/29 17:37:23 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void		parser(t_scene *scene, int ac)
 	scene->n_obj = 0;
 	parser_file(scene->file, &scene->cam_flag, ac);
 	if (scene->cam_flag == FALSE)
-		ft_putstr("Camera on default");
+		ft_putendl("Camera on default");
 	parser_count_objects(scene);
 	fd = open(scene->file, O_RDONLY);
 	parser_scene(scene, fd);
