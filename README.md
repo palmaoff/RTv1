@@ -9,10 +9,9 @@ Run `make` in the root of the repository for build a RTv1 file.
 ```
 git clone https://github.com/palmaoff/RTv1.git
 cd RTv1
-make install
 make
 ```
-For installing SDL2:
+For running RTv1 on Ubuntu, firstly install SDL2:
 ```
 make install
 ```
