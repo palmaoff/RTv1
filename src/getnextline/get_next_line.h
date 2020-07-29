@@ -3,25 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wquirrel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: eflorean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/08 20:33:27 by wquirrel          #+#    #+#             */
-/*   Updated: 2019/10/08 20:36:44 by wquirrel         ###   ########.fr       */
+/*   Created: 2019/09/23 14:43:00 by eflorean          #+#    #+#             */
+/*   Updated: 2020/07/29 21:26:14 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include "../../libft/libft.h"
-# define BUFF_SIZE 10
+# define OPEN_MAX 1024
+# define BUFF_SIZE 16
+# include <fcntl.h>
+# include <limits.h>
+# include "../libft/libft.h"
+# include <stdio.h>
 
-typedef struct	s_file
-{
-	char			*str;
-	int				fd;
-	struct s_file	*next;
-}				t_file;
 
 int				get_next_line(const int fd, char **line);
 

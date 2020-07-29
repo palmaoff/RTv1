@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 13:58:24 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:24 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/29 20:29:50 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int		valid_count_obj(char *file)
 
 	fd = open(file, O_RDONLY);
 	a_obj = 0;
+	line = NULL;
 	while (get_next_line(fd, &line))
 	{
 		if (ft_str1trim_equ(line, "sphere") || ft_str1trim_equ(line, "plane")
@@ -43,7 +44,8 @@ int		valid_count_obj(char *file)
 			a_obj++;
 		free(line);
 	}
-	free(line);
+	if (line)
+		free(line);
 	close(fd);
 	return (a_obj);
 }

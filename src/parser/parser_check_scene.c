@@ -93,6 +93,7 @@ void			check_scene(int fd, t_bool *cam_flag)
 	char	*line;
 	t_bool	light;
 
+	light = FALSE;
 	while (get_next_line(fd, &line))
 	{
 		count_brackets(line);

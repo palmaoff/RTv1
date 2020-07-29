@@ -17,7 +17,6 @@
 # define MAX_T 10000
 
 # define INT_MIN -2147483647-1
-# define INT_MAX 2147483647
 
 # ifdef __APPLE__
 #  include "SDL.h"

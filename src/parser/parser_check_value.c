@@ -19,8 +19,8 @@ t_bool	check_hex(char **hex)
 	h[0] = INT_MIN;
 	h[1] = INT_MIN;
 	h[2] = INT_MIN;
-	if (!ft_isdigit((char)*hex[0]) || !ft_isdigit((char)*hex[1])
-	|| !ft_isdigit((char)*hex[2]))
+	if (!ft_isdigit(*hex[0]) || !ft_isdigit(*hex[1])
+		|| !ft_isdigit(*hex[2]))
 		return (FALSE);
 	if ((h[0] = ft_htoi(hex[0])) < 0
 	|| (h[1] = ft_htoi(hex[1])) < 0

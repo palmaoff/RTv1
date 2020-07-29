@@ -93,6 +93,7 @@ add_executable(RTv1 src/main.c
         libft/ft_strtrim.c
         libft/ft_tolower.c
         libft/ft_toupper.c
+        libft/ft_countwords.c
         src/ft_atof.c
         src/parser/parser_scene.c
         src/parser/parser_objects.c
@@ -107,11 +108,11 @@ add_executable(RTv1 src/main.c
         src/parser/parser_utils2.c
         src/parser/parser_check_value.c
         src/help.c
-        libft/ft_countwords.c
         src/correct_queue.c
         src/check_color.c)
 
-#Ubuntu
-#target_link_libraries(RTv1 ${SDL2_LIBRARY} -lm)
-#Windows10
-target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)
+if (UNIX)
+    target_link_libraries(RTv1 ${SDL2_LIBRARY} -lm)
+else (UNIX)
+    target_link_libraries(RTv1 ${SDL2_LIBRARY} -lmingw32 -lSDL2main -lSDL2)
+endif(UNIX)

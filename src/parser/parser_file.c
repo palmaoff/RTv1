@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/25 19:40:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/29 22:37:41 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	output_error(char *err)
 {
-	ft_putstr(err);
+	ft_putendl(err);
 	exit(1);
 }
 
@@ -38,6 +38,7 @@ void	check_file(const int fd, t_bool *cam_f, t_bool *s_o)
 		}
 		free(line);
 	}
+	free(line);
 	if (s_o[0] == FALSE)
 		output_error("Add \"scene\" tag\n");
 	else if (s_o[1] == FALSE)

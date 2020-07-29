@@ -43,7 +43,8 @@ void	parser_free_array(char **ar)
 		return ;
 	while (ar[i])
 	{
-		ft_memdel((void **)&ar[i]);
+		free(ar[i]);
+		ar[i] = NULL;
 		i++;
 	}
 	free(ar);

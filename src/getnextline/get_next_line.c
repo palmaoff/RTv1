@@ -3,92 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eflorean <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/28 16:17:11 by wquirrel          #+#    #+#             */
-/*   Updated: 2019/10/08 20:24:38 by wquirrel         ###   ########.fr       */
+/*   Created: 2019/09/22 18:41:19 by eflorean          #+#    #+#             */
+/*   Updated: 2019/10/15 16:27:51 by eflorean         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static int		ft_linenew(char **string, char **line)
+void	dup_fr(char **line, char *st)
 {
-	int		len;
-	char	*str;
-
-	len = 0;
-	while (*string && (*string)[len] != '\n')
-		len++;
-	if (!(*line = ft_strsub(*string, 0, len)))
-		return (-1);
-	if (!(str = ft_strsub(*string, len + 1, ft_strlen(*string))))
-		return (-1);
-	free(*string);
-	if (!(*string = ft_strdup(str)))
-	{
-		free(str);
-		return (-1);
-	}
-	free(str);
-	return (1);
+	if (*line != NULL)
+		free(*line);
+	*line = ft_strdup(st);
 }
 
-static t_file	*ft_lstnewfd(int fd)
+char	*ft_static(char **line, char st[BUFF_SIZE + 1])
 {
-	t_file *list;
+	char	*n;
+	char	*tmp;
 
-	if (!(list = (t_file *)malloc(sizeof(t_file))))
-		return (NULL);
-	if (!(list->str = ft_strnew(0)))
+	tmp = NULL;
+	n = NULL;
+	if (st != NULL)
 	{
-		free(list);
-		return (NULL);
-	}
-	list->fd = fd;
-	list->next = NULL;
-	return (list);
-}
-
-static t_file	*ft_find_fd(t_file **head, int fd)
-{
-	t_file *file;
-
-	if (!*head)
-		*head = ft_lstnewfd(fd);
-	file = *head;
-	while (file->fd != fd && file->next)
-		file = file->next;
-	if (file->fd == fd)
-		return (file);
-	else
-		return (file->next = ft_lstnewfd(fd));
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static t_file	*head = NULL;
-	t_file			*f;
-	char			buff[BUFF_SIZE + 1];
-	char			*tmp;
-	ssize_t			size;
-
-	if (fd < 0 || read(fd, NULL, 0) < 0 || !line ||
-	!(f = ft_find_fd(&head, fd)))
-		return (-1);
-	while (!f->str || !ft_strchr(f->str, '\n'))
-	{
-		if (!(size = read(fd, buff, BUFF_SIZE)))
+		if ((n = ft_strchr(st, '\n')))
 		{
-			if (!(*line = f->str) || *f->str == '\0')
-				return (0);
-			f->str = NULL;
-			return (1);
+			*n = '\0';
+			dup_fr(line, st);
+			ft_strcpy(st, n + 1);
 		}
-		buff[size] = '\0';
-		tmp = f->str;
-		f->str = ft_strjoin(tmp, buff);
-		free(tmp);
+		else
+		{
+			dup_fr(line, st);
+			ft_strclr(st);
+		}
 	}
-	return (ft_linenew(&f->str, line));
+	return (n);
+}
+
+int		line_maker(int fd, char **line, char st[BUFF_SIZE + 1])
+{
+	char	buf[BUFF_SIZE + 1];
+	int		byte;
+	char	*tmp;
+	char	*n;
+
+	n = ft_static(line, st);
+	while (n == NULL && (byte = read(fd, buf, BUFF_SIZE)))
+	{
+		buf[byte] = '\0';
+		if ((n = ft_strchr(buf, '\n')))
+		{
+			*n = '\0';
+			ft_strcpy(st, ++n);
+		}
+		tmp = *line;
+		if (!(*line = ft_strjoin(*line, buf)) || byte < 0)
+			return (-1);
+		if (tmp != NULL)
+			free(tmp);
+		ft_bzero(buf, BUFF_SIZE + 1);
+	}
+	return ((ft_strlen(*line) || ft_strlen(st) || byte) ? 1 : 0);
+}
+
+int		get_next_line(const int fd, char **line)
+{
+	int			rt;
+	static char	fd_content[OPEN_MAX + 1][BUFF_SIZE + 1];
+
+	if (fd < 0 || fd > OPEN_MAX || !line || BUFF_SIZE < 1)
+		return (-1);
+	*line = ft_strnew(0);
+	rt = line_maker(fd, line, fd_content[fd]);
+	return (rt);
 }
