@@ -26,20 +26,23 @@ static	double	specular(t_scene *scene, t_vec l, t_vec n)
 	return (pow(vec_dot(r, v), spec));
 }
 
-static double	shadow(t_scene *scene, t_vec d, t_vec p)
+static double	shadow(t_scene *scene, t_vec d, t_vec p, int l)
 {
 	int		i;
 	double	t[2];
+	t_vec v;
 
 	i = 0;
 	t[1] = 0;
 	while (i < scene->n_obj)
 	{
-		calc_fig(scene, d, p, i);
+		calc_fig(scene, vec_norm(d), p, i);
 		if (scene->fig[scene->cur].shape != 2 || scene->fig[i].shape != 2)
 		{
 			t[0] = scene->f_inter[scene->fig[i].shape - 1](scene, i);
-			if (t[0] > 0)
+			v = vec_scale(vec_norm(d), t[0]);
+			if (t[0] > 0 && (vec_dot(v, v) < vec_dot(d, d) ||
+				scene->light[l].type == DIRECTIONAL))
 				return (1);
 		}
 		i++;
@@ -61,14 +64,14 @@ static	double	punch(t_scene *scene, t_vec p)
 	while (i < scene->n_lt)
 	{
 		if (scene->light[i].type == POINT)
-			l = vec_norm(vec_sub(p, scene->light[i].p));
+			l = vec_sub(p, scene->light[i].p);
 		if (scene->light[i].type == DIRECTIONAL)
 			l = scene->light[i].p;
-		tmp[0] = vec_dot(l, n);
+		tmp[0] = vec_dot(vec_norm(l), n);
 		if (scene->light[i].type == AMBIENT)
 			tmp[1] += scene->light[i].inst;
 		else if (tmp[0] > 0 &&
-			!shadow(scene, vec_scale(l, -1), p))
+			!shadow(scene, vec_scale(l, -1), p, i))
 			tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
 		i++;
 	}
