@@ -30,7 +30,7 @@ static double	shadow(t_scene *scene, t_vec d, t_vec p, int l)
 {
 	int		i;
 	double	t[2];
-	t_vec v;
+	t_vec	v;
 
 	i = 0;
 	t[1] = 0;
