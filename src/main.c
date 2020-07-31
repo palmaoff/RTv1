@@ -23,6 +23,13 @@ void	calc(t_scene *scene)
 		scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
 		i++;
 	}
+	i = 0;
+	while (i < scene->n_lt)
+	{
+		if (scene->light[i].type == DIRECTIONAL)
+			scene->light[i].p = vec_norm(scene->light[i].p);
+		i++;
+	}
 	scene->cam.x_r = 3.14 / 180 * scene->cam.dir.y;
 	scene->cam.y_r = 3.14 / 180 * scene->cam.dir.x;
 	scene->cam.z_r = 3.14 / 180 * scene->cam.dir.z;

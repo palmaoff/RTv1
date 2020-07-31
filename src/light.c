@@ -30,18 +30,16 @@ static double	shadow(t_scene *scene, t_vec d, t_vec p)
 {
 	int		i;
 	double	t[2];
-	t_vec	v;
 
 	i = 0;
 	t[1] = 0;
 	while (i < scene->n_obj)
 	{
-		calc_fig(scene, vec_norm(d), p, i);
+		calc_fig(scene, d, p, i);
 		if (scene->fig[scene->cur].shape != 2 || scene->fig[i].shape != 2)
 		{
 			t[0] = scene->f_inter[scene->fig[i].shape - 1](scene, i);
-			v = vec_scale(vec_norm(d), t[0]);
-			if (t[0] > 0 && vec_dot(v, v) < vec_dot(d, d))
+			if (t[0] > 0)
 				return (1);
 		}
 		i++;
@@ -70,7 +68,7 @@ static	double	punch(t_scene *scene, t_vec p)
 		if (scene->light[i].type == AMBIENT)
 			tmp[1] += scene->light[i].inst;
 		else if (tmp[0] > 0 &&
-			!shadow(scene, vec_sub(scene->light[i].p, p), p))
+			!shadow(scene, vec_scale(l, -1), p))
 			tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
 		i++;
 	}
