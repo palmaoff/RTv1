@@ -1,0 +1,19 @@
+scene
+{
+	light
+	{
+		type ( Directional )
+		pos ( 40 50 -5 )
+		intensity ( 0.7 )
+
+	}
+};
+objects
+{
+	sphere
+	{
+		pos ( 0 0 1 )
+		color_rgb ( 0xFF 0x00 0x00 )
+		size ( 4 )
+	}
+};

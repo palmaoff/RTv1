@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/09 15:31:45 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/29 17:33:09 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/31 15:57:16 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,18 +46,17 @@ static	void	check_lights(int fd)
 	type = 0;
 	while (get_next_line(fd, &line))
 	{
+		count_brackets(line);
+		if (ft_str1trim_equ(line, "}") || !line)
+			break ;
 		tmp = ft_strtrim_split(line, ' ');
 		free(line);
-		count_brackets(tmp[0]);
-		if (ft_strequ(tmp[0], "}"))
-			break ;
 		check_light_feature(tmp, &features[0], &type);
 		parser_free_array(tmp);
 	}
-	parser_free_array(tmp);
-	if ((type == AMBIENT && features[2] != TRUE)
-	|| (type != AMBIENT && (features[0] != TRUE || features[1] != TRUE
-	|| features[2] != TRUE)))
+	free(line);
+	if ((type == AMBIENT && features[2] != TRUE) || (type != AMBIENT
+	&& (features[0] != TRUE || features[1] != TRUE || features[2] != TRUE)))
 		output_error("Check a light");
 }
 
@@ -70,18 +69,18 @@ static	t_bool	check_camera(int fd)
 	tmp = NULL;
 	while (get_next_line(fd, &line))
 	{
+		count_brackets(line);
+		if (ft_str1trim_equ(line, "}") || !line)
+			break ;
 		tmp = ft_strtrim_split(line, ' ');
 		free(line);
-		count_brackets(tmp[0]);
-		if (ft_str1trim_equ(tmp[0], "}"))
-			break ;
 		if (ft_strequ(tmp[0], "pos") && check_vec(tmp + 2))
 			coo_state[0] = TRUE;
 		else if (ft_strequ(tmp[0], "dir") && check_vec(tmp + 2))
 			coo_state[1] = TRUE;
 		parser_free_array(tmp);
 	}
-	parser_free_array(tmp);
+	free(line);
 	if (coo_state[0] == TRUE && coo_state[1] == TRUE)
 		return (TRUE);
 	else
@@ -97,7 +96,7 @@ void			check_scene(int fd, t_bool *cam_flag)
 	while (get_next_line(fd, &line))
 	{
 		count_brackets(line);
-		if (ft_str1trim_equ(line, "};"))
+		if (ft_str1trim_equ(line, "};") || !line)
 			break ;
 		if (ft_str1trim_equ(line, "camera"))
 			*cam_flag = check_camera(fd);

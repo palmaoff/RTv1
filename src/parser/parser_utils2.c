@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/17 13:58:24 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/29 20:29:50 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/31 15:51:09 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		count_brackets(char *str)
 	char		*s;
 	static int	br = 0;
 
+	if (!str)
+		return (0);
 	s = ft_strtrim(str);
 	if (ft_strequ(s, "}") || ft_strequ(s, "{")
 	|| ft_strequ(s, "};"))

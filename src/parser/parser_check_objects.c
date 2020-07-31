@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/11 17:27:14 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/31 15:51:09 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ t_bool	check_object(int fd, t_type_o fig)
 	tmp = NULL;
 	while (get_next_line(fd, &line))
 	{
-		tmp = ft_strtrim_split(line, ' ');
-		count_brackets(tmp[0]);
-		free(line);
-		if (ft_strequ(tmp[0], "}"))
+		count_brackets(line);
+		if (ft_str1trim_equ(line, "}") || !line)
 			break ;
+		tmp = ft_strtrim_split(line, ' ');
+		free(line);
 		assign_feature(tmp, (&features)[0]);
 		parser_free_array(tmp);
 	}
-	parser_free_array(tmp);
+	free(line);
 	if (check_features(fig, features) == FALSE)
 	{
 		output_invalid_obj(fig);
@@ -89,7 +89,7 @@ void	check_objects(int fd)
 	while (get_next_line(fd, &line))
 	{
 		count_brackets(line);
-		if (ft_str1trim_equ(line, "};"))
+		if (ft_str1trim_equ(line, "};") || !line)
 			break ;
 		if (ft_str1trim_equ(line, "sphere"))
 			obj += check_object(fd, SPHERE);

@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/27 14:24:09 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/10 19:28:23 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/07/31 15:35:47 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,11 @@ void	parser_free_array(char **ar)
 		return ;
 	while (ar[i])
 	{
-		free(ar[i]);
-		ar[i] = NULL;
+		if (ar[i] && ar[i][0])
+		{
+			free(ar[i]);
+			ar[i] = NULL;
+		}
 		i++;
 	}
 	free(ar);
