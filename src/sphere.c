@@ -23,9 +23,9 @@ double	intersect_sphere(t_scene *scene, int i)
 		return (0);
 	m[4] = -m[1] + sqrtf(m[3]);
 	m[5] = -m[1] - sqrtf(m[3]);
-	if (m[4] < 1 && m[5] < 1)
-		return (0);
-	return (((m[4] < m[5] && m[4] >= 1) || m[5] < 1.0) ? m[4] : m[5]);
+	if (m[4] < m[5] && m[4] >= 0)
+		return (m[4]);
+	return (m[5] >= 0) ? (m[5]) : 0;
 }
 
 t_vec	sphere_norm(t_scene *scene)
