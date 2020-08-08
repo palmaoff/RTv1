@@ -37,14 +37,11 @@ static double	shadow(t_scene *scene, t_vec d, t_vec p, int l)
 	while (i < scene->n_obj)
 	{
 		calc_fig(scene, vec_norm(d), p, i);
-		if (scene->fig[scene->cur].shape != 2 || scene->fig[i].shape != 2)
-		{
-			t[0] = scene->f_inter[scene->fig[i].shape - 1](scene, i);
-			v = vec_scale(vec_norm(d), t[0]);
-			if (t[0] > 0.0001 && (vec_dot(v, v) < vec_dot(d, d) ||
-				scene->light[l].type == DIRECTIONAL))
-				return (0);
-		}
+		t[0] = scene->f_inter[scene->fig[i].shape - 1](scene, i);
+		v = vec_scale(vec_norm(d), t[0]);
+		if (t[0] > 0.0001 && (vec_dot(v, v) < vec_dot(d, d) ||
+			scene->light[l].type == DIRECTIONAL))
+			return (0);
 		i++;
 	}
 	return (1);

@@ -28,9 +28,9 @@ double	intersect_cone(t_scene *scene, int i)
 		return (0);
 	m[4] = (-m[1] + sqrtf(m[3])) / m[0];
 	m[5] = (-m[1] - sqrtf(m[3])) / m[0];
-	if ((m[4] < m[5] || m[5] < 0.0001) && m[4] > 0.0001)
+	if ((m[4] < m[5] || m[5] < 0.1) && m[4] >= 0.1)
 		return (m[4]);
-	return (m[5] > 0.0001) ? (m[5]) : -1;
+	return (m[5] > 0.1) ? (m[5]) : -1;
 }
 
 t_vec	cone_norm(t_scene *scene)
