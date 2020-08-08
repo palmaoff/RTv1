@@ -20,12 +20,12 @@ double	intersect_sphere(t_scene *scene, int i)
 	m[2] = scene->fig[i].oc_oc - scene->fig[i].k_k;
 	m[3] = m[1] * m[1] - m[2];
 	if (m[3] < 0)
-		return (0);
+		return (-1);
 	m[4] = -m[1] + sqrtf(m[3]);
 	m[5] = -m[1] - sqrtf(m[3]);
-	if (m[4] < m[5] && m[4] >= 0)
+	if ((m[4] < m[5] || m[5] < 0.0001) && m[4] > 0.0001)
 		return (m[4]);
-	return (m[5] >= 0) ? (m[5]) : 0;
+	return (m[5] > 0.0001) ? (m[5]) : -1;
 }
 
 t_vec	sphere_norm(t_scene *scene)

@@ -41,13 +41,13 @@ static double	shadow(t_scene *scene, t_vec d, t_vec p, int l)
 		{
 			t[0] = scene->f_inter[scene->fig[i].shape - 1](scene, i);
 			v = vec_scale(vec_norm(d), t[0]);
-			if (t[0] > 0 && (vec_dot(v, v) < vec_dot(d, d) ||
+			if (t[0] > 0.0001 && (vec_dot(v, v) < vec_dot(d, d) ||
 				scene->light[l].type == DIRECTIONAL))
-				return (1);
+				return (0);
 		}
 		i++;
 	}
-	return (0);
+	return (1);
 }
 
 static	double	punch(t_scene *scene, t_vec p)
@@ -71,7 +71,7 @@ static	double	punch(t_scene *scene, t_vec p)
 		if (scene->light[i].type == AMBIENT)
 			tmp[1] += scene->light[i].inst;
 		else if (tmp[0] > 0 &&
-			!shadow(scene, vec_scale(l, -1), p, i))
+			shadow(scene, vec_scale(l, -1), p, i))
 			tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
 		i++;
 	}
