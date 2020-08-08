@@ -40,7 +40,7 @@ t_color			ray(t_scene *scene, t_vec d, t_vec o, int depth)
 	{
 		calc_fig(scene, d, o, i);
 		t = scene->f_inter[scene->fig[i].shape - 1](scene, i);
-		if ((t < mint || mint == 0) && t > 1)
+		if ((t < mint || mint == 0) && t > 0)
 		{
 			mint = t;
 			scene->cur = i;
