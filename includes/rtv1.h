@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/10 18:53:19 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/29 17:27:58 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/08/09 16:23:56 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,26 +82,26 @@ typedef	struct	s_color
 
 typedef	struct	s_camera
 {
-	t_vec	dir;
-	t_vec	orig;
 	double	x_r;
 	double	y_r;
 	double	z_r;
+	t_vec	dir;
+	t_vec	orig;
 }				t_camera;
 
 typedef struct	s_figure
 {
 	t_type_o	shape;
-	t_vec		c;
-	t_vec		v;
 	int			spec;
-	double		k;
-	t_color		color;
 	double		k_k;
 	double		d_v;
 	double		oc_d;
 	double		oc_v;
 	double		oc_oc;
+	double		k;
+	t_color		color;
+	t_vec		c;
+	t_vec		v;
 }				t_figure;
 
 typedef struct	s_light
@@ -113,21 +113,21 @@ typedef struct	s_light
 
 typedef	struct	s_scene
 {
+	int			n_obj;
+	int			n_lt;
+	int			cur;
+	t_bool		cam_flag;
+	char		*file;
 	t_light		*light;
-	t_camera	cam;
 	t_figure	*fig;
+	double		t;
+	double		d_d;
+	t_color		color;
+	t_vec		d;
 	t_vec		(*f_norm[4])(struct s_scene *scene);
 	double		(*f_inter[4])
 (struct s_scene *scene, int i);
-	t_color		color;
-	double		d_d;
-	t_vec		d;
-	double		t;
-	int			cur;
-	int			n_obj;
-	int			n_lt;
-	char		*file;
-	t_bool		cam_flag;
+	t_camera	cam;
 }				t_scene;
 
 /*
