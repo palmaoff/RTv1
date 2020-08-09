@@ -6,7 +6,7 @@
 /*   By: wquirrel <wquirrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/22 18:40:10 by wquirrel          #+#    #+#             */
-/*   Updated: 2020/07/01 20:52:59 by wquirrel         ###   ########.fr       */
+/*   Updated: 2020/08/09 13:43:25 by wquirrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ double	ft_atof(const char *str)
 	double	*d;
 	int		p;
 
-	d = (double[2]){0};
+	d = (double[2]){0, 1};
 	p = 0;
 	if (*str == '\0' || *str == 27 || *str == '\200')
 		return (0);
 	while (*str <= 32)
 		str++;
-	d[1] = sign(str++);
+	d[1] = (*str == '-' || *str == '+') ? sign(str++) : 1;
 	while (*str)
 	{
 		if ((*str < '0' || *str > '9') && *str != '.')

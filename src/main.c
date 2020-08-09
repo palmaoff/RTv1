@@ -14,8 +14,8 @@
 
 void	calc(t_scene *scene)
 {
-	int i;
-	double s;
+	int		i;
+	double	s;
 
 	i = -1;
 	s = 0;
