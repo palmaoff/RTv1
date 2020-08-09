@@ -15,20 +15,25 @@
 void	calc(t_scene *scene)
 {
 	int i;
+	double s;
 
-	i = 0;
-	while (i < scene->n_obj)
+	i = -1;
+	s = 0;
+	while (++i < scene->n_obj)
 	{
 		scene->fig[i].color = check_color(scene->fig[i].color);
 		scene->fig[i].k_k = scene->fig[i].k * scene->fig[i].k;
-		i++;
 	}
-	i = 0;
-	while (i < scene->n_lt)
+	i = -1;
+	while (++i < scene->n_lt)
+		s += scene->light[i].inst;
+	s = (s > 1) ? s : 1;
+	i = -1;
+	while (++i < scene->n_lt)
 	{
 		if (scene->light[i].type == DIRECTIONAL)
 			scene->light[i].p = vec_norm(scene->light[i].p);
-		i++;
+		scene->light[i].inst /= s;
 	}
 	scene->cam.x_r = 3.14 / 180 * scene->cam.dir.y;
 	scene->cam.y_r = 3.14 / 180 * scene->cam.dir.x;
