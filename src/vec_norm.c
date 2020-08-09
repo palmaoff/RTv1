@@ -17,7 +17,7 @@ t_vec	vec_norm(t_vec a)
 	t_vec	vec;
 	double	len;
 
-	len = sqrtf(a.x * a.x + a.y * a.y + a.z * a.z);
+	len = sqrt(a.x * a.x + a.y * a.y + a.z * a.z);
 	if (len == 0)
 		return (init_vec(0, 0, 0));
 	vec.x = a.x / len;

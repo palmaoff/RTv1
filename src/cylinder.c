@@ -16,19 +16,18 @@ double	intersect_cylinder(t_scene *scene, int i)
 {
 	double m[6];
 
-	scene->fig[i].v = vec_norm(scene->fig[i].v);
 	m[0] = scene->d_d - scene->fig[i].d_v * scene->fig[i].d_v;
 	m[1] = scene->fig[i].oc_d - scene->fig[i].d_v * scene->fig[i].oc_v;
 	m[2] = scene->fig[i].oc_oc -
 		scene->fig[i].oc_v * scene->fig[i].oc_v - scene->fig[i].k_k;
 	m[3] = m[1] * m[1] - m[0] * m[2];
 	if (m[3] < 0)
-		return (0);
-	m[4] = (-m[1] + sqrtf(m[3])) / m[0];
-	m[5] = (-m[1] - sqrtf(m[3])) / m[0];
-	if ((m[4] < m[5] || m[5] < 0.0001) && m[4] > 0.0001)
+		return (-1);
+	m[4] = (-m[1] + sqrt(m[3])) / m[0];
+	m[5] = (-m[1] - sqrt(m[3])) / m[0];
+	if ((m[4] <= m[5] || m[5] < 0.0001) && m[4] > 0.0001)
 		return (m[4]);
-	return (m[5] > 0.0001) ? (m[5]) : -1;
+	return (m[5] >= 0.0001) ? (m[5]) : -1;
 }
 
 t_vec	cylinder_norm(t_scene *scene)

@@ -63,6 +63,7 @@ void	calc_fig(t_scene *scene, t_vec dir, t_vec o, int i)
 	scene->fig[i].oc_v = vec_dot(oc, scene->fig[i].v);
 	scene->fig[i].d_v = vec_dot(dir, scene->fig[i].v);
 	scene->fig[i].oc_oc = vec_dot(oc, oc);
+	scene->fig[i].v = vec_norm(scene->fig[i].v);
 }
 
 int		main(int ac, char *av[])
