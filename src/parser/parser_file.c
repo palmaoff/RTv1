@@ -23,7 +23,7 @@ void	check_file(const int fd, t_bool *cam_f, t_bool *s_o)
 	char	*line;
 	int		ret;
 
-	while ((ret = get_next_line(fd, &line)))
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (ft_strequ(line, "scene"))
 		{
