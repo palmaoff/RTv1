@@ -64,10 +64,9 @@ static	double	punch(t_scene *scene, t_vec p)
 			l = vec_sub(p, scene->light[i].p);
 		if (scene->light[i].type == DIRECTIONAL)
 			l = scene->light[i].p;
-		tmp[0] = vec_dot(vec_norm(l), n);
 		if (scene->light[i].type == AMBIENT)
 			tmp[1] += scene->light[i].inst;
-		else if (tmp[0] > 0 &&
+		else if ((tmp[0] = vec_dot(vec_norm(l), n)) > 0 &&
 			shadow(scene, vec_scale(l, -1), p, i))
 			tmp[1] += (tmp[0] + specular(scene, l, n)) * scene->light[i].inst;
 		i++;
